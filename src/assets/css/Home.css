@@ -1,0 +1,10 @@
+body{
+    
+    background-size: cover;
+    min-height: 100%;
+    display: flex;
+    background-image: url("../statics/img1.jpg");
+}
+.container-home{
+    min-height: 80%;
+}
