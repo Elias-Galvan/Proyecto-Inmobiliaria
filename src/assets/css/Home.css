@@ -5,3 +5,9 @@ body{
     display: flex;
     /* background-image: url("../statics/img1.jpg"); */
 }
+.proptit{
+    text-align: center;
+    font-weight:bolder;
+    height: 500px;
+}
+

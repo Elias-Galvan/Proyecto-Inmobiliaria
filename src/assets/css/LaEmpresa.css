@@ -1,0 +1,26 @@
+.emp-container{
+    background: #888582;
+    padding-right: 270px;
+    padding-left: 50px;
+    padding-bottom: 10px;
+    
+}
+.DetalleEmp h4{
+    font-size:medium;
+}
+.DetalleEmp p{
+    font-size: small;
+}
+.DetalleEmp ul li{
+    font-size: small;
+}
+
+.img-container{
+    height: 450px;
+}
+.img-container img{
+    max-height: 450px;
+    width: 100%;
+}
+
+

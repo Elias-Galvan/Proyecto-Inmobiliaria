@@ -8,7 +8,7 @@ const Carrousel = ({img}) => {
   
 
   return (
-    <div>
+    <div className="carrousel">
 
       <SimpleImageSlider
         width="100%"
