@@ -8,7 +8,7 @@ export default function Layout(props) {
   <div className="app"></div>
   <Header></Header>
   {children}
-  <Nosotros></Nosotros>
+  
   <Footer></Footer>
   </>
   );

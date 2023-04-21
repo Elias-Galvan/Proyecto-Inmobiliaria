@@ -1,0 +1,15 @@
+.content {
+  padding: 10px;
+}
+.card {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14) !important;
+}
+.card .btn {
+  
+  display: flex;
+  justify-content: center;
+}
+.pic{ 
+  display: flex;
+  text-align: center;
+}
