@@ -1,0 +1,12 @@
+.container-propdest{
+   width: 100px;
+   text-align: center;
+}
+
+.proptit{
+    display: flex;
+    justify-content: center;
+   text-align: center;
+    font-weight:bolder;
+    height: 200px;
+}

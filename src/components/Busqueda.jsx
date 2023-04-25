@@ -11,7 +11,6 @@ export default function Busqueda() {
   return (
     <>
       <div className="busqueda">
-        <h1>Busque su propiedad en Lopez Balaguer Bienes Raices</h1>
         <Navbar bg="transparent" className="navbar" expand="lg">
           <Container className="var" fluid>
             <Navbar.Toggle aria-controls="navbarScroll" />

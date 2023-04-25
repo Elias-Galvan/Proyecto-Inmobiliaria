@@ -5,11 +5,12 @@ import Nosotros from "./Nosotros";
 export default function Layout(props) {
   const{children}= props;
   return( <>
-  <div className="app"></div>
+  <div className="app">
   <Header></Header>
   {children}
   
   <Footer></Footer>
+  </div>
   </>
   );
 }

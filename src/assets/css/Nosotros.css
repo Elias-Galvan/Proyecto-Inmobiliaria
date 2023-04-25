@@ -1,5 +1,9 @@
 .container-nos{
     background: #747570;
     padding: 10px;
+    height: 100px;
+    text-align: left;
+}
+.container-nos h4{
     text-align: center;
 }

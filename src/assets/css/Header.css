@@ -1,40 +1,63 @@
-.icono {
-  max-width: 200px;
-  padding: 0;
-  }
-  header{
-    background-color: transparent;
-    height: 80px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    margin-bottom: 0px;
-    position: absolute;
+.container-header {
+  background-color: #353535;
+  height: 64px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  color: white;
+  z-index: 1;
+  opacity: 0.9;
+}
 
-  }
-  img{
-    max-width: 100%;
-  max-height: 60px;
-  padding: 5px;
-  padding-top: 0;
-  }
- .menu{
-  background-color: transparent;
-  height: 90px;
-  width: 100vw;
+.offcanvas.offcanvas-end.show {
+  width: 100%;
+  background: transparent;
+  backdrop-filter: blur(15px);
+  color: white;
+  font-size: x-large;
+  text-align: center;
+}
+.justify-content-end {
+  float: right;
+}
+.container-fluid a img {
+  width: 50px;
+  padding: 0%;
   display: flex;
-  justify-content: space-between;
+}
+.container-fluid a {
+  padding: 0%;
+  margin: 0%;
+}
+
+.navbar-toggler {
+  width: 60px;
+  float: right;
+}
+.offcanvas-title {
+  padding-left: 46%;
+  
+}
+.offcanvas-body
+
+
+{
+  display: flex;
+  justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #fff;
-  box-shadow: 5px 0 10px rgba(0,0,0,.6);
- }
- .menu-items{
+}
+.navbar-toggler:hover {
+  color: white;
+}
+.icono {
   display: flex;
-  list-style: none;
-  margin-right: 0px;
- }
- .btn-menu{
-  margin-right: 20px;
- }
- navbar{
-  background-color: red;
- }
+}
+.icono h6 {
+  color: white;
+  padding-top: 11px;
+  padding-left: 15px;
+}
+
+.navbar-toggler-icon {
+  color: white;
+}

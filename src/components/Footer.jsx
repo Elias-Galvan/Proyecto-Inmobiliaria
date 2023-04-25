@@ -1,52 +1,57 @@
 import React from "react";
 import "../assets/css/Footer.css";
-import iconoHeader from "../assets/statics/icono.webp";
-import logoface from "../assets/statics/logoface.png"
-import logoinsta from "../assets/statics/logoinsta.png"
-import phone from"../assets/statics/phone.png"
+import iconoHeader from "../assets/statics/icono.png";
+import logoface from "../assets/statics/logoface.png";
+import logoinsta from "../assets/statics/logoinsta.png";
+import phone from "../assets/statics/phone.png";
 export default function Footer() {
- 
   return (
     <>
       <footer>
         <div className="row">
           <div className="col-md-3">
-            
-            <img src={iconoHeader} style={{Color:"white"}} alt="" />
-            
-            <h6>Encontranos en</h6>
+            <div className="logo">
+              <img src={iconoHeader} style={{ Color: "white" }} alt="" />
+              <h5>Duo Gym</h5>
+            </div>
+
+            <h6>Comunicate con nosotros</h6>
             <div className="tel">
-            <img src={phone} id='phone'></img>
-            <h6 id="numtel">7538-6467</h6>
+              <img src={phone} id="phone"></img>
+              <h6 id="numtel">7538-6467</h6>
             </div>
           </div>
           <div className="col-md-3">
-            <h5>Venta y Tasaciones de propiedades.</h5>
-            <h5>Inmobiliaria</h5>
+            <h5>Nos encontramos en:</h5>
+            <p>Isabel la Catolica 1978</p>
+            <p>Ciudad Evita</p>
           </div>
           <div className="col-md-3">
             <h6>Seguinos en</h6>
-            <a href=""><img src={logoface} alt="" /></a>
-            <a href=""><img src={logoinsta} alt="" /></a>
+            <div className="container-iconos">
+              <a href="">
+                <img src={logoface} alt="" />
+              </a>
+              <a href="">
+                <img src={logoinsta} alt="" />
+              </a>
+            </div>
           </div>
           <div className="col-md-3">
-            <h6>¿Qué estás buscando? </h6>
+            <h6>FILOSOFIA </h6>
             <ul>
-              <li>Terrenos</li>
-              <li>Departamentos</li>
-              <li>Casas</li>
-              <li>Locales</li>
+              <li>Hay lugar para todos.</li>
+              <li>no juzgamos.</li>
+              <li>No existen miradas que desaprueben.</li>
             </ul>
           </div>
-          <hr/>
+          <hr />
         </div>
-        
+
         <h6 className="footer-descripcion">
-          Todas las medidas enunciadas son meramente orientativas, las medidas
-          exactas serán las que se expresen en el respectivo título de propiedad
-          de cada inmueble. Todas las fotos, imagenes y videos son meramente
-          ilustrativos y no contractuales. Los precios enunciados son meramente
-          orientativos y no contractuales.. © 2023 Lopez Balaguer Propiedades.
+          En DuoGym cuidamos tu salud, por eso te recordamos que tu apto médico
+          es indispensable al momento de iniciar una actividad física (leyes nº
+          139 y 12329). Copyright © 2022 DUOGYM. Todos los derechos reservados.
         </h6>
       </footer>
     </>

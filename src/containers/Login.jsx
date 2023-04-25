@@ -4,7 +4,7 @@ import '..//assets/css/Login.css'
 export default function () {
   return (
     <>
-      <section>
+      <section className="section-log">
         <div className="form-box">
           <div className="form-value">
             <form action="">
@@ -26,7 +26,7 @@ export default function () {
               </div>
               <button>Entrar</button>
               <div className="register">
-                <p>No tengo cuenta, <a href="">Registrarme</a></p>
+                <p>No tengo cuenta, <a href="/Registro">Registrarme</a></p>
               </div>
             </form>
           </div>
