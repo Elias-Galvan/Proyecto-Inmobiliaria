@@ -51,10 +51,10 @@ export default function Registro() {
             />
             <input
               type="text"
-              {...register("direccion")}
-              placeholder="Direccion"
+              {...register("Edad")}
+              placeholder="Edad"
             />
-            <button className="btn">Registrar</button>
+            <button className="btn">Registrarse</button>
           </form>
         </div>
       </section>

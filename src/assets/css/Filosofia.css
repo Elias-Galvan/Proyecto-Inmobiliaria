@@ -2,7 +2,11 @@
   background-color: #4a148c;
   height: 310px;
 }
-.container-Filosofia h1,
+.container-Filosofia h1{
+  text-align: center;
+}
+
+
 h4 {
   text-align: center;
 }
@@ -15,6 +19,7 @@ h4 {
 .lista ul li {
   padding-top: 20px;
   padding-bottom: 10px;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 800px) {

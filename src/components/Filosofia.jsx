@@ -6,7 +6,7 @@ import img2 from "../assets/statics/img2.jpeg";
 export default function Filosofia() {
   return (
     <>
-      <div className="container-Filosofia">
+      <div className="container-Filosofia" id="cont-filo">
         <h1 >Filosofia</h1>
         <h4 >Duo Gym es para todos y esa es nuestra filosofia</h4>
 

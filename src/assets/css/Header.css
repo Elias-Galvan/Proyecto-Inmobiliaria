@@ -1,6 +1,6 @@
 .container-header {
   background-color: #353535;
-  height: 64px;
+  height: 70px;
   position: fixed;
   top: 0px;
   width: 100%;
@@ -20,44 +20,72 @@
 .justify-content-end {
   float: right;
 }
-.container-fluid a img {
-  width: 50px;
-  padding: 0%;
+.container-header img {
+  margin-left: 15px;
+  width: 70px;
   display: flex;
+  position: absolute;
 }
-.container-fluid a {
-  padding: 0%;
-  margin: 0%;
+.container-header h6 {
+  color: white;
+  padding-top: 25px;
+  padding-left: 95px;
+  text-decoration: none;
+  display: inline-block;
+}
+.container-header ul {
+  float: right;
+  padding: 20px;
+}
+.container-header ul li {
+  display: inline-block;
 }
 
-.navbar-toggler {
-  width: 60px;
-  float: right;
-}
-.offcanvas-title {
-  padding-left: 46%;
+
+.container-header ul li a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  
   
 }
-.offcanvas-body
-
-
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.navbar-toggler:hover {
-  color: white;
-}
-.icono {
-  display: flex;
-}
-.icono h6 {
-  color: white;
-  padding-top: 11px;
-  padding-left: 15px;
+.container-header ul li a:hover {
+  color: blueviolet;
 }
 
-.navbar-toggler-icon {
+.action-btn {
+  padding: 10px;
+  text-decoration: none;
   color: white;
+  background-color: blueviolet;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: scale 0.2 ease;
+  
+}
+.action-btn:hover{
+  color: white;
+}
+
+
+
+
+@media screen and (max-width: 762px) {
+  .container-header {
+    height: 340px;
+    position:absolute;
+  }
+  .container-header ul li{
+display: flex;
+justify-content: center;
+padding-right: 20px;
+  }
+ .action-btn{
+  position: absolute;
+  margin-left: 3px;
+ }
 }
