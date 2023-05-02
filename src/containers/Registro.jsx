@@ -12,6 +12,9 @@ export default function Registro() {
   return (
     <>
       <section className="section-reg">
+        <div className="form-box-reg">
+
+       
         <div className="registro">
           <h2>Registrate</h2>
           <span>
@@ -56,6 +59,7 @@ export default function Registro() {
             />
             <button className="btn">Registrarse</button>
           </form>
+        </div>
         </div>
       </section>
     </>

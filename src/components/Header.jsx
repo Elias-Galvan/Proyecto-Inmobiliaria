@@ -14,25 +14,24 @@ export default function Header() {
         </a>
         <ul>
           <li>
-            <a href="/Registro">Sumate Ya</a>
+            <a href="/registro">Sumate Ya</a>
           </li>
           <li>
-            <a href="">Actividades</a>
+            <a href="/actividades">Actividades</a>
+          </li>
+        
+         
+          <li>
+            <a href="/contacto">Contacto</a>
           </li>
           <li>
-            <a href="">Nosotros</a>
-          </li>
-          <li>
-            <a href="#cont-filo">Filosofia</a>
-          </li>
-          <li>
-            <a href="">Contacto</a>
+            <a href="/ayuda">Ayuda</a>
           </li>
           <li>
             <a href="">Tienda</a>
           </li>
          
-          <a href="/Login" className="action-btn">
+          <a href="/login" className="action-btn">
             Inicia sesion
           </a>
         </ul>

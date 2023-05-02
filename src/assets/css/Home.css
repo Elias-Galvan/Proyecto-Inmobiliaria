@@ -6,10 +6,13 @@ body{
     /* background-image: url("../statics/img1.jpg"); */
 }
  .bienvenida h1{
-    background: black;
-    color: white;
+    
+    background: transparent;
+    background-color: rgb(139, 248, 212);
+    color: black;
+    opacity: 0.9;
     position:absolute;
-    margin-top: -300px;
+    margin-top: -400px;
     margin-left: 50px;
     font-size: bold;
     border-radius: 10px;
@@ -20,19 +23,25 @@ body{
 }
 .bienvenida a{
     position: absolute;
-    margin-top: -240px;
+    background: black;
+    border-color: black;
+    border-style: solid;
+    color: white;
+    margin-top: -335px;
     margin-left: 80px;
     display: inline-block;
     cursor: pointer;
-   
-    border-radius: 10px;
     padding-left: 10px;
     padding-right: 10px;
     text-decoration: none;
-    background-color: #009688;
-    color: white;
+    font-weight: 600;
+    border-radius: 3px;
+}
 
-   
-
-
+.bienvenida a:hover,
+.bienvenida a:focus {
+ 
+        font-size: 1.1rem;
+        border: solid;
+        color: white;
 }

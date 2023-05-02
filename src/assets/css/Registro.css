@@ -10,13 +10,29 @@
     align-items: center;
     text-align: center;
   }
-  
-.registro{
-    margin: auto;
-    padding: 3em 0;
-    padding-top: 100px;
-}
-  
+  .form-box-reg{
+    position: relative;
+  height: 700px;
+  margin-top: 100px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  .registro h2{
+    font-size: 2em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  }
+  .registro{
+   
+    margin-top: -25px;
+   
+  }
   .registro span{
     
     background-color: black;
@@ -24,7 +40,7 @@
     color: #adb5bd;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 5px;
+    
     padding-bottom: 5px;
   }
   
