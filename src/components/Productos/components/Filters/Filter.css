@@ -1,0 +1,39 @@
+.containerInput {
+  position: relative;
+  min-width: 220px;
+}
+.containerInput label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 16px;
+  line-height: 20px;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+  color:#333333;
+}
+.containerInput input {
+  border: 0;
+  border-bottom: 1px solid #333333;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+}
+.containerInput input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid  rgb(168, 117, 171);
+}
+input:focus + label {
+  top: -20px;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  color: rgb(168, 117, 171);
+}
+.containerInput svg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+}

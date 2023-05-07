@@ -29,7 +29,7 @@ export default function Header() {
             <a href="">Contacto</a>
           </li>
           <li>
-            <a href="">Tienda</a>
+            <a href="/Tienda">Tienda</a>
           </li>
          
           <a href="/Login" className="action-btn">
