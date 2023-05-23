@@ -1,0 +1,32 @@
+.container-Filosofia {
+background: #22178c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 310px;
+  color: #a7a5a5;
+}
+.container-Filosofia h1{
+  text-align: center;
+}
+
+
+h4 {
+  text-align: center;
+}
+.col-md-4 {
+  float: left;
+
+  text-align: left;
+  box-sizing: border-box;
+}
+.lista ul li {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+  .container-Filosofia {
+    height: 650px;
+  }
+}

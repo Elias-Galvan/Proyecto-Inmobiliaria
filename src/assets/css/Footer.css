@@ -20,6 +20,7 @@ footer {
     margin: 0 auto;
     padding: 35px;
   }
+
   .col-md-3:nth-child(2) {
     display: none;
   }
@@ -29,24 +30,31 @@ footer {
   .footer-descripcion {
     display: none;
   }
-  
+
   .col-md-3 {
     float: center;
   }
-  #phone{
+  #phone {
     display: none;
-  }
-  #numtel{
-margin-right: 7%;
     
   }
-  
+  #numtel {
+    margin-right: 7%;
+  }
 }
 
 .col-md-3 h6 {
   margin-left: 20px;
 }
 
+.col-md-3:nth-child(2) p {
+  margin-bottom: 0%;
+  padding-bottom: 0%;
+}
+.col-md-3:nth-child(3) {
+ padding-left: 30px;
+ justify-content: center;
+}
 
 .footer-descripcion {
   text-align: center;
@@ -56,12 +64,33 @@ margin-right: 7%;
 
 .tel {
   margin-left: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .tel a:nth-child(1) {
   width: 100%;
 }
-#phone{
-  float:left;
-  height:25px;
+#phone {
+  float: left;
+  height: 25px;
 }
+.logo{
+  display: flex;
+  justify-content: center;
+}
+.logo h5{
+  padding-top: 15px;
+}
+.col-md-3 :nth-child(1) img{
+  width: 70px;
+  
+}
+.col-md-3 :nth-child(2) img{
+  width: 50px;
+}
+.container-iconos{
+  padding-left: 15px;
+}
+
+
