@@ -1,6 +1,9 @@
 .container-Filosofia {
-  background-color: #4a148c;
+background: #22178c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 310px;
+  color: #a7a5a5;
 }
 .container-Filosofia h1{
   text-align: center;

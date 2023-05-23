@@ -67,8 +67,10 @@
   transition: scale 0.2 ease;
   
 }
-.action-btn:hover{
+.action-btn:hover,
+.action-btn:focus{
   color: white;
+  font-size: 0.9rem;
 }
 
 

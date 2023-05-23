@@ -1,7 +1,5 @@
 import React from "react";
-import Card from "./Tarjeta";
 import "../assets/css/Filosofia.css";
-import img2 from "../assets/statics/img2.jpeg";
 
 export default function Filosofia() {
   return (

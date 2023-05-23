@@ -16,8 +16,9 @@ export default function Home() {
     <div className="container-home">
     
     <Carrousel img={images}/>
-    <section className="bienvenida"><h1>No te quedes sin entrenar</h1>
-    <a href="/Registro">Sumate</a></section>
+    <section className="bienvenida"><h1>NO ESPERES UN MINUTO MÁS...</h1>
+    
+    <a href="/Registro">Proba una clase!</a></section>
     <Filosofia/>
     <Nosotros></Nosotros>
   

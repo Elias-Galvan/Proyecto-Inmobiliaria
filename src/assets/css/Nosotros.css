@@ -1,12 +1,18 @@
 .container-nos{
-    background: #747570;
+    
+    background-image:url('../statics/bg-yellow.jpg');
     padding: 10px;
     height: 100px;
     text-align: left;
+
+     position: relative;
+    background-size: cover;
+    background-attachment: fixed;
 }
 .container-nos h4{
     display: flex;
     text-align: center;
     margin-top: 1%;
     padding-bottom: 0%;
+    font-weight: bold;
 }
