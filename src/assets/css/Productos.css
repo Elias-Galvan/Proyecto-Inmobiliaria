@@ -1,0 +1,64 @@
+.containerProduct {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  margin-top: 76px;
+  margin-bottom: 32px;
+  box-sizing: border-box;
+}
+
+.title::after {
+  content: "TiendaOnline.";
+  /* color: #a875ab; */
+  position: absolute;
+  right: 220px;
+  margin-top: 40px;
+  font-size: 53px; /* make our h1 tag larger */
+  font-family: sans-serif; /* choosing our font */
+  background: linear-gradient(
+      to right,
+      rgba(255, 215, 255, 0) 0%,
+      #2bf2d0 20%,
+      rgba(255, 255, 255, 0) 61%
+    ),
+    linear-gradient(
+      rgb(168, 117, 171) 52%,
+      rgb(224, 246, 255) 60%,
+      rgb(156, 83, 160) 61%
+    ); /* you can change the colors based on your preference */
+  background-clip: text; /*it defines how far the background should extend within an element, here we set it to text */
+  -webkit-background-clip: text; /*for browsers compatibility */
+  -webkit-text-fill-color: transparent; /* specifies the fill color of text characters. We use transparent to use the background as our text fill  */
+  animation: wave 2000ms ease alternate infinite;
+  transition: all 0.4s ease;
+}
+@keyframes wave {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50vw 10px;
+  }
+}
+
+.containerCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+.containerFiltros {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  gap: 16px;
+  margin-right: 22px;
+}
+
+@media screen and (max-width: 700px) {
+  .containerCard {
+    flex-direction: column;
+  }
+}
