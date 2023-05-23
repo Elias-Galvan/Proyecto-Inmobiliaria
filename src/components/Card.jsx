@@ -1,18 +1,11 @@
 import React from "react";
 import "../assets/css/Actividades.css";
 
-
-export default function Card({
-  imgUrl,
-  titulo,
-  descripcion,
-
-
-}) {
+export default function Card({ imgUrl, titulo, descripcion }) {
   return (
     <div className="card text-center bg-dark">
       <div className="overflow">
-      <img src={imgUrl} alt="" className="card-img-top" />
+        <img src={imgUrl} alt="" className="card-img-top" />
       </div>
       <div className="card-body">
         <h4 className="card-title ">{titulo}</h4>
@@ -22,8 +15,9 @@ export default function Card({
           target="_blank"
           className="btn btn-secondary rounded-0"
           rel="noreferrer"
-          >Reserva una clase</a>
-        
+        >
+          Reserva una clase
+        </a>
       </div>
     </div>
   );
