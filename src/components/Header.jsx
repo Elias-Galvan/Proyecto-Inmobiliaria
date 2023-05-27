@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   const auth = "logeado";
+  const rol = "ADMIN";
+  
   return (
 
     <>
@@ -54,6 +56,18 @@ export default function Header() {
         <li>
           <Link to={"/ayuda"}>Ayuda</Link>
         </li>
+
+        {/* {
+          rol === 'ADMIN' 
+          ?  <li>
+              <Link to={"/ayuda"}>Ayuda</Link>
+             </li>
+          :  <li>
+                <Link to={"/ayuda"}>Ayuda</Link>
+              </li>
+        } */}
+
+
         <li>
           <Link to={""}>Tienda</Link>
         </li>
