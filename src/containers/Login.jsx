@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+// import axios from "axios";
 import "..//assets/css/Login.css";
 import { Link } from "react-router-dom";
 import useStore from "../state/useStore";
+import { loginService } from "../services/loginService";
 const token = "esto es un tokken";
 
-export default function () {
+export default function Login() {
   const setToken = useStore((state) => state.setToken);
   const [user, setUser] = useState();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
 
   const navigate = useNavigate();
 
@@ -24,11 +24,12 @@ export default function () {
     setLoading(true);
     setError("");
     try {
-      const response = await new Promise((r) => setTimeout(r, 2000)).then(
-        () => token
-      );
-      setToken(response);
-      navigate("/");
+      // const response = await new Promise((r) => setTimeout(r, 2000)).then(
+      //   () => token
+      // );
+      // setToken(response);
+      // navigate("/");
+      loginService(user);
     } catch (error) {
       console.log(error);
       setError("Ocurrió un error al iniciar sesión. Inténtalo de nuevo.");
@@ -44,14 +45,14 @@ export default function () {
           <h2>Login</h2>
           <div className="inputbox">
             <input
-              type="email"
-              id="email"
-              value={user?.email}
+              type="text"
+              id="nombreUsuario"
+              value={user?.nombreUsuario}
               onChange={(e) => handleChange(e.target)}
               required
-              name="email"
+              name="nombreUsuario"
             />
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Nombre de usuario</label>
           </div>
           <div className="inputbox">
             <input
@@ -68,7 +69,7 @@ export default function () {
             <label htmlFor="">
               <input type="checkbox" value="Recordarme" />
               <label htmlFor="">Recordarme / </label>
-              <a href="">Olvide la Contraseña</a>
+              <Link to="/">Olvide la Contraseña</Link>
             </label>
           </div>
           <button onClick={handleLogin}>Entrar</button>

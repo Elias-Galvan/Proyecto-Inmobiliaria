@@ -17,15 +17,18 @@
   font-size: x-large;
   text-align: center;
 }
+
 .justify-content-end {
   float: right;
 }
+
 .container-header img {
   margin-left: 15px;
   width: 70px;
   display: flex;
   position: absolute;
 }
+
 .container-header h6 {
   color: white;
   padding-top: 25px;
@@ -33,10 +36,12 @@
   text-decoration: none;
   display: inline-block;
 }
+
 .container-header ul {
   float: right;
   padding: 20px;
 }
+
 .container-header ul li {
   display: inline-block;
 }
@@ -46,9 +51,10 @@
   padding: 10px;
   color: white;
   text-decoration: none;
-  
-  
+
+
 }
+
 .container-header ul li a:hover {
   color: blueviolet;
 }
@@ -65,10 +71,11 @@
   font-weight: bold;
   cursor: pointer;
   transition: scale 0.2 ease;
-  
+
 }
+
 .action-btn:hover,
-.action-btn:focus{
+.action-btn:focus {
   color: white;
   font-size: 0.9rem;
 }
@@ -79,15 +86,17 @@
 @media screen and (max-width: 762px) {
   .container-header {
     height: 340px;
-    position:absolute;
+    position: absolute;
   }
-  .container-header ul li{
-display: flex;
-justify-content: center;
-padding-right: 20px;
+
+  .container-header ul li {
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
   }
- .action-btn{
-  position: absolute;
-  margin-left: 3px;
- }
+
+  .action-btn {
+    position: absolute;
+    margin-left: 3px;
+  }
 }

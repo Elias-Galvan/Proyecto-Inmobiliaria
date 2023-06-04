@@ -16,6 +16,7 @@ import Contacto from "../containers/Contacto";
 import Ayuda from "../containers/Ayuda";
 import Actividades from "../containers/Actividades";
 import AltaUsuario from "../containers/AltaUsuario";
+import LaEmpresa from "../containers/LaEmpresa.jsx";
 
 function App() {
   const isAuthenticated = () => {
@@ -41,11 +42,11 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
             <Route exact path="/LaEmpresa" element={<LaEmpresa />}></Route>
-            <Route
+            {/* <Route
               exact
               path="/Emprendimientos"
               element={<Emprendimientos />}
-            ></Route>
+            ></Route> */}
             <Route exact path="/Login" element={<Login />}></Route>
             <Route exact path="/Registro" element={<Registro />}></Route>
             <Route exact path="/Tienda" element={<Productos />}></Route>

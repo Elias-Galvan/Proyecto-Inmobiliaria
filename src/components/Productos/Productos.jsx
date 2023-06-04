@@ -13,8 +13,9 @@ const Productos = () => {
   return (
     <div className="containerProduct">
       <div className="header">
-        <h1 className="title" />
-        <img src={Banner} />
+        <h1 className="title">
+          <img src={Banner} alt="icon banner" />
+        </h1>
       </div>
       <div className="containerFiltros">
         <Filter handleSearch={handleSearch} />

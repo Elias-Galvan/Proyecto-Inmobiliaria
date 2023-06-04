@@ -1,6 +1,7 @@
 import React from "react";
 import imgEmp from "../assets/statics/img-empresa.webp";
 import "../assets/css/LaEmpresa.css";
+
 export default function LaEmpresa() {
   return (
     <>
