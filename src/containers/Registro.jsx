@@ -3,19 +3,16 @@ import { useForm } from "react-hook-form";
 import "../assets/css/Registro.css";
 
 export default function Registro() {
-  
-  const rol = "ADMIN";
+  // const rol = "ADMIN";
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
-  
+
   const onSubmit = (data) => {
-    console.log(data) 
+    console.log(data);
   };
-  console.log(errors);
 
   return (
     <>
@@ -58,8 +55,10 @@ export default function Registro() {
                 {...(errors.telefono?.type === "maxLength" &&
                   "Max Length Exceed")}
               />
-              
-              <button className="btn" type="submit">Registrarse</button>
+
+              <button className="btn" type="submit">
+                Registrarse
+              </button>
             </form>
           </div>
         </div>

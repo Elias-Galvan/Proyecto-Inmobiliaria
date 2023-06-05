@@ -17,8 +17,6 @@ export const Mailer = () => {
       .catch((error) => console.log(error));
   };
 
-  
-
   return (
     <div className="div-form">
       <form className="form-mail" onSubmit={sendEmail}>
@@ -39,7 +37,7 @@ export const Mailer = () => {
           rows="10"
         ></textarea>
         <hr />
-        <button>Enviar</button>
+        <button className="buttonContacto">Enviar</button>
       </form>
     </div>
   );

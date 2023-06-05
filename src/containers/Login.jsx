@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
-import axios from "axios";
-import "..//assets/css/Login.css";
+import { useNavigate } from "react-router-dom";
+import "../assets/css/Login.css";
 import { Link } from "react-router-dom";
 import useStore from "../state/useStore";
-const token = "esto es un tokken";
+import { loginService } from "../services/loginService";
+import Swal from "sweetalert2";
 
-export default function () {
+const initialState = {
+  nombreUsuario: "",
+  password: "",
+};
+
+export default function Login() {
   const setToken = useStore((state) => state.setToken);
-  const [user, setUser] = useState();
-  const [error, setError] = useState("");
+  const [user, setUser] = useState(initialState);
   const [loading, setLoading] = useState(false);
-  
 
   const navigate = useNavigate();
 
@@ -22,18 +25,28 @@ export default function () {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
     try {
-      const response = await new Promise((r) => setTimeout(r, 2000)).then(
-        () => token
-      );
-      setToken(response);
-      navigate("/");
+      const data = await loginService(user);
+
+      if (data && data.token) {
+        setToken(data.token);
+        Swal.fire("Ok..", "Credenciales correctas!!!", "success");
+        navigate("/");
+      } else {
+        Swal.fire("Error!!", "Credenciales incorrectas.", "error");
+      }
+
+      console.log(data);
     } catch (error) {
       console.log(error);
-      setError("Ocurrió un error al iniciar sesión. Inténtalo de nuevo.");
+      Swal.fire(
+        "Error!!",
+        "Ocurrió un error al iniciar sesión. Inténtalo de nuevo.",
+        "error"
+      );
     } finally {
       setLoading(false);
+      setUser(initialState);
     }
   };
 
@@ -44,14 +57,14 @@ export default function () {
           <h2>Login</h2>
           <div className="inputbox">
             <input
-              type="email"
-              id="email"
-              value={user?.email}
+              type="text"
+              id="nombreUsuario"
+              value={user?.nombreUsuario}
               onChange={(e) => handleChange(e.target)}
               required
-              name="email"
+              name="nombreUsuario"
             />
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Nombre de usuario</label>
           </div>
           <div className="inputbox">
             <input
@@ -68,10 +81,12 @@ export default function () {
             <label htmlFor="">
               <input type="checkbox" value="Recordarme" />
               <label htmlFor="">Recordarme / </label>
-              <a href="">Olvide la Contraseña</a>
+              <Link to="/">Olvide la Contraseña</Link>
             </label>
           </div>
-          <button onClick={handleLogin}>Entrar</button>
+          <button className="buttonForm" onClick={handleLogin}>
+            Entrar
+          </button>
           <div className="register">
             <p>
               No tengo cuenta, <Link href="/registro">Registrarme</Link>
