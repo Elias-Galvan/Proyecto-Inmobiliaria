@@ -13,7 +13,6 @@ export default function Registro() {
   const onSubmit = (data) => {
     console.log(data);
   };
-  console.log(errors);
 
   return (
     <>

@@ -1,17 +1,15 @@
 import React from "react";
 import "../assets/css/Layout.css";
 import Header from "../components/Header";
-// import Footer from "../components/Footer";
+import Footer from "../components/Footer";
+import { Container } from "react-bootstrap";
 export default function Layout(props) {
   const { children } = props;
   return (
-    <>
-      <div style={{ width: "100%" }}>
-        <Header></Header>
-        {children}
-
-        {/* <Footer></Footer> */}
-      </div>
-    </>
+    <Container fluid>
+      <Header />
+      {children}
+      <Footer />
+    </Container>
   );
 }

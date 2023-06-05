@@ -1,0 +1,36 @@
+.containerPage {
+    padding-top: 100px;
+    padding-bottom: 20px;
+    padding-left: 0;
+    display: grid;
+    justify-items: center;
+    gap: 20px;
+    background: #0f0c29;
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    width: 100vw;
+    height: 100vh;
+}
+
+.table {
+    width: 80% !important;
+    height: auto !important;
+}
+
+.containerButtons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 21px !important;
+}
+
+.btnCrud {
+    width: 40%;
+}
+
+.newContact {
+    width: 80%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}

@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-import "..//assets/css/Login.css";
+import "../assets/css/Login.css";
 import { Link } from "react-router-dom";
 import useStore from "../state/useStore";
 import { loginService } from "../services/loginService";
-const token = "esto es un tokken";
+import Swal from "sweetalert2";
+
+const initialState = {
+  nombreUsuario: "",
+  password: "",
+};
 
 export default function Login() {
   const setToken = useStore((state) => state.setToken);
-  const [user, setUser] = useState();
-  const [error, setError] = useState("");
+  const [user, setUser] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -22,19 +25,28 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
     try {
-      // const response = await new Promise((r) => setTimeout(r, 2000)).then(
-      //   () => token
-      // );
-      // setToken(response);
-      // navigate("/");
-      loginService(user);
+      const data = await loginService(user);
+
+      if (data && data.token) {
+        setToken(data.token);
+        Swal.fire("Ok..", "Credenciales correctas!!!", "success");
+        navigate("/");
+      } else {
+        Swal.fire("Error!!", "Credenciales incorrectas.", "error");
+      }
+
+      console.log(data);
     } catch (error) {
       console.log(error);
-      setError("Ocurrió un error al iniciar sesión. Inténtalo de nuevo.");
+      Swal.fire(
+        "Error!!",
+        "Ocurrió un error al iniciar sesión. Inténtalo de nuevo.",
+        "error"
+      );
     } finally {
       setLoading(false);
+      setUser(initialState);
     }
   };
 
@@ -72,7 +84,9 @@ export default function Login() {
               <Link to="/">Olvide la Contraseña</Link>
             </label>
           </div>
-          <button onClick={handleLogin}>Entrar</button>
+          <button className="buttonForm" onClick={handleLogin}>
+            Entrar
+          </button>
           <div className="register">
             <p>
               No tengo cuenta, <Link href="/registro">Registrarme</Link>
