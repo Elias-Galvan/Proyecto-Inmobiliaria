@@ -1,9 +1,9 @@
 import React from "react";
-import Card from "../components/Card";
+import Card from "../components/CardAct";
+import "../assets/css/Actividades.css"
 import img3 from "../assets/statics/img2.jpg";
 import img2 from "../assets/statics/img3.jpg";
 import img1 from "../assets/statics/img1.jpg";
-import "../assets/css/Actividades.css";
 import { useNavigate } from "react-router-dom";
 
 const cards = [

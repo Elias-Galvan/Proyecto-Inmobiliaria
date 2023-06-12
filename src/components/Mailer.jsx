@@ -18,7 +18,7 @@ export const Mailer = () => {
   };
 
   return (
-    <div className="div-form">
+    <div className="div-form container-fluid">
       <form className="form-mail" onSubmit={sendEmail}>
         <h1 className="title-form">Contactanos</h1>
         <label id="lab-cont">Nombre</label>

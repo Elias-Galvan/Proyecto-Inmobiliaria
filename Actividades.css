@@ -1,0 +1,45 @@
+.actividades {
+  background: #0f0c29;
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+}
+.container h2,
+p {
+  color: #ffffff;
+  cursor: default;
+}
+.container h4 {
+  color: #ffffff;
+  cursor: default;
+}
+.container {
+  padding-top: 100px;
+  padding-bottom: 20px;
+}
+
+.card:hover {
+  box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273) !important;
+  transition: all 0.7s linear;
+}
+
+.card-body {
+  padding: 2rem 0 !important;
+}
+
+.card-text {
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.card-img-top {
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+}
+
+.card-img-top:hover {
+  transform: scale(1.2);
+}

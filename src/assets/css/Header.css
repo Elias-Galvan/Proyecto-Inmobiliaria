@@ -4,9 +4,26 @@
   position: fixed;
   top: 0px;
   width: 100%;
-  color: white;
   z-index: 1;
   opacity: 0.9;
+  margin-left: 0px;
+}
+.container-header1 {
+  background-color: #353535;
+  height: 70px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.9;
+  margin-left: 0px;
+}
+
+.iconoMenu {
+  display: none;
+}
+.toggle-btn {
+  display: block;
 }
 
 .offcanvas.offcanvas-end.show {
@@ -22,14 +39,14 @@
   float: right;
 }
 
-.container-header img {
+.imgIcon {
   margin-left: 15px;
   width: 70px;
   display: flex;
   position: absolute;
 }
 
-.container-header h6 {
+.titleh {
   color: white;
   padding-top: 25px;
   padding-left: 95px;
@@ -37,25 +54,22 @@
   display: inline-block;
 }
 
-.container-header ul {
+.ul {
   float: right;
   padding: 20px;
 }
 
-.container-header ul li {
+.li {
   display: inline-block;
 }
 
-
-.container-header ul li a {
+.li a {
   padding: 10px;
   color: white;
   text-decoration: none;
-
-
 }
 
-.container-header ul li a:hover {
+.container-header ul li Link:hover {
   color: blueviolet;
 }
 
@@ -71,7 +85,6 @@
   font-weight: bold;
   cursor: pointer;
   transition: scale 0.2 ease;
-
 }
 
 .action-btn:hover,
@@ -80,19 +93,49 @@
   font-size: 0.9rem;
 }
 
-
-
-
 @media screen and (max-width: 762px) {
   .container-header {
-    height: 340px;
+    height: 70px;
     position: absolute;
+    padding-right: 18px;
+
+    transition: 0.5s;
+  }
+  .container-header1 {
+    height: 350px;
+    position: absolute;
+    padding-right: 18px;
+    transition: 0.5s;
+  }
+  .ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 20px;
+    padding-left: 0px;
   }
 
-  .container-header ul li {
-    display: flex;
+  .li {
+    display: none;
     justify-content: center;
     padding-right: 20px;
+  }
+  .li1 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 90px;
+  }
+  .li1 .li {
+    display: inline;
+    justify-content: center;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+
+  .iconoMenu {
+    display: inline;
+    width: 40px;
+    display: flex;
   }
 
   .action-btn {
