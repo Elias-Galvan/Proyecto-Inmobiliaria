@@ -7,7 +7,6 @@ import { Link, useLocation } from "react-router-dom";
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
   const [viewMenu, setViewMenu] = useState(false);
-  const [viewMenu1, setViewMenu1] = useState(false);
   const location = useLocation();
 
   const rol = "ROLE_ADMIN"; // devuelve el servicio
@@ -31,7 +30,6 @@ export default function Header() {
         <ul className="ul">
           <div
             className={viewMenu ? "toggle-btn" : "toggle-btn"}
-            //style={{ backgroundColor: "grey", borderRadius: "7px" }}
             onClick={() => setViewMenu(!viewMenu)}
           >
             <picture className="iconoMenu">
@@ -40,51 +38,47 @@ export default function Header() {
           </div>
 
           <div className={viewMenu ? "li1" : "li"}>
-          {(!isAuthenticated || rol !== "ROLE_ADMIN") && (
-            <>
-            
-
-           
-              <li className="li">
-                <Link to={"/registro"}>Sumate Ya</Link>
-              </li>
-              <li className="li">
-                <Link to={"/contacto"}>Contacto</Link>
-              </li>
-              <li className="li">
-                <Link to={"/ayuda"}>Ayuda</Link>
-              </li>
-            </>
-          )}
-          <li className="li">
-            <Link to={"/actividades"}>Actividades</Link>
-          </li>
-          {isAuthenticated && rol === "ROLE_ADMIN" && (
+            {(!isAuthenticated || rol !== "ROLE_ADMIN") && (
+              <>
+                <li className="li">
+                  <Link to={"/registro"}>Sumate Ya</Link>
+                </li>
+                <li className="li">
+                  <Link to={"/contacto"}>Contacto</Link>
+                </li>
+                <li className="li">
+                  <Link to={"/ayuda"}>Ayuda</Link>
+                </li>
+              </>
+            )}
             <li className="li">
-              <Link to={"/altas"}>Nuevo Usuario</Link>
+              <Link to={"/actividades"}>Actividades</Link>
             </li>
-          )}
-          <li className="li">
-            <Link to={"/Tienda"}>Tienda</Link>
-          </li>
-
-          {!isAuthenticated ? (
-            !isLogin && (
+            {isAuthenticated && rol === "ROLE_ADMIN" && (
               <li className="li">
-                <Link to={"/login"} className="action-btn">
-                  Inicia sesion
+                <Link to={"/altas"}>Nuevo Usuario</Link>
+              </li>
+            )}
+            <li className="li">
+              <Link to={"/tienda"}>Tienda</Link>
+            </li>
+
+            {!isAuthenticated ? (
+              !isLogin && (
+                <li className="li">
+                  <Link to={"/login"} className="action-btn">
+                    Inicia sesion
+                  </Link>
+                </li>
+              )
+            ) : (
+              <li className="li">
+                <Link to="/" className="action-btn" onClick={closeSession}>
+                  Cerrar sesion
                 </Link>
               </li>
-            )
-            
-          ) : (
-            <li className="li">
-              <Link to="/" className="action-btn" onClick={closeSession}>
-                Cerrar sesion
-              </Link>
-            </li>
-          )}
-           </div>
+            )}
+          </div>
         </ul>
       </div>
     </>

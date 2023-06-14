@@ -15,7 +15,6 @@ import DescActividad from "../components/DescActividad";
 import Contacto from "../containers/Contacto";
 import Ayuda from "../containers/Ayuda";
 import Actividades from "../containers/Actividades";
-import LaEmpresa from "../containers/LaEmpresa.jsx";
 import CrudUsuarios from "../components/CrudUsuarios/CrudUsuarios";
 import FormActividad from "../components/CrudActividad/FormActividad";
 
@@ -25,8 +24,8 @@ function App() {
   };
 
   const ProtectedRoutes = () => {
-   // const isLogin = isAuthenticated();
-   const isLogin= true;
+    //const isLogin = isAuthenticated();
+    const isLogin = true;
     return isLogin ? <Outlet /> : <Navigate to={"/"} />;
   };
 
@@ -35,23 +34,18 @@ function App() {
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
-          <Route exact path="/descAct" element={<DescActividad />}></Route>
-          <Route exact path="/Login" element={<Login />}></Route>
-          <Route exact path="/Registro" element={<Registro />}></Route>
-          <Route exact path="/Tienda" element={<Productos />}></Route>
+          <Route exact path="/desc-act" element={<DescActividad />}></Route>
+          <Route exact path="/registro" element={<Registro />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
-          <Route element={<ProtectedRoutes />}>
-            <Route path={"/actividades"} element={<Actividades />} />
-          </Route>
           <Route exact path="/registro" element={<Registro />}></Route>
           <Route exact path="/contacto" element={<Contacto />}></Route>
           <Route exact path="/ayuda" element={<Ayuda />}></Route>
           <Route exact path="/altas" element={<CrudUsuarios />}></Route>
-          <Route
-            exact
-            path="/agregar-actividad"
-            element={<FormActividad />}
-          ></Route>
+          <Route exact path="/agregar-actividad" element={<FormActividad />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path={"/actividades"} element={<Actividades />} />
+            <Route exact path="/tienda" element={<Productos />}></Route>
+          </Route>
         </Routes>
       </Layout>
     </BrowserRouter>

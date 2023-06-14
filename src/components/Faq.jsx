@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-
-const Faq = ({ children, title, description}) => {
+const Faq = ({ children, title, description }) => {
   const [isActive, setIsActive] = useState(false);
 
   let pipo = isActive ? "active" : "";
