@@ -21,7 +21,7 @@ const Productos = () => {
         <Filter handleSearch={handleSearch} />
       </div>
       <div className="containerCard">
-        {[1, 2, 3, 4, 5, 6].map((elem) => (
+        {[1, 2, 3, 4].map((elem) => (
           <Card key={elem} srcImage={protein} title="Proteina" />
         ))}
       </div>

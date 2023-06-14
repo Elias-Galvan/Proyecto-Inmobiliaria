@@ -6,10 +6,12 @@ import { Container } from "react-bootstrap";
 export default function Layout(props) {
   const { children } = props;
   return (
-    <Container fluid>
-      <Header />
-      {children}
-      <Footer />
-    </Container>
+    <div className="container-fluid22">
+      
+        <Header />
+        {children}
+        <Footer />
+      
+    </div>
   );
 }
