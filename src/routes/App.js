@@ -11,7 +11,7 @@ import Login from "../containers/Login";
 import Registro from "../containers/Registro";
 
 import Productos from "../components/Productos/Productos";
-
+import DescActividad from "../components/DescActividad";
 import Contacto from "../containers/Contacto";
 import Ayuda from "../containers/Ayuda";
 import Actividades from "../containers/Actividades";
@@ -35,7 +35,7 @@ function App() {
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
-         
+          <Route exact path="/descAct" element={<DescActividad />}></Route>
           <Route exact path="/Login" element={<Login />}></Route>
           <Route exact path="/Registro" element={<Registro />}></Route>
           <Route exact path="/Tienda" element={<Productos />}></Route>

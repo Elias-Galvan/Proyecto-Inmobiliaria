@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./Card.css";
-const Card = ({ srcImage, title, descuento, precio }) => {
+const Card = ({ srcImage, title }) => {
   const footerRef = useRef(null);
 
   const handleMouseOver = () => {
