@@ -1,5 +1,6 @@
 import React from "react";
 import "../assets/css/Actividades.css";
+import { Link } from "react-router-dom";
 
 export default function Card({ imgUrl, titulo, descripcion }) {
   return (
@@ -10,14 +11,14 @@ export default function Card({ imgUrl, titulo, descripcion }) {
       <div className="card-body">
         <h4 className="card-title ">{titulo}</h4>
         <p className="card-text text-secondary">{descripcion}</p>
-        <a
-          href="#!"
+        <Link
+          to="/descAct"
           target="_blank"
           className="btn btn-secondary rounded-0"
           rel="noreferrer"
         >
-          Reserva una clase
-        </a>
+          Ver mas...
+        </Link>
       </div>
     </div>
   );

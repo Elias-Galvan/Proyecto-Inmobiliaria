@@ -1,10 +1,13 @@
 import "../assets/css/Header.css";
 import React, { useState, useEffect } from "react";
 import iconoHeader from "../assets/statics/icono.png";
+import iconoMenu from "../assets/statics/icono-menu.png";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
+  const [viewMenu, setViewMenu] = useState(false);
+  const [viewMenu1, setViewMenu1] = useState(false);
   const location = useLocation();
 
   const rol = "ROLE_ADMIN"; // devuelve el servicio
@@ -19,48 +22,69 @@ export default function Header() {
 
   return (
     <>
-      <div className="container-header">
+      <div className={viewMenu ? "container-header1" : "container-header"}>
         <Link to={"/"}>
-          <img src={iconoHeader} alt="icon header"></img>
-          <h6>Duo Gym</h6>
+          <img src={iconoHeader} className="imgIcon" alt="icon header"></img>
+          <h6 className="titleh">Duo Gym</h6>
         </Link>
-        <ul>
+
+        <ul className="ul">
+          <div
+            className={viewMenu ? "toggle-btn" : "toggle-btn"}
+            //style={{ backgroundColor: "grey", borderRadius: "7px" }}
+            onClick={() => setViewMenu(!viewMenu)}
+          >
+            <picture className="iconoMenu">
+              <img src={iconoMenu} className="iconoMenu" alt="icon Menu" />
+            </picture>
+          </div>
+
+          <div className={viewMenu ? "li1" : "li"}>
           {(!isAuthenticated || rol !== "ROLE_ADMIN") && (
             <>
-              <li>
+            
+
+           
+              <li className="li">
                 <Link to={"/registro"}>Sumate Ya</Link>
               </li>
-              <li>
+              <li className="li">
                 <Link to={"/contacto"}>Contacto</Link>
               </li>
-              <li>
+              <li className="li">
                 <Link to={"/ayuda"}>Ayuda</Link>
               </li>
             </>
           )}
-          <li>
+          <li className="li">
             <Link to={"/actividades"}>Actividades</Link>
           </li>
           {isAuthenticated && rol === "ROLE_ADMIN" && (
-            <li>
+            <li className="li">
               <Link to={"/altas"}>Nuevo Usuario</Link>
             </li>
           )}
-          <li>
+          <li className="li">
             <Link to={"/Tienda"}>Tienda</Link>
           </li>
 
           {!isAuthenticated ? (
             !isLogin && (
-              <Link to={"/login"} className="action-btn">
-                Inicia sesion
-              </Link>
+              <li className="li">
+                <Link to={"/login"} className="action-btn">
+                  Inicia sesion
+                </Link>
+              </li>
             )
+            
           ) : (
-            <Link to="/" className="action-btn" onClick={closeSession}>
-              Cerrar sesion
-            </Link>
+            <li className="li">
+              <Link to="/" className="action-btn" onClick={closeSession}>
+                Cerrar sesion
+              </Link>
+            </li>
           )}
+           </div>
         </ul>
       </div>
     </>

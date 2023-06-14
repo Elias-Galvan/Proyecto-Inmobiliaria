@@ -1,0 +1,37 @@
+.splash{
+    padding-top: 87px;
+    padding-bottom: 50px;
+    background: #0f0c29;
+   
+}
+.container{
+    background: #0f0c29;
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    margin-left: 71px;
+    margin-top: 25px;
+    padding-right: 16px;
+    border-radius: 5px;
+}
+.form-check-label{
+    color: white;
+}
+.carrousel{
+    position: relative;
+    margin-top: -66px;
+    margin-left: -56px;
+}
+.rsis-container{
+    border-radius: 100px;
+}
+.text{
+    color: darkcyan
+}
+.form-check-label{
+    color: white;
+}
+.btn-primary{
+    margin-top: 25px;
+    
+    width: 166px;
+}

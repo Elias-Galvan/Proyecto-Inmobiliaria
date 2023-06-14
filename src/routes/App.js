@@ -11,7 +11,7 @@ import Login from "../containers/Login";
 import Registro from "../containers/Registro";
 
 import Productos from "../components/Productos/Productos";
-
+import DescActividad from "../components/DescActividad";
 import Contacto from "../containers/Contacto";
 import Ayuda from "../containers/Ayuda";
 import Actividades from "../containers/Actividades";
@@ -25,7 +25,8 @@ function App() {
   };
 
   const ProtectedRoutes = () => {
-    const isLogin = isAuthenticated();
+   // const isLogin = isAuthenticated();
+   const isLogin= true;
     return isLogin ? <Outlet /> : <Navigate to={"/"} />;
   };
 
@@ -34,12 +35,7 @@ function App() {
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
-          <Route exact path="/LaEmpresa" element={<LaEmpresa />}></Route>
-          {/* <Route
-              exact
-              path="/Emprendimientos"
-              element={<Emprendimientos />}
-            ></Route> */}
+          <Route exact path="/descAct" element={<DescActividad />}></Route>
           <Route exact path="/Login" element={<Login />}></Route>
           <Route exact path="/Registro" element={<Registro />}></Route>
           <Route exact path="/Tienda" element={<Productos />}></Route>
@@ -47,7 +43,6 @@ function App() {
           <Route element={<ProtectedRoutes />}>
             <Route path={"/actividades"} element={<Actividades />} />
           </Route>
-          {/* <Route exact path="/actividades" element={<Actividades />}></Route> */}
           <Route exact path="/registro" element={<Registro />}></Route>
           <Route exact path="/contacto" element={<Contacto />}></Route>
           <Route exact path="/ayuda" element={<Ayuda />}></Route>
