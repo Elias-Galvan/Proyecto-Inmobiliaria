@@ -27,11 +27,31 @@ export default function Registro() {
             className="flex flex-col"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <input
+             <input
               type="text"
               {...register("nombre")}
+              placeholder="Nombre"
+            />
+             <input
+              type="text"
+              {...register("apellido")}
+              placeholder="Apellido"
+            />
+              <input
+              type="text"
+              {...register("dni", { required: true, maxLength: 8 })}
+              placeholder="Dni"
+              {...(errors.dni?.type === "required" &&
+                "Por favor indique su DNI")}
+              {...(errors.dni?.type === "maxLength" &&
+                "Excedido el numero del DNI")}
+            />
+            <input
+              type="text"
+              {...register("nombreusuario")}
               placeholder="Nombre de usuario"
             />
+
             <input
               type="password"
               {...register("password")}
@@ -52,7 +72,7 @@ export default function Registro() {
               {...(errors.telefono?.type === "required" &&
                 "Por favor indique su numero de telefono")}
               {...(errors.telefono?.type === "maxLength" &&
-                "Max Length Exceed")}
+                "Telefono incorrecto")}
             />
 
             <button className="btn" type="submit">

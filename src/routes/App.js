@@ -9,7 +9,7 @@ import Home from "../containers/Home";
 import Layout from "../components/Layout";
 import Login from "../containers/Login";
 import Registro from "../containers/Registro";
-
+import Graficos from "../containers/Graficos";
 import Productos from "../components/Productos/Productos";
 import DescActividad from "../components/DescActividad";
 import Contacto from "../containers/Contacto";
@@ -24,8 +24,8 @@ function App() {
   };
 
   const ProtectedRoutes = () => {
-    //const isLogin = isAuthenticated();
-    const isLogin = true;
+    const isLogin = isAuthenticated();
+    //const isLogin = true; //PRUEBA
     return isLogin ? <Outlet /> : <Navigate to={"/"} />;
   };
 
@@ -44,6 +44,7 @@ function App() {
           <Route exact path="/agregar-actividad" element={<FormActividad />} />
           <Route element={<ProtectedRoutes />}>
             <Route path={"/actividades"} element={<Actividades />} />
+            <Route path={"/graficos"} element={<Graficos />} />
             <Route exact path="/tienda" element={<Productos />}></Route>
           </Route>
         </Routes>

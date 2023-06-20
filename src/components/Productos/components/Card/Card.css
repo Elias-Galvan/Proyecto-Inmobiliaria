@@ -45,8 +45,8 @@ image {
   justify-content: space-between;
   margin-top: 16px;
   flex-wrap: wrap;
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
 }
 
 .price {

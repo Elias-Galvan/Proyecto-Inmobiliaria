@@ -56,7 +56,7 @@ function DescActividad({ titulo, descripcion, horario, precio, instructor }) {
 
               <p>Precio: $5000{precio}</p>
 
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
                 Reserva una clase
               </button>
             </div>

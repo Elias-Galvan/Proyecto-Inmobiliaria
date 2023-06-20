@@ -11,6 +11,7 @@ export default function Header() {
 
   const rol = "ROLE_ADMIN"; // devuelve el servicio
   const isAuthenticated = localStorage.getItem("token") !== null;
+  //const isAuthenticated = true; //PRUEBA
 
   useEffect(() => {
     let isLoginPage = location.pathname === "/login";
@@ -57,6 +58,11 @@ export default function Header() {
             {isAuthenticated && rol === "ROLE_ADMIN" && (
               <li className="li">
                 <Link to={"/altas"}>Nuevo Usuario</Link>
+              </li>
+            )}
+            {isAuthenticated && rol === "ROLE_ADMIN" && (
+              <li className="li">
+                <Link to={"/graficos"}>Graficos</Link>
               </li>
             )}
             <li className="li">
