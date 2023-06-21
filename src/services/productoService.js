@@ -1,12 +1,11 @@
 import api from "../helpers/axiosInstance";
 import { defaultUrl } from "../store/action/types";
 
-export const loginService = async (data) => {
+export const productoService = async (data) => {
   try {
-    const resp = await api.post(`${defaultUrl}/auth/login`, data);
-    const user = await resp.data;
+    const resp = await api.post(`${defaultUrl}api/v1/nuevo-producto`, data);
 
-    return user;
+    return resp;
   } catch (error) {
     console.log("Rompio el servicio");
   }
