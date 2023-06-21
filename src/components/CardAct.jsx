@@ -12,7 +12,7 @@ export default function Card({ imgUrl, titulo, descripcion }) {
         <h4 className="card-title ">{titulo}</h4>
         <p className="card-text text-secondary">{descripcion}</p>
         <Link
-          to="/descAct"
+          to="/desc-act"
           target="_blank"
           className="btn btn-secondary rounded-0"
           rel="noreferrer"

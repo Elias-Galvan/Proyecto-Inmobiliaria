@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../components/CardAct";
-import "../assets/css/Actividades.css"
+import "../assets/css/Actividades.css";
 import img3 from "../assets/statics/img2.jpg";
 import img2 from "../assets/statics/img3.jpg";
 import img1 from "../assets/statics/img1.jpg";
@@ -29,19 +29,17 @@ const cards = [
 export default function Actividades() {
   const navigate = useNavigate();
 
-  const isAuthenticated = localStorage.getItem("token") !== null;// Obtén el estado de autenticación aquí
+  const isAuthenticated = localStorage.getItem("token") !== null; // Obtén el estado de autenticación aquí
 
   const handleCardClick = (id) => {
     if (isAuthenticated) {
       // Realiza la redirección si el usuario está autenticado
-      navigate(`/descAct/${id}`);
+      navigate(`/desc-act/${id}`);
     } else {
       // Ejecuta una acción alternativa si el usuario no está autenticado
       navigate(`/login`);
     }
   };
-
-
 
   return (
     <div className="actividades">
@@ -59,7 +57,12 @@ export default function Actividades() {
         <div className="row">
           {cards.map(({ title, desc, img, id }) => (
             <div className="col-md-4" key={id}>
-              <Card imgUrl={img} titulo={title} descripcion={desc} onClick={()=>handleCardClick(id)}/>
+              <Card
+                imgUrl={img}
+                titulo={title}
+                descripcion={desc}
+                onClick={() => handleCardClick(id)}
+              />
             </div>
           ))}
         </div>

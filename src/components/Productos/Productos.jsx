@@ -1,9 +1,9 @@
 import React from "react";
-import "../../assets/css/Productos.css";
 import Banner from "../../assets/statics/proteina.jpg";
 import Card from "./components/Card/Card";
 import protein from "../../assets/statics/protein_mix.png";
 import Filter from "./components/Filters/Filter";
+import "../../assets/css/Productos.css";
 
 const Productos = () => {
   const handleSearch = (value) => {
