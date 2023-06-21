@@ -24,8 +24,8 @@ function App() {
   };
 
   const ProtectedRoutes = () => {
-    const isLogin = isAuthenticated();
-    //const isLogin = true; //PRUEBA
+    //const isLogin = isAuthenticated();
+    const isLogin = true; //PRUEBA
     return isLogin ? <Outlet /> : <Navigate to={"/"} />;
   };
 
