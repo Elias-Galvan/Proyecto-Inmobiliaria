@@ -30,8 +30,8 @@ function CrudProductos() {
       const formData = new FormData();
       formData.append("nombre", nombre);
       formData.append("descripcion", descripcion);
-      formData.append("precio", precio);
-      formData.append("stock", stock);
+      formData.append("precio", Number(precio));
+      formData.append("stock", Number(stock));
       formData.append("imagen", imagen);
 
       const response = await api.post(
@@ -86,7 +86,7 @@ function CrudProductos() {
           type="number"
           name="precio"
           value={precio}
-          onChange={(e) => setPrecio(Number(e.target.value))}
+          onChange={(e) => setPrecio(e.target.value)}
         />
       </label>
       <br />
@@ -96,7 +96,7 @@ function CrudProductos() {
           type="number"
           name="stock"
           value={stock}
-          onChange={(e) => setStock(Number(e.target.value))}
+          onChange={(e) => setStock(e.target.value)}
         />
       </label>
       <br />
