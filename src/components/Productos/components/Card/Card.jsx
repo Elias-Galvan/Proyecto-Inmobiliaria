@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useContext } from "react";
 import "./Card.css";
 import { defaultUrl } from "../../../../store/action/types";
+import Contexto from "../../../../context/Context";
 
-const Card = ({ precio, nombre, descripcion, imagen }) => {
-  const footerRef = useRef(null);
-  const handleMouseOver = () => {
+const Card = ({ precio, nombre, descripcion, imagen, id }) => {
+  //const footerRef = useRef(null);
+  /*const handleMouseOver = () => {
     footerRef.current.style.visibility = "visible";
     footerRef.current.style.opacity = 1;
   };
@@ -12,17 +13,21 @@ const Card = ({ precio, nombre, descripcion, imagen }) => {
   const handleMouseDown = () => {
     footerRef.current.style.visibility = "hidden";
     footerRef.current.style.opacity = 0;
-  };
+  };*/
+
+  const { agregarCarrito } = useContext(Contexto);
+
   return (
     <div
       className="pepe"
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseDown}
+      //onMouseOver={handleMouseOver}
+      //onMouseOut={handleMouseDown}
     >
       <div className="descuento">x</div>
       <div className="imgContainer">
         <img
           src={`${defaultUrl}${imagen}`}
+          //src={imagen} PRUEBA
           width="150"
           height="150"
           alt="img"
@@ -30,9 +35,17 @@ const Card = ({ precio, nombre, descripcion, imagen }) => {
       </div>
       <h3 className="titleCard">{nombre}</h3>
       <p className="descriptionCard">{descripcion}</p>
-      <div className="cardFooter" ref={footerRef}>
+
+      <div className="cardFooter" /*ref={footerRef}*/>
         <div className="price">${precio}</div>
-        <div className="buttonPrice">Comprar</div>
+        <button
+          className="home-item-comprar"
+          onClick={() => {
+            agregarCarrito(id);
+          }}
+        >
+          Agregar al carrito
+        </button>
       </div>
     </div>
   );

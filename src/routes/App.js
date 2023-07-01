@@ -18,6 +18,8 @@ import Actividades from "../containers/Actividades";
 import CrudUsuarios from "../components/CrudUsuarios/CrudUsuarios";
 import FormActividad from "../components/CrudActividad/FormActividad";
 import CrudProductos from "../components/Productos/CrudProductos";
+import Carrito from "../containers/Carrito";
+import UsarContexto from "../context/UsarContexto";
 
 function App() {
   const isAuthenticated = () => {
@@ -32,6 +34,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <UsarContexto>
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
@@ -41,6 +44,7 @@ function App() {
           <Route exact path="/registro" element={<Registro />}></Route>
           <Route exact path="/contacto" element={<Contacto />}></Route>
           <Route exact path="/ayuda" element={<Ayuda />}></Route>
+          <Route exact path="/carrito" element={<Carrito />}></Route>
           <Route exact path="/altas" element={<CrudUsuarios />}></Route>
           <Route exact path="/agregar-actividad" element={<FormActividad />} />
           <Route exact path="/agregar-producto" element={<CrudProductos />} />
@@ -49,10 +53,11 @@ function App() {
           <Route element={<ProtectedRoutes />}>
             <Route path={"/actividades"} element={<Actividades />} />
             <Route path={"/graficos"} element={<Graficos />} />
-            <Route exact path="/tienda" element={<Productos />}></Route>
+            <Route exact path={"/tienda"} element={<Productos />}></Route>
           </Route>
         </Routes>
       </Layout>
+      </UsarContexto>
     </BrowserRouter>
   );
 }

@@ -129,3 +129,13 @@
     min-width: 196px;
   }
 }
+.item{
+  padding: 30px;
+  position: fixed;
+  padding-top: 5px;
+  
+  right: 10px;
+}
+.item img{
+  width: 64px;
+}

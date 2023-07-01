@@ -1,20 +1,35 @@
 .containerPage {
-    padding-top: 100px;
-    padding-bottom: 20px;
-    padding-left: 0;
-    display: grid;
-    justify-items: center;
-    gap: 20px;
-    background: #0f0c29;
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-    width: 100vw;
-    height: 100%;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  padding-left: 0;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  background: #0f0c29;
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  width: 100vw;
+  height: 100%;
 }
 
 .formActividad {
-    background-color: #777777 !important;
-    width: 70%;
-    border-radius: 10px;
-    padding: 15px;
+  background-color: rgba(132, 132, 135, 0.7) !important;
+  width: 50%;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.btnfinal {
+  display: flex;
+  justify-content: center;
+}
+
+
+.mb-3 {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.btn btn-primary{
+ width: 50%;
 }

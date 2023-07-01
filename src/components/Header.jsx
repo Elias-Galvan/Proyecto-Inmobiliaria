@@ -10,8 +10,8 @@ export default function Header() {
   const location = useLocation();
 
   const rol = "ROLE_ADMIN"; // devuelve el servicio
-  const isAuthenticated = localStorage.getItem("token") !== null;
-  //const isAuthenticated = true; //PRUEBA
+  //const isAuthenticated = localStorage.getItem("token") !== null;
+  const isAuthenticated = true; //PRUEBA
 
   useEffect(() => {
     let isLoginPage = location.pathname === "/login";

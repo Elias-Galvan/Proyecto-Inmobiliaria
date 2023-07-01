@@ -11,6 +11,7 @@ const initialValues = {
   cupoMaximo: 0,
   instructor: "",
   precio: 0,
+  imagen: "",
 };
 
 const FormActividad = () => {
@@ -62,13 +63,13 @@ const FormActividad = () => {
       <form action="" className="formActividad" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Nombre
+            Nombre:
           </label>
           <input
             type="text"
             className="form-control"
             id="exampleFormControlInput1"
-            placeholder="Musculación"
+            placeholder="Ej: Musculación"
             name="nombre"
             onChange={handleInputChange}
             value={data.nombre}
@@ -76,7 +77,7 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlTextarea1" className="form-label">
-            Descripcion
+            Descripcion:
           </label>
           <textarea
             className="form-control"
@@ -90,7 +91,7 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput12" className="form-label">
-            Duracion
+            Duracion:
           </label>
           <input
             type="number"
@@ -102,7 +103,7 @@ const FormActividad = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Dias</label>
+          <label className="form-label">Dias:</label>
           <select
             className="form-select"
             name="dias"
@@ -120,7 +121,7 @@ const FormActividad = () => {
           </select>
         </div>
         <div className="mb-3">
-          <label className="form-label">Horarios</label>
+          <label className="form-label">Horarios:</label>
           <select
             className="form-select"
             name="horarios"
@@ -146,7 +147,7 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput13" className="form-label">
-            Cupo Maximo
+            Cupo Maximo:
           </label>
           <input
             type="number"
@@ -159,13 +160,13 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput10" className="form-label">
-            Instructor
+            Instructor:
           </label>
           <input
             type="text"
             className="form-control"
             id="exampleFormControlInput10"
-            placeholder="Omar Perez"
+            placeholder="Ej: Omar Perez"
             name="instructor"
             onChange={handleInputChange}
             value={data.instructor}
@@ -173,18 +174,32 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput16" className="form-label">
-            Precio
+            Precio:
           </label>
           <input
-            type="text"
+            type="number"
             className="form-control"
             id="exampleFormControlInput16"
             name="precio"
             onChange={handleInputChange}
             value={data.precio}
+            placeholder="$"
           />
         </div>
-        <div>
+        <br/>
+        <div className="mb-3">
+          <label>
+            Imagen:
+            <input
+              accept="image/*"
+              type="file"
+              name="btn btn-danger"
+              onChange={handleInputChange}
+            value={data.imagen}
+            />
+          </label>
+        </div>
+        <div className="btnfinal">
           <button className="btn btn-primary">Enviar</button>
         </div>
       </form>
