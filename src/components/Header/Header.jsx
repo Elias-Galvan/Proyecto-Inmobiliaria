@@ -9,13 +9,14 @@ import {
   linksAdminIsAuthenticated,
   linksPublic,
 } from "../../assets/datos/links";
+import Swal from "sweetalert2";
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
   const [viewMenu, setViewMenu] = useState(false);
   const location = useLocation();
 
-  const rol = "ROLE_ADMIN"; // devuelve el servicio
+  const rol = "ROLE_USER"; // devuelve el servicio
   const isAuthenticated = localStorage.getItem("token") !== null;
 
   useEffect(() => {
@@ -23,7 +24,10 @@ export default function Header() {
     setIsLogin(isLoginPage);
   }, [location, isLogin]);
 
-  const closeSession = () => localStorage.removeItem("token");
+  const closeSession = () => {
+    Swal.fire("OK!", "Session finalizada con exito!", "success");
+    localStorage.removeItem("token");
+  };
 
   return (
     <>
@@ -76,7 +80,7 @@ export default function Header() {
                 path={"/"}
                 text={"Cerrar sesion"}
                 linkStyle={"action-btn"}
-                onClick={closeSession}
+                fn={closeSession}
               />
             )}
           </div>

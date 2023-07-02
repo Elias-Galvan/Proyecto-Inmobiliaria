@@ -64,7 +64,7 @@ export default function Login() {
               required
               name="nombreUsuario"
             />
-            <label htmlFor="email">Nombre de usuario</label>
+            <label htmlFor="nombreUsuario">Nombre de usuario</label>
           </div>
           <div className="inputbox">
             <input
@@ -77,19 +77,19 @@ export default function Login() {
             />
             <label htmlFor="password">Password</label>
           </div>
-          <div className="forget">
+          {/* <div className="forget">
             <label htmlFor="">
               <input type="checkbox" value="Recordarme" />
               <label htmlFor="">Recordarme / </label>
               <Link to="/">Olvide la Contraseña</Link>
             </label>
-          </div>
+          </div> */}
           <button className="buttonForm" onClick={handleLogin}>
             Entrar
           </button>
           <div className="register">
             <p>
-              No tengo cuenta, <Link href="/registro">Registrarme</Link>
+              No tengo cuenta, <Link to="/registro">Registrarme</Link>
             </p>
           </div>
           {loading && "estoy cargando la data"}
