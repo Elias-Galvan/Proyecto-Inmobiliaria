@@ -60,7 +60,7 @@ function CrudProductos() {
   };
 
   return (
-    <div fluid className="containerPage">
+    <div className="containerPage">
       <h2>Agregar Producto</h2>
       <form className="formActividad" onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -74,7 +74,7 @@ function CrudProductos() {
             type="text"
             className="form-control"
             id="exampleFormControlInput11"
-            placeholder="Ej: Musculación"
+            placeholder="Proteina, Barras proteicas, suplementos..."
             name="nombre"
             onChange={(e) => setNombre(e.target.value)}
             value={nombre}
@@ -92,7 +92,6 @@ function CrudProductos() {
             className="form-control"
             id="exampleFormControlTextarea11"
             rows={3}
-            defaultValue={""}
             name="descripcion"
             onChange={(e) => setDescripcion(e.target.value)}
             value={descripcion}

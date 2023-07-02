@@ -47,15 +47,17 @@ image {
   width: 80%;
   text-align: center;
   margin: 0 auto;
+  height: 30px;
 }
 
 .cardFooter {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 16px;
   flex-wrap: wrap;
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
 }
 
 .price {
@@ -74,4 +76,22 @@ image {
   cursor: pointer;
   font-size: 14px;
   line-height: 16px;
+}
+
+.divcont {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnCustom {
+  width: 70%;
+}
+
+.spanCustom {
+  font-size: initial;
+  padding: 10px 24px;
+}
+
+.containerDescription {
+  height: 50px;
 }

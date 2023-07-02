@@ -59,7 +59,7 @@
 }
 
 #textarea-cont {
-  width: 90%;
+  width: 65%;
   height: max-content;
   border-radius: 10px;
   background-color: #fff;
@@ -67,15 +67,16 @@
 }
 
 .buttonContacto {
-  width: 100%;
-  height: 40px;
-  border-radius: 40px;
-  background: #fff;
+  width: 30%;
+  border-radius: 10px;
+  color: white;
+  background: #003049;
   border: none;
   outline: none;
   cursor: pointer;
   font-size: 1em;
   font-weight: 600;
+  padding: 10px 20px;
 }
 
 .buttonContacto:hover,
@@ -83,14 +84,14 @@
   font-size: 1.1rem;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   .div-form {
     /*background: #0f0c29;  /* fallback for old browsers 
     background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  Chrome 10-25, Safari 5.1-6 
     background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+  */
     background: url(https://as1.ftcdn.net/v2/jpg/02/10/17/94/1000_F_210179424_mTLrEUOv1bbiYHW7kGjq2xRmr73rfcGI.jpg);
-  
-  
+
+
     display: flex;
     justify-content: center;
     align-items: center;

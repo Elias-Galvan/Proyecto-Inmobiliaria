@@ -34,7 +34,7 @@ export const Mailer = () => {
           name="user_message"
           id="textarea-cont"
           cols="30"
-          rows="10"
+          rows="30"
         ></textarea>
         <hr />
         <button className="buttonContacto">Enviar</button>

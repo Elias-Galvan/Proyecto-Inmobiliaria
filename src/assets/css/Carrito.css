@@ -1,0 +1,28 @@
+.carrito {
+
+    background: #0f0c29;
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+
+    display: flex;
+    padding: 100px;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+
+}
+
+.carrito-listadito1 {
+    width: 50%;
+    height: auto;
+    border: 1px solid white;
+    border-radius: 10px;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    min-height: 100px;
+}
+
+.carrito-precio {
+    display: flex;
+    justify-content: center;
+}
