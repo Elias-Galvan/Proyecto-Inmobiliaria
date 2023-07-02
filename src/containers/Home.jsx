@@ -6,7 +6,10 @@ import img2 from "../assets/statics/img2.jpg";
 import img3 from "../assets/statics/img3.jpg";
 import img4 from "../assets/statics/img4.jpg";
 import Filosofia from "../components/Filosofia";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+>>>>>>> remotes/origin/rama_seba
 
 
 
@@ -18,6 +21,7 @@ export default function Home() {
       <Carrousel img={images} />
       <section className="bienvenida">
         <h1>NO ESPERES UN MINUTO MÁS...</h1>
+<<<<<<< HEAD
         <button
           type="button"
           className="btnModal"
@@ -69,6 +73,10 @@ export default function Home() {
       </div>
 
      
+=======
+      </section>
+      <Filosofia />
+>>>>>>> remotes/origin/rama_seba
     </div>
   );
 }

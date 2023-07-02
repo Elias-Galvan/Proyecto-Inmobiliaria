@@ -13,9 +13,18 @@ body {
 }
 
 
+.titulo {
+  margin-top: -68px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 70px;
+}
+
+
 .bienvenida h1 {
   background: transparent;
-  background-color: rgb(139, 248, 212);
+  background-color: rgb(202, 236, 224);
   color: black;
   opacity: 0.9;
   position: absolute;
@@ -28,8 +37,7 @@ body {
   padding-bottom: 5px;
   font-size: xx-large;
 }
-
-.btnModal{
+.bienvenida a {
   position: absolute;
   background: black;
   border-color: black;
@@ -44,6 +52,25 @@ body {
   text-decoration: none;
   font-weight: 600;
   border-radius: 3px;
+
+}
+
+.modal-content {
+  background: #0f0c29;
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+}
+
+.modal-content h1 {
+  color: white;
+}
+
+.modal-body {
+  color: white;
+}
+
+.modal-header .btn-close {
+  background-color: red;
 }
 .modal-content{
   background: #0f0c29;
@@ -66,16 +93,11 @@ body {
   border: solid;
   color: white;
 }
-
-.linkReg button{
-  margin: unset;
-}
-
 @media screen and (max-width: 762px) {
   .bienvenida h1 {
     width: 257px;
   }
-  .btnModal {
+  .bienvenida a {
     margin-top: -310px;
   }
 }

@@ -1,13 +1,17 @@
 .container-Filosofia {
-background: #22178c;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #22178c;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 310px;
   width: 100%;
   color: #c0c0c2;
   padding-top: 10px;
 }
-.container-Filosofia h1{
+
+.container-Filosofia h1 {
   text-align: center;
 }
 
@@ -15,12 +19,14 @@ background: #22178c;  /* fallback for old browsers */
 h4 {
   text-align: center;
 }
+
 .col-md-4 {
   float: left;
 
   text-align: left;
   box-sizing: border-box;
 }
+
 .lista ul li {
   padding-top: 20px;
   padding-bottom: 10px;

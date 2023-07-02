@@ -1,12 +1,18 @@
 import React from "react";
 import "../../assets/css/FormularioActividades.css";
 import { useState } from "react";
+import useHorarios from "../../state/useHorarios";
+import { useEffect } from "react";
+import { defaultUrl } from "../../store/action/types";
+import api from "../../helpers/axiosInstance";
+import SelectOptionHorario from "./SelectOptionHorario";
+import { getHorariosService } from "../../services/getHorariosServices";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   nombre: "",
   descripcion: "",
-  duracion: 0,
-  dias: [],
   horarios: [],
   cupoMaximo: 0,
   instructor: "",
@@ -16,6 +22,18 @@ const initialValues = {
 
 const FormActividad = () => {
   const [data, setData] = useState(initialValues);
+  const [imagen, setImagen] = useState(null);
+  const { horarios, setHorarios } = useHorarios();
+  const navigate = useNavigate();
+
+  const getData = async () => {
+    const getHorariosData = await getHorariosService();
+    setHorarios(getHorariosData);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -37,33 +55,67 @@ const FormActividad = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { dias, horarios } = data;
-
-    if (dias.length === 0 || horarios.length === 0) {
-      console.error("Debe de seleccionar un dia o un horario");
+    if (
+      data.nombre.trim() === "" ||
+      data.descripcion.trim() === "" ||
+      data.horarios.length === 0 ||
+      data.cupoMaximo <= 0 ||
+      data.instructor.trim() === "" ||
+      data.precio <= 0
+    ) {
+      console.log("no entra");
       return;
     }
 
-    if (horarios.length === 1) {
-      // aca asignar mismo horarios a todos los dias
-      dias.map(() => [...dias, horarios[0]]);
-    } else if (horarios.length === dias.length) {
-      dias.map((dia, i) => [...dia, horarios[i]]);
-    }
+    try {
+      const formData = new FormData();
+      formData.append("nombre", data.nombre);
+      formData.append("descripcion", data.descripcion);
+      formData.append("horarios", data.horarios);
+      formData.append("cupoMaximo", Number(data.cupoMaximo));
+      formData.append("precio", Number(data.precio));
+      formData.append("instructor", data.instructor);
+      formData.append("imagen", imagen);
 
-    console.log({ dias });
+      for (const [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+
+      const response = await api.post(
+        `${defaultUrl}/api/v1/nueva-actividad`,
+        formData
+      );
+
+      if (response.status === 200) {
+        Swal.fire("Ok!!!", "Actividad creada con exito!", "success");
+        navigate("/actividades");
+      } else {
+        Swal.fire(
+          "Upps!!",
+          "Ha ocurrido un error al agregar la actividad",
+          "error"
+        );
+      }
+    } catch (error) {
+      console.error("Error al agregar la actividad: ", error);
+      Swal.fire(
+        "Upps!!",
+        "Ha ocurrido un error al agregar la actividad.",
+        "error"
+      );
+    }
   };
 
   return (
-    <div fluid className="containerPage">
+    <div className="containerPage">
       <h2>Formulario Actividad</h2>
       <form action="" className="formActividad" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Nombre:
+            Nombre
           </label>
           <input
             type="text"
@@ -77,13 +129,12 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlTextarea1" className="form-label">
-            Descripcion:
+            Descripcion
           </label>
           <textarea
             className="form-control"
             id="exampleFormControlTextarea1"
             rows={3}
-            defaultValue={""}
             name="descripcion"
             onChange={handleInputChange}
             value={data.descripcion}
@@ -91,7 +142,7 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput12" className="form-label">
-            Duracion:
+            Duracion
           </label>
           <input
             type="number"
@@ -103,7 +154,7 @@ const FormActividad = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Dias:</label>
+          <label className="form-label">Dias</label>
           <select
             className="form-select"
             name="dias"
@@ -121,33 +172,22 @@ const FormActividad = () => {
           </select>
         </div>
         <div className="mb-3">
-          <label className="form-label">Horarios:</label>
+          <label className="form-label">Horarios</label>
           <select
             className="form-select"
             name="horarios"
-            multiple
             onChange={handleSelectChange}
             value={data.horarios}
+            multiple={true}
           >
-            <option selected="">Seleccione los horarios</option>
-            <option value={"09:00"}>09:00</option>
-            <option value={"10:00"}>10:00</option>
-            <option value={"11:00"}>11:00</option>
-            <option value={"12:00"}>12:00</option>
-            <option value={"13:00"}>13:00</option>
-            <option value={"14:00"}>14:00</option>
-            <option value={"15:00"}>15:00</option>
-            <option value={"16:00"}>16:00</option>
-            <option value={"17:00"}>17:00</option>
-            <option value={"18:00"}>18:00</option>
-            <option value={"19:00"}>19:00</option>
-            <option value={"20:00"}>20:00</option>
-            <option value={"21:00"}>21:00</option>
+            {horarios.map((horario) => (
+              <SelectOptionHorario key={horario.idHorario} {...horario} />
+            ))}
           </select>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput13" className="form-label">
-            Cupo Maximo:
+            Cupo Maximo
           </label>
           <input
             type="number"
@@ -160,7 +200,7 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput10" className="form-label">
-            Instructor:
+            Instructor
           </label>
           <input
             type="text"
@@ -174,7 +214,7 @@ const FormActividad = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput16" className="form-label">
-            Precio:
+            Precio
           </label>
           <input
             type="number"
@@ -186,20 +226,7 @@ const FormActividad = () => {
             placeholder="$"
           />
         </div>
-        <br/>
-        <div className="mb-3">
-          <label>
-            Imagen:
-            <input
-              accept="image/*"
-              type="file"
-              name="btn btn-danger"
-              onChange={handleInputChange}
-            value={data.imagen}
-            />
-          </label>
-        </div>
-        <div className="btnfinal">
+        <div>
           <button className="btn btn-primary">Enviar</button>
         </div>
       </form>
