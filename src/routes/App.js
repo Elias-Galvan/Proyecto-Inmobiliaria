@@ -20,6 +20,8 @@ import FormActividad from "../components/CrudActividad/FormActividad";
 import CrudProductos from "../components/Productos/CrudProductos";
 import Carrito from "../containers/Carrito";
 import UsarContexto from "../context/UsarContexto";
+import TerminosyCond from "../containers/TerminosyCond";
+import Politicas from "../containers/Politicas";
 
 function App() {
   const isAuthenticated = () => {
@@ -46,6 +48,8 @@ function App() {
           <Route exact path="/ayuda" element={<Ayuda />}></Route>
           <Route exact path="/carrito" element={<Carrito />}></Route>
           <Route exact path="/altas" element={<CrudUsuarios />}></Route>
+          <Route exact path="/termycond" element={<TerminosyCond />}></Route>
+          <Route exact path="/politicas" element={<Politicas />}></Route>
           <Route exact path="/agregar-actividad" element={<FormActividad />} />
           <Route exact path="/agregar-producto" element={<CrudProductos />} />
           <Route exact path="/*" element={<Navigate to={"/"} replace />} />

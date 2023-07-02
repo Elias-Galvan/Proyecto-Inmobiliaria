@@ -14,7 +14,7 @@
 }
 .form-box-reg {
   position: relative;
-  height: 700px;
+  height: auto;
   margin-top: 140px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
@@ -25,11 +25,12 @@
   align-items: center;
 }
 .registro h2 {
-  font-size: 2em;
   color: #fff;
   text-align: center;
-  padding-bottom: 50px;
+  margin-top: -38px;
+  margin-bottom: 63px;
 }
+
 .registro {
   margin-top: -25px;
   padding-bottom: 20px;
@@ -81,6 +82,9 @@
   padding-right: 20px;
   color: white;
 }
+.check{
+  color: white;
+}
 
 @media screen and (max-width: 800px) {
   .section-reg {
@@ -104,3 +108,4 @@
     margin-bottom: 25px;
   }
 }
+

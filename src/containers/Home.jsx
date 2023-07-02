@@ -6,7 +6,6 @@ import img2 from "../assets/statics/img2.jpg";
 import img3 from "../assets/statics/img3.jpg";
 import img4 from "../assets/statics/img4.jpg";
 import Filosofia from "../components/Filosofia";
-import Nosotros from "../components/Nosotros";
 import { Link } from "react-router-dom";
 
 
@@ -29,7 +28,6 @@ export default function Home() {
         </button>
       </section>
       <Filosofia />
-      <Nosotros />
       <div
         className="modal fade"
         id="exampleModal1"
