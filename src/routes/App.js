@@ -18,6 +18,10 @@ import Actividades from "../containers/Actividades";
 import CrudUsuarios from "../components/CrudUsuarios/CrudUsuarios";
 import FormActividad from "../components/CrudActividad/FormActividad";
 import CrudProductos from "../components/Productos/CrudProductos";
+import Carrito from "../containers/Carrito";
+import TerminosyCond from "../containers/TerminosyCond";
+import Politicas from "../containers/Politicas";
+import Graficos from "../containers/Graficos";
 
 function App() {
   const isAuthenticated = () => {
@@ -41,14 +45,18 @@ function App() {
           <Route exact path="/registro" element={<Registro />}></Route>
           <Route exact path="/contacto" element={<Contacto />}></Route>
           <Route exact path="/ayuda" element={<Ayuda />}></Route>
+          <Route exact path="/carrito" element={<Carrito />}></Route>
           <Route exact path="/altas" element={<CrudUsuarios />}></Route>
+          <Route exact path="/termycond" element={<TerminosyCond />}></Route>
+          <Route exact path="/politicas" element={<Politicas />}></Route>
           <Route exact path="/agregar-actividad" element={<FormActividad />} />
           <Route exact path="/agregar-producto" element={<CrudProductos />} />
           <Route exact path="/*" element={<Navigate to={"/"} replace />} />
 
           <Route element={<ProtectedRoutes />}>
             <Route path={"/actividades"} element={<Actividades />} />
-            <Route exact path="/tienda" element={<Productos />}></Route>
+            <Route path={"/graficos"} element={<Graficos />} />
+            <Route exact path={"/tienda"} element={<Productos />}></Route>
           </Route>
         </Routes>
       </Layout>

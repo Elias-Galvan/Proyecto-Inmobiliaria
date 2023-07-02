@@ -59,6 +59,11 @@ export default function Header() {
                 <Link to={"/altas"}>Nuevo Usuario</Link>
               </li>
             )}
+            {isAuthenticated && rol === "ROLE_ADMIN" && (
+              <li className="li">
+                <Link to={"/graficos"}>Graficos</Link>
+              </li>
+            )}
             <li className="li">
               <Link to={"/tienda"}>Tienda</Link>
             </li>
