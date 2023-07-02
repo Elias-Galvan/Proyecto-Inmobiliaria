@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "../components/CardAct";
 import "../assets/css/Actividades.css";
 import img3 from "../assets/statics/img2.jpg";
 import img2 from "../assets/statics/img3.jpg";
 import img1 from "../assets/statics/img1.jpg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { getActividadService } from "../services/getActividadService";
 
 const cards = [
   {
@@ -27,8 +29,18 @@ const cards = [
   },
 ];
 export default function Actividades() {
+  const [actividades, setActividades] = useState([]);
   const navigate = useNavigate();
 
+  const getData = async () => {
+    const getActividadData = await getActividadService();
+    setActividades(getActividadData);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log(actividades);
   const isAuthenticated = localStorage.getItem("token") !== null; // Obtén el estado de autenticación aquí
 
   const handleCardClick = (id) => {
@@ -55,16 +67,17 @@ export default function Actividades() {
         </div>
         <hr className="linea" />
         <div className="row">
-          {cards.map(({ title, desc, img, id }) => (
-            <div className="col-md-4" key={id}>
-              <Card
-                imgUrl={img}
-                titulo={title}
-                descripcion={desc}
-                onClick={() => handleCardClick(id)}
-              />
-            </div>
-          ))}
+          {actividades &&
+            actividades.map(({ nombre, imagen, descripcion, id }) => (
+              <div className="col-md-4" key={id}>
+                <Card
+                  nombre={nombre}
+                  imagen={imagen}
+                  descripcion={descripcion}
+                  onClick={() => handleCardClick(id)}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </div>

@@ -31,10 +31,10 @@ export default function Footer() {
           <h6>Seguinos en</h6>
           <div className="container-iconos">
             <Link to="">
-              <img src={logoface} alt="" />
+              <img src={logoface} alt="logo-face" />
             </Link>
             <Link to="">
-              <img src={logoinsta} alt="" />
+              <img src={logoinsta} alt="logo-insta" />
             </Link>
           </div>
         </div>
