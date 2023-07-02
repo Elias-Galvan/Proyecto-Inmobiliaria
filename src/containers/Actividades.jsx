@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Card from "../components/CardAct";
 import { useNavigate } from "react-router-dom";
-import { getActividadService } from "../services/getActividadService";
-import "../assets/css/Actividades.css";
+import { getActividadesService } from "../services/getActividadesService";
 import useUserStore from "../state/useUserStore";
+import "../assets/css/Actividades.css";
+import useActividades from "../state/useActividades";
 
 export default function Actividades() {
-  const [actividades, setActividades] = useState([]);
   const { usuario } = useUserStore();
+  const { actividades, setActividades } = useActividades();
   const navigate = useNavigate();
 
   const isAdmin = usuario.authorities.some(
@@ -15,7 +16,7 @@ export default function Actividades() {
   );
 
   const getData = async () => {
-    const getActividadData = await getActividadService();
+    const getActividadData = await getActividadesService();
     setActividades(getActividadData);
   };
 
@@ -23,16 +24,8 @@ export default function Actividades() {
     getData();
   }, []);
 
-  const isAuthenticated = localStorage.getItem("token") !== null;
-
   const handleCardClick = (id) => {
-    if (isAuthenticated) {
-      // Realiza la redirección si el usuario está autenticado
-      navigate(`/desc-act/${id}`);
-    } else {
-      // Ejecuta una acción alternativa si el usuario no está autenticado
-      navigate(`/login`);
-    }
+    navigate(`/actividad/${id}`);
   };
 
   return (
@@ -55,6 +48,7 @@ export default function Actividades() {
             actividades.map(({ nombre, imagen, descripcion, id }) => (
               <div className="col-md-4" key={id}>
                 <Card
+                  id={id}
                   nombre={nombre}
                   imagen={imagen}
                   descripcion={descripcion}
