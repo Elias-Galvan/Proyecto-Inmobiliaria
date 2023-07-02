@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Carrousel from "../components/Carrousel";
+// import Carrousel from "../components/Carrousel";
 import "../assets/css/DescActividad.css";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
