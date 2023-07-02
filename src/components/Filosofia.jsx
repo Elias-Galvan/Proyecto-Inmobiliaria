@@ -13,7 +13,7 @@ export default function Filosofia() {
             <li> En este gimnasio no juzgamos.</li>
             <li>
               {" "}
-              Somos una sociedad diversa y tenemos una cultura de diversión.
+              Somos una sociedad diversa y tenemos una cultura de inclusion.
             </li>
             <li> Nada es mucho ni muy poco.</li>
           </ul>
@@ -21,13 +21,13 @@ export default function Filosofia() {
         <div className="col-md-4">
           <ul>
             <li>Buscamos animarte, entusiasmarte y entretenerte.</li>
-            <li>No hay un solo tipo. Ni una sola razón. Ni un solo camino.</li>
+            <li>Hay lugar para todos.</li>
             <li>No existen miradas que desaprueben.</li>
           </ul>
         </div>
         <div className="col-md-4">
           <ul>
-            <li>Hay lugar para todos.</li>
+            <li>No hay un solo tipo. Ni una sola razón. Ni un solo camino.</li>
             <li>
               Cualquier persona que nos elija para alcanzar sus objetivos y
               respete al prójimo será bienvenida.

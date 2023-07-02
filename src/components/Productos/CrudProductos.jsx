@@ -51,67 +51,110 @@ function CrudProductos() {
       }
     } catch (error) {
       console.error("Error al agregar el producto:", error);
-      // Manejar el error de alguna manera apropiada
+      Swal.fire(
+        "Upps!!",
+        "Ha ocurrido un error al agregar el producto",
+        "error"
+      );
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ margin: "100px auto", width: "50%" }}
-    >
-      <label>
-        Nombre:
-        <input
-          type="text"
-          name="nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Descripción:
-        <input
-          type="text"
-          name="descripcion"
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Precio:
-        <input
-          type="number"
-          name="precio"
-          value={precio}
-          onChange={(e) => setPrecio(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Stock:
-        <input
-          type="number"
-          name="stock"
-          value={stock}
-          onChange={(e) => setStock(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Imagen:
-        <input
-          accept="image/*"
-          type="file"
-          name="imagen"
-          onChange={(e) => setImagen(e.target.files[0])}
-        />
-      </label>
-      <br />
-      <button type="submit">Agregar producto</button>
-    </form>
+    <div fluid className="containerPage">
+      <h2>Agregar Producto</h2>
+      <form className="formActividad" onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label
+            htmlFor="exampleFormControlInput1"
+            className="form-label textLabel"
+          >
+            Nombre
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="exampleFormControlInput11"
+            placeholder="Ej: Musculación"
+            name="nombre"
+            onChange={(e) => setNombre(e.target.value)}
+            value={nombre}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label
+            htmlFor="exampleFormControlTextarea11"
+            className="form-label textLabel"
+          >
+            Descripcion
+          </label>
+          <textarea
+            className="form-control"
+            id="exampleFormControlTextarea11"
+            rows={3}
+            defaultValue={""}
+            name="descripcion"
+            onChange={(e) => setDescripcion(e.target.value)}
+            value={descripcion}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label
+            htmlFor="exampleFormControlInput162"
+            className="form-label textLabel"
+          >
+            Precio
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="exampleFormControlInput162"
+            placeholder="$"
+            name="precio"
+            onChange={(e) => setPrecio(e.target.value)}
+            value={precio}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label
+            htmlFor="exampleFormControlInput162"
+            className="form-label textLabel"
+          >
+            Stock:
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="exampleFormControlInput162"
+            placeholder="$"
+            name="stock"
+            onChange={(e) => setStock(e.target.value)}
+            value={stock}
+          />
+        </div>
+        <br />
+
+        <div className="mb-3">
+          <label className="form-label textLabel">
+            Imagen:
+            <input
+              style={{ marginLeft: "12px" }}
+              accept="image/*"
+              type="file"
+              name="imagen"
+              onChange={(e) => setImagen(e.target.files[0])}
+            />
+          </label>
+        </div>
+        <div className="btnfinal">
+          <button className="btn btn-primary" type="submit">
+            Agregar producto
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 
