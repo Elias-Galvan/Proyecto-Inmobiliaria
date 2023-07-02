@@ -1,36 +1,18 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Card from "../components/CardAct";
-import "../assets/css/Actividades.css";
-import img3 from "../assets/statics/img2.jpg";
-import img2 from "../assets/statics/img3.jpg";
-import img1 from "../assets/statics/img1.jpg";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { getActividadService } from "../services/getActividadService";
+import "../assets/css/Actividades.css";
+import useUserStore from "../state/useUserStore";
 
-const cards = [
-  {
-    id: 1,
-    title: "Musculacion",
-    desc: "sdfsdfsdfsd",
-    img: img1,
-  },
-  {
-    id: 2,
-    title: "Cinta",
-    desc: "sdfsdfsdfsdf",
-    img: img2,
-  },
-  {
-    id: 3,
-    title: "Boxeo",
-    desc: "dfstgdfgdfgdfg",
-    img: img3,
-  },
-];
 export default function Actividades() {
   const [actividades, setActividades] = useState([]);
+  const { usuario } = useUserStore();
   const navigate = useNavigate();
+
+  const isAdmin = usuario.authorities.some(
+    (el) => el.authority === "ROLE_ADMIN"
+  );
 
   const getData = async () => {
     const getActividadData = await getActividadService();
@@ -40,8 +22,8 @@ export default function Actividades() {
   useEffect(() => {
     getData();
   }, []);
-  console.log(actividades);
-  const isAuthenticated = localStorage.getItem("token") !== null; // Obtén el estado de autenticación aquí
+
+  const isAuthenticated = localStorage.getItem("token") !== null;
 
   const handleCardClick = (id) => {
     if (isAuthenticated) {
@@ -57,14 +39,16 @@ export default function Actividades() {
     <div className="actividades">
       <div className="container justify-content-center align-items-center">
         <h2>Actividades</h2>
-        <div className="newContact">
-          <button
-            className="btn btn-info"
-            onClick={() => navigate("/agregar-actividad")}
-          >
-            Nuevo Actividad
-          </button>
-        </div>
+        {isAdmin && (
+          <div className="newContact">
+            <button
+              className="btn btn-info"
+              onClick={() => navigate("/agregar-actividad")}
+            >
+              Nuevo Actividad
+            </button>
+          </div>
+        )}
         <hr className="linea" />
         <div className="row">
           {actividades &&

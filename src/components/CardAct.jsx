@@ -18,12 +18,7 @@ export default function Card({ nombre, imagen, descripcion }) {
       <div className="card-body">
         <h4 className="card-title ">{nombre}</h4>
         <p className="card-text text-secondary">{descripcion}</p>
-        <Link
-          to="/desc-act"
-          target="_blank"
-          className="btn btn-secondary rounded-0"
-          rel="noreferrer"
-        >
+        <Link to="/desc-act" className="btn btn-secondary rounded-0">
           Ver mas...
         </Link>
       </div>

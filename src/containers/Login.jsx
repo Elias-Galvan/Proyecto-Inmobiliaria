@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useStore from "../state/useStore";
 import { loginService } from "../services/loginService";
 import Swal from "sweetalert2";
+import useUserStore from "../state/useUserStore";
 
 const initialState = {
   nombreUsuario: "",
@@ -15,6 +16,7 @@ export default function Login() {
   const setToken = useStore((state) => state.setToken);
   const [user, setUser] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const { iniciarSesion } = useUserStore();
 
   const navigate = useNavigate();
 
@@ -30,6 +32,7 @@ export default function Login() {
 
       if (data && data.token) {
         setToken(data.token);
+        iniciarSesion(data);
         Swal.fire("Ok..", "Credenciales correctas!!!", "success");
         navigate("/");
       } else {
