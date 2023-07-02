@@ -23,7 +23,7 @@ const Card = ({ precio, nombre, descripcion, imagen, id }) => {
       //onMouseOver={handleMouseOver}
       //onMouseOut={handleMouseDown}
     >
-      <div className="descuento">x</div>
+      <div className="divcont"><button className="btn btn-warning">Editar</button><button className="btn btn-danger">X</button></div>
       <div className="imgContainer">
         <img
           src={`${defaultUrl}${imagen}`}
@@ -39,7 +39,7 @@ const Card = ({ precio, nombre, descripcion, imagen, id }) => {
       <div className="cardFooter" /*ref={footerRef}*/>
         <div className="price">${precio}</div>
         <button
-          className="home-item-comprar"
+          className="button-64"
           onClick={() => {
             agregarCarrito(id);
           }}

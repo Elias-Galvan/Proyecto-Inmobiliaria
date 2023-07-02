@@ -75,3 +75,8 @@ image {
   font-size: 14px;
   line-height: 16px;
 }
+
+.divcont{
+  display: flex;
+  justify-content: space-between;
+}
