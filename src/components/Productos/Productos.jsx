@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Banner from "../../assets/statics/proteina.jpg";
 import Card from "./components/Card/Card";
 import Filter from "./components/Filters/Filter";
-import "../../assets/css/Productos.css";
 import { useNavigate } from "react-router-dom";
 import { getProductService } from "../../services/getProductService";
 import useUserStore from "../../state/useUserStore";
+import "../../assets/css/Productos.css";
 
 const Productos = () => {
   const [products, setProducts] = useState([]);
