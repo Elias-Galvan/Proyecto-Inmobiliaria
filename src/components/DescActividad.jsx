@@ -18,7 +18,6 @@ function DescActividad() {
   const { id } = useParams();
   const { actividad, setActividad } = useActividades();
   const { usuario } = useUserStore();
-  const { nombreUsuario } = usuario;
   const {
     cupoMaximo,
     nombre,
@@ -42,17 +41,12 @@ function DescActividad() {
   const handleOptionChange = (event) => {
     const selectedId = event.target.value;
     setSelectedId(selectedId);
-
-    // Buscar el objeto correspondiente al ID seleccionado
-    const selectedHorario = horarios.find(
-      (horario) => horario.id === selectedId
-    );
   };
 
   const handleTurnOfActivity = async () => {
     if (isAuthenticated) {
       const response = await api.post(`${defaultUrl}/api/v1/nueva-reserva`, {
-        nombreUsuario,
+        nombreUsuario: usuario.nombreUsuario,
         idActividad: Number(id),
         idHorario: Number(selectedId),
       });
