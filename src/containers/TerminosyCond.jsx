@@ -10,7 +10,7 @@ function TerminosyCond() {
           Para poder utilizar los servicios del gimnasio, es necesario completar
           el proceso de inscripción y adquirir una membresía válida. La
           inscripción y membresía están sujetas a disponibilidad y podrían
-          requerir el pago de una tarifa.{" "}
+          requerir el pago de una tarifa.
         </p>
         <h3>BAJA ANTICIPADA</h3>
         <p>
@@ -54,17 +54,15 @@ function TerminosyCond() {
           De no presentarlo, el acceso al gimnasio podría ser restringido o
           denegado.
         </p>
-        
+
         <h3>USO LIBRE DEL GIMNASIO</h3>
         <p>
-          a. Los usuarios con membresía activa tienen acceso libre al gimnasio
-          durante los horarios establecidos. 
-          b. El uso de las instalaciones está
-          sujeto a las normas y regulaciones del gimnasio, incluyendo la
-          limpieza de equipos y respeto hacia otros usuarios. 
-          c. El gimnasio no
-          se hace responsable por lesiones o accidentes que puedan ocurrir
-          durante el uso de las instalaciones.
+          <strong>A</strong>. Los usuarios con membresía activa tienen acceso
+          libre al gimnasio durante los horarios establecidos. b. El uso de las
+          instalaciones está sujeto a las normas y regulaciones del gimnasio,
+          incluyendo la limpieza de equipos y respeto hacia otros usuarios. c.
+          El gimnasio no se hace responsable por lesiones o accidentes que
+          puedan ocurrir durante el uso de las instalaciones.
         </p>
         <h3>ACEPTACIÓN DE LAS CONDICIONES</h3>
         <p>
@@ -78,9 +76,7 @@ function TerminosyCond() {
           </Link>
         </div>
       </div>
-      
     </div>
-    
   );
 }
 

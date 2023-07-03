@@ -3,9 +3,9 @@ import "./Card.css";
 import { defaultUrl } from "../../../../store/action/types";
 import Contexto from "../../../../context/Context";
 
-const Card = ({ precio, nombre, descripcion, imagen, id }) => {
-  //const footerRef = useRef(null);
-  /*const handleMouseOver = () => {
+const Card = ({ id, precio, nombre, descripcion, imagen }) => {
+  const footerRef = useRef(null);
+  const handleMouseOver = () => {
     footerRef.current.style.visibility = "visible";
     footerRef.current.style.opacity = 1;
   };
@@ -13,17 +13,20 @@ const Card = ({ precio, nombre, descripcion, imagen, id }) => {
   const handleMouseDown = () => {
     footerRef.current.style.visibility = "hidden";
     footerRef.current.style.opacity = 0;
-  };*/
+  };
 
-  const { agregarCarrito } = useContext(Contexto);
+  const agregarCarrito = (id) => console.log(id);
 
   return (
     <div
       className="pepe"
-      //onMouseOver={handleMouseOver}
-      //onMouseOut={handleMouseDown}
+      // onMouseOver={handleMouseOver}
+      // onMouseOut={handleMouseDown}
     >
-      <div className="divcont"><button className="btn btn-warning">Editar</button><button className="btn btn-danger">X</button></div>
+      <div className="divcont">
+        <button className="btn btn-warning">Editar</button>
+        <button className="btn btn-danger">X</button>
+      </div>
       <div className="imgContainer">
         <img
           src={`${defaultUrl}${imagen}`}
@@ -34,17 +37,19 @@ const Card = ({ precio, nombre, descripcion, imagen, id }) => {
         />
       </div>
       <h3 className="titleCard">{nombre}</h3>
-      <p className="descriptionCard">{descripcion}</p>
+      <div className="containerDescription">
+        <p className="descriptionCard">{descripcion}</p>
+      </div>
 
       <div className="cardFooter" /*ref={footerRef}*/>
         <div className="price">${precio}</div>
         <button
-          className="button-64"
+          className="button-64 btnCustom"
           onClick={() => {
             agregarCarrito(id);
           }}
         >
-          Agregar al carrito
+          <span className="text spanCustom"> Agregar al carrito</span>
         </button>
       </div>
     </div>

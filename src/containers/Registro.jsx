@@ -90,7 +90,8 @@ export default function Registro() {
                 checked={isChecked}
                 onChange={handleCheckboxChange}
               />
-              Acepto los <Link to={"/termycond"}>términos, condiciones</Link> y <Link to={"/politicas"}>políticas de privacidad</Link>
+              Acepto los <Link to={"/termycond"}>términos, condiciones</Link> y{" "}
+              <Link to={"/politicas"}>políticas de privacidad</Link>
             </label>
 
             <button className="btn" type="submit" disabled={!isChecked}>

@@ -19,9 +19,9 @@ import CrudUsuarios from "../components/CrudUsuarios/CrudUsuarios";
 import FormActividad from "../components/CrudActividad/FormActividad";
 import CrudProductos from "../components/Productos/CrudProductos";
 import Carrito from "../containers/Carrito";
-import UsarContexto from "../context/UsarContexto";
 import TerminosyCond from "../containers/TerminosyCond";
 import Politicas from "../containers/Politicas";
+import Graficos from "../containers/Graficos";
 
 function App() {
   const isAuthenticated = () => {

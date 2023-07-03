@@ -1,8 +1,14 @@
-import "../assets/css/Header.css";
 import React, { useState, useEffect } from "react";
-import iconoHeader from "../assets/statics/icono.png";
-import iconoMenu from "../assets/statics/icono-menu.png";
+import iconoHeader from "../../assets/statics/icono.png";
+import iconoMenu from "../../assets/statics/icono-menu.png";
 import { Link, useLocation } from "react-router-dom";
+import "../../assets/css/Header.css";
+import LinkNavBar from "./LinkNavBar";
+import {
+  linksAdminIsNotAuthenticated,
+  linksAdminIsAuthenticated,
+  linksPublic,
+} from "../../assets/datos/links";
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
@@ -41,48 +47,38 @@ export default function Header() {
           <div className={viewMenu ? "li1" : "li"}>
             {(!isAuthenticated || rol !== "ROLE_ADMIN") && (
               <>
-                <li className="li">
-                  <Link to={"/registro"}>Sumate Ya</Link>
-                </li>
-                <li className="li">
-                  <Link to={"/contacto"}>Contacto</Link>
-                </li>
-                <li className="li">
-                  <Link to={"/ayuda"}>Ayuda</Link>
-                </li>
+                {linksAdminIsNotAuthenticated.map((link) => (
+                  <LinkNavBar key={link.id} path={link.path} text={link.text} />
+                ))}
               </>
             )}
-            <li className="li">
-              <Link to={"/actividades"}>Actividades</Link>
-            </li>
             {isAuthenticated && rol === "ROLE_ADMIN" && (
-              <li className="li">
-                <Link to={"/altas"}>Nuevo Usuario</Link>
-              </li>
+              <>
+                {linksAdminIsAuthenticated.map((link) => (
+                  <LinkNavBar key={link.id} path={link.path} text={link.text} />
+                ))}
+              </>
             )}
-            {isAuthenticated && rol === "ROLE_ADMIN" && (
-              <li className="li">
-                <Link to={"/graficos"}>Graficos</Link>
-              </li>
-            )}
-            <li className="li">
-              <Link to={"/tienda"}>Tienda</Link>
-            </li>
+
+            {linksPublic.map((link) => (
+              <LinkNavBar key={link.id} path={link.path} text={link.text} />
+            ))}
 
             {!isAuthenticated ? (
               !isLogin && (
-                <li className="li">
-                  <Link to={"/login"} className="action-btn">
-                    Inicia sesion
-                  </Link>
-                </li>
+                <LinkNavBar
+                  path={"/login"}
+                  text={"Inicia sesion"}
+                  linkStyle={"action-btn"}
+                />
               )
             ) : (
-              <li className="li">
-                <Link to="/" className="action-btn" onClick={closeSession}>
-                  Cerrar sesion
-                </Link>
-              </li>
+              <LinkNavBar
+                path={"/"}
+                text={"Cerrar sesion"}
+                linkStyle={"action-btn"}
+                onClick={closeSession}
+              />
             )}
           </div>
         </ul>
