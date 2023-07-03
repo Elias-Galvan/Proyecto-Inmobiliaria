@@ -5,9 +5,10 @@ import { Link, useLocation } from "react-router-dom";
 import "../../assets/css/Header.css";
 import LinkNavBar from "./LinkNavBar";
 import {
-  linksAdminIsNotAuthenticated,
+  linksIsNotAuthenticated,
   linksAdminIsAuthenticated,
   linksPublic,
+  linksAuthenticated,
 } from "../../assets/datos/links";
 import Swal from "sweetalert2";
 import useUserStore from "../../state/useUserStore";
@@ -19,15 +20,13 @@ export default function Header() {
   const { usuario } = useUserStore();
 
   // const rol = "ROLE_USER"; // devuelve el servicio
-
+  const rol = usuario?.authorities.some((el) => el.authority === "ROLE_ADMIN");
   const isAuthenticated = localStorage.getItem("token") !== null;
 
   useEffect(() => {
     let isLoginPage = location.pathname === "/login";
     setIsLogin(isLoginPage);
   }, [location, isLogin]);
-
-  const rol = usuario.authorities.some((el) => el.authority === "ROLE_ADMIN");
 
   const closeSession = () => {
     Swal.fire("OK!", "Session finalizada con exito!", "success");
@@ -53,9 +52,9 @@ export default function Header() {
           </div>
 
           <div className={viewMenu ? "li1" : "li"}>
-            {(!isAuthenticated || rol !== "ROLE_ADMIN") && (
+            {(!isAuthenticated || !rol) && (
               <>
-                {linksAdminIsNotAuthenticated.map((link) => (
+                {linksIsNotAuthenticated.map((link) => (
                   <LinkNavBar key={link.id} path={link.path} text={link.text} />
                 ))}
               </>
@@ -71,6 +70,11 @@ export default function Header() {
             {linksPublic.map((link) => (
               <LinkNavBar key={link.id} path={link.path} text={link.text} />
             ))}
+
+            {isAuthenticated &&
+              linksAuthenticated.map((link) => (
+                <LinkNavBar key={link.id} path={link.path} text={link.text} />
+              ))}
 
             {!isAuthenticated ? (
               !isLogin && (
