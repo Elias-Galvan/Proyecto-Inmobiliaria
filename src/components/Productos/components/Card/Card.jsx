@@ -1,15 +1,30 @@
+import Swal from "sweetalert2";
+import { deleteProduct } from "../../../../services/getProductService";
 import { defaultUrl } from "../../../../store/action/types";
 import "./Card.css";
 
-const Card = ({ id, precio, nombre, descripcion, imagen }) => {
+const Card = ({ id, precio, nombre, descripcion, imagen, isAdmin }) => {
   const agregarCarrito = (id) => console.log(id);
+
+  const deleleProductById = async (id) => {
+    const resp = await deleteProduct(id);
+
+    Swal.fire("Ok.", resp.mensaje, "success");
+  };
 
   return (
     <div className="pepe">
-      <div className="divcont">
-        <button className="btn btn-warning">Editar</button>
-        <button className="btn btn-danger">X</button>
-      </div>
+      {isAdmin && (
+        <div className="divcont">
+          <button className="btn btn-warning">Editar</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => deleleProductById(id)}
+          >
+            X
+          </button>
+        </div>
+      )}
       <div className="imgContainer">
         <img
           src={`${defaultUrl}${imagen}`}
