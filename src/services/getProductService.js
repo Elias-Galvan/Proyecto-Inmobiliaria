@@ -9,3 +9,12 @@ export const getProductService = async () => {
     console.log("Rompio el servicio");
   }
 };
+
+export const deleteProduct = async (id) => {
+  try {
+    const resp = await api.delete(`${defaultUrl}/api/v1/borrar/${id}`);
+    return resp.data;
+  } catch (error) {
+    console.log("Rompio el servicio");
+  }
+};

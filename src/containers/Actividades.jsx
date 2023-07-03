@@ -11,7 +11,9 @@ export default function Actividades() {
   const { actividades, setActividades } = useActividades();
   const navigate = useNavigate();
 
-  const isAdmin = usuario.authorities.some(
+  const isAuthenticated = localStorage.getItem("token") !== null;
+
+  const isAdmin = usuario?.authorities.some(
     (el) => el.authority === "ROLE_ADMIN"
   );
 
@@ -32,7 +34,7 @@ export default function Actividades() {
     <div className="actividades">
       <div className="container justify-content-center align-items-center">
         <h2>Actividades</h2>
-        {isAdmin && (
+        {isAuthenticated && isAdmin && (
           <div className="newContact">
             <button
               className="btn btn-info"

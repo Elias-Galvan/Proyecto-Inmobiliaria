@@ -5,18 +5,22 @@ import { Link, useLocation } from "react-router-dom";
 import "../../assets/css/Header.css";
 import LinkNavBar from "./LinkNavBar";
 import {
-  linksAdminIsNotAuthenticated,
+  linksIsNotAuthenticated,
   linksAdminIsAuthenticated,
   linksPublic,
+  linksAuthenticated,
 } from "../../assets/datos/links";
 import Swal from "sweetalert2";
+import useUserStore from "../../state/useUserStore";
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
   const [viewMenu, setViewMenu] = useState(false);
   const location = useLocation();
+  const { usuario } = useUserStore();
 
-  const rol = "ROLE_USER"; // devuelve el servicio
+  // const rol = "ROLE_USER"; // devuelve el servicio
+  const rol = usuario?.authorities.some((el) => el.authority === "ROLE_ADMIN");
   const isAuthenticated = localStorage.getItem("token") !== null;
 
   useEffect(() => {
@@ -48,14 +52,14 @@ export default function Header() {
           </div>
 
           <div className={viewMenu ? "li1" : "li"}>
-            {(!isAuthenticated || rol !== "ROLE_ADMIN") && (
+            {(!isAuthenticated || !rol) && (
               <>
-                {linksAdminIsNotAuthenticated.map((link) => (
+                {linksIsNotAuthenticated.map((link) => (
                   <LinkNavBar key={link.id} path={link.path} text={link.text} />
                 ))}
               </>
             )}
-            {isAuthenticated && rol === "ROLE_ADMIN" && (
+            {isAuthenticated && rol && (
               <>
                 {linksAdminIsAuthenticated.map((link) => (
                   <LinkNavBar key={link.id} path={link.path} text={link.text} />
@@ -66,6 +70,11 @@ export default function Header() {
             {linksPublic.map((link) => (
               <LinkNavBar key={link.id} path={link.path} text={link.text} />
             ))}
+
+            {isAuthenticated &&
+              linksAuthenticated.map((link) => (
+                <LinkNavBar key={link.id} path={link.path} text={link.text} />
+              ))}
 
             {!isAuthenticated ? (
               !isLogin && (
