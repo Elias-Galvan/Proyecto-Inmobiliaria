@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "../assets/css/Registro.css";
+import Swal from "sweetalert2";
 
 export default function Registro() {
   // const rol = "ADMIN";
@@ -20,10 +21,14 @@ export default function Registro() {
 
   const onSubmit = (data) => {
     if (isChecked) {
-      console.log(data);
+      Swal.fire("Felicidades!!", "Te registraste correctamente.", "success");
       // Aquí puedes hacer la lógica adicional para enviar los datos
     } else {
-      console.log("Debe aceptar los términos y condiciones");
+      Swal.fire(
+        "Error!",
+        "Primero debe aceptar los términos y condiciones",
+        "warning"
+      );
     }
   };
 
