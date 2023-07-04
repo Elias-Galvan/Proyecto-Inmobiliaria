@@ -66,7 +66,7 @@ const FormActividad = () => {
       data.instructor.trim() === "" ||
       data.precio <= 0
     ) {
-      console.log("no entra");
+      Swal.fire("Error..", "Ningun campo puede estar vacio!", "error");
       return;
     }
 
@@ -79,10 +79,6 @@ const FormActividad = () => {
       formData.append("precio", Number(data.precio));
       formData.append("instructor", data.instructor);
       formData.append("imagen", imagen);
-
-      for (const [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
 
       const response = await api.post(
         `${defaultUrl}/api/v1/nueva-actividad`,
@@ -180,9 +176,10 @@ const FormActividad = () => {
             value={data.horarios}
             multiple={true}
           >
-            {horarios.map((horario) => (
-              <SelectOptionHorario key={horario.idHorario} {...horario} />
-            ))}
+            {horarios &&
+              horarios.map((horario) => (
+                <SelectOptionHorario key={horario.idHorario} {...horario} />
+              ))}
           </select>
         </div>
         <div className="mb-3">

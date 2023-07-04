@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useStore from "../state/useStore";
 import { loginService } from "../services/loginService";
 import Swal from "sweetalert2";
+import useUserStore from "../state/useUserStore";
 
 const initialState = {
   nombreUsuario: "",
@@ -15,6 +16,7 @@ export default function Login() {
   const setToken = useStore((state) => state.setToken);
   const [user, setUser] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const { iniciarSesion } = useUserStore();
 
   const navigate = useNavigate();
 
@@ -30,6 +32,7 @@ export default function Login() {
 
       if (data && data.token) {
         setToken(data.token);
+        iniciarSesion(data);
         Swal.fire("Ok..", "Credenciales correctas!!!", "success");
         navigate("/");
       } else {
@@ -64,7 +67,7 @@ export default function Login() {
               required
               name="nombreUsuario"
             />
-            <label htmlFor="email">Nombre de usuario</label>
+            <label htmlFor="nombreUsuario">Nombre de usuario</label>
           </div>
           <div className="inputbox">
             <input
@@ -77,19 +80,19 @@ export default function Login() {
             />
             <label htmlFor="password">Password</label>
           </div>
-          <div className="forget">
+          {/* <div className="forget">
             <label htmlFor="">
               <input type="checkbox" value="Recordarme" />
               <label htmlFor="">Recordarme / </label>
               <Link to="/">Olvide la Contraseña</Link>
             </label>
-          </div>
+          </div> */}
           <button className="buttonForm" onClick={handleLogin}>
             Entrar
           </button>
           <div className="register">
             <p>
-              No tengo cuenta, <Link href="/registro">Registrarme</Link>
+              No tengo cuenta, <Link to="/registro">Registrarme</Link>
             </p>
           </div>
           {loading && "estoy cargando la data"}

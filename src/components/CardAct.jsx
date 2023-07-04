@@ -3,7 +3,7 @@ import "../assets/css/Actividades.css";
 import { Link } from "react-router-dom";
 import { defaultUrl } from "../store/action/types";
 
-export default function Card({ nombre, imagen, descripcion }) {
+export default function Card({ id, nombre, imagen, descripcion }) {
   return (
     <div className="card text-center bg-dark">
       <div className="overflow">
@@ -18,12 +18,7 @@ export default function Card({ nombre, imagen, descripcion }) {
       <div className="card-body">
         <h4 className="card-title ">{nombre}</h4>
         <p className="card-text text-secondary">{descripcion}</p>
-        <Link
-          to="/desc-act"
-          target="_blank"
-          className="btn btn-secondary rounded-0"
-          rel="noreferrer"
-        >
+        <Link to={`/actividad/${id}`} className="btn btn-secondary rounded-0">
           Ver mas...
         </Link>
       </div>

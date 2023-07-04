@@ -1,18 +1,18 @@
 import api from "../helpers/axiosInstance";
 import { defaultUrl } from "../store/action/types";
 
-export const getProductService = async () => {
+export const getActividadesService = async () => {
   try {
-    const resp = await api.get(`${defaultUrl}/api/v1/productos`);
+    const resp = await api.get(`${defaultUrl}/api/v1/actividades`);
     return resp.data;
   } catch (error) {
     console.log("Rompio el servicio");
   }
 };
 
-export const deleteProduct = async (id) => {
+export const getActividadById = async (id) => {
   try {
-    const resp = await api.delete(`${defaultUrl}/api/v1/borrar/${id}`);
+    const resp = await api.get(`${defaultUrl}/api/v1/actividad/${id}`);
     return resp.data;
   } catch (error) {
     console.log("Rompio el servicio");
