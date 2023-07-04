@@ -151,9 +151,10 @@ const FormActividad = () => {
             value={data.horarios}
             multiple={true}
           >
-            {horarios.map((horario) => (
-              <SelectOptionHorario key={horario.idHorario} {...horario} />
-            ))}
+            {horarios &&
+              horarios.map((horario) => (
+                <SelectOptionHorario key={horario.idHorario} {...horario} />
+              ))}
           </select>
         </div>
         <div className="mb-3">
