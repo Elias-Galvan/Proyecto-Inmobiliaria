@@ -11,7 +11,7 @@ export default function Actividades() {
   const { actividades, setActividades } = useActividades();
   const navigate = useNavigate();
 
-  const isAuthenticated = localStorage.getItem("token") !== null;
+  const isAuthenticated = sessionStorage.getItem("token") !== null;
 
   const isAdmin = usuario?.authorities.some(
     (el) => el.authority === "ROLE_ADMIN"

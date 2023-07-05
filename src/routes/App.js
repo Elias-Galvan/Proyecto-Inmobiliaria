@@ -25,7 +25,7 @@ import Graficos from "../containers/Graficos";
 
 function App() {
   const isAuthenticated = () => {
-    return localStorage.getItem("token") !== null;
+    return sessionStorage.getItem("token") !== null;
   };
 
   const ProtectedRoutes = () => {

@@ -21,7 +21,7 @@ export default function Header() {
 
   // const rol = "ROLE_USER"; // devuelve el servicio
   const rol = usuario?.authorities.some((el) => el.authority === "ROLE_ADMIN");
-  const isAuthenticated = localStorage.getItem("token") !== null;
+  const isAuthenticated = sessionStorage.getItem("token") !== null;
 
   useEffect(() => {
     let isLoginPage = location.pathname === "/login";
@@ -30,7 +30,7 @@ export default function Header() {
 
   const closeSession = () => {
     Swal.fire("OK!", "Session finalizada con exito!", "success");
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   };
 
   return (
