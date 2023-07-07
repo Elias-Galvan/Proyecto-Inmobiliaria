@@ -8,6 +8,7 @@
   opacity: 0.9;
   margin-left: 0px;
 }
+
 .container-header1 {
   background-color: #353535;
   height: 70px;
@@ -22,6 +23,7 @@
 .iconoMenu {
   display: none;
 }
+
 .toggle-btn {
   display: block;
 }
@@ -101,12 +103,14 @@
 
     transition: 0.5s;
   }
+
   .container-header1 {
     height: 350px;
     position: absolute;
     padding-right: 18px;
     transition: 0.5s;
   }
+
   .ul {
     display: flex;
     flex-direction: column;
@@ -120,11 +124,13 @@
     justify-content: center;
     padding-right: 20px;
   }
+
   .li1 {
     display: flex;
     flex-direction: column;
     margin-right: 90px;
   }
+
   .li1 .li {
     display: inline;
     justify-content: center;
@@ -142,4 +148,9 @@
     position: absolute;
     margin-left: 3px;
   }
+}
+
+.icono-carrito {
+  width: 40px;
+  margin-right: 10px;
 }

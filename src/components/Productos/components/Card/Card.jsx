@@ -38,16 +38,18 @@ const Card = ({ id, precio, nombre, descripcion, imagen, isAdmin }) => {
         <p className="descriptionCard">{descripcion}</p>
       </div>
 
-      <div className="cardFooter">
+      <div className={!isAdmin ? "cardFooter" : "text-center"}>
         <div className="price">${precio}</div>
-        <button
-          className="button-64 btnCustom"
-          onClick={() => {
-            agregarCarrito(id);
-          }}
-        >
-          <span className="text spanCustom"> Agregar al carrito</span>
-        </button>
+        {!isAdmin && (
+          <button
+            className="button-64 btnCustom"
+            onClick={() => {
+              agregarCarrito(id);
+            }}
+          >
+            <span className="text spanCustom"> Agregar al carrito</span>
+          </button>
+        )}
       </div>
     </div>
   );
