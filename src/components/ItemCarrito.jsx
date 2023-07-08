@@ -1,52 +1,31 @@
-import React, { useState } from "react";
-import "../assets/css/ItemCarrito.css";
-import borrar from "../assets/statics/borrar.png";
-function ItemCarrito({ nombre, precio, img, id, quantity, eliminarCarrito }) {
-  const [valor, setValor] = useState(1);
+import { defaultUrl } from "../store/action/types";
+import useCarrito from "../state/useCarrito";
 
-  const handleBorrar = () => {
-    eliminarCarrito(id);
-  };
-
-  const sumar = () => {
-    if (valor < quantity) {
-      setValor(valor + 1);
-    }
-  };
-  const reestablecer = () => {
-    setValor(1);
-  };
+function ItemCarrito({ producto }) {
+  const { addProduct, removeProduct } = useCarrito();
+  const { nombre, precio, imagen, id, cantidad } = producto;
 
   return (
-    <div className="carrito-item">
-      <img src={img} alt="" className="carrito-item-img" />
-      <div className="carrito-txt">
-        <h1 className="carrito-item-titulo">{nombre}</h1>
-        <h3 className="carrito-item-precio">${precio * quantity}</h3>
-      </div>
-      <div className="contador">
-        <p className="contar">Cantidad: {quantity}</p>
-        <div className="bo">
-          <button
-            className="incr"
-            id="incr"
-            onClick={sumar}
-            disabled={valor >= quantity}
-          >
-            +
-          </button>
-          <button className="decr" id="decr" onClick={reestablecer}>
-            x
-          </button>
-        </div>
-      </div>
-      <img
-        src={borrar}
-        alt=""
-        className="carrito-item-borrar"
-        onClick={handleBorrar}
-      />
-    </div>
+    <tr>
+      <th scope="row">
+        <img
+          src={`${defaultUrl}${imagen}`}
+          alt={nombre}
+          width={"50px"}
+          height={"50px"}
+          style={{ borderRadius: "50%" }}
+        />
+      </th>
+      <td>
+        <span style={{ fontWeight: "bold" }}>{nombre}</span>
+      </td>
+      <td>
+        <button onClick={() => removeProduct(id, true)}>-1</button>
+        <span style={{ margin: "0 10px" }}> {cantidad}</span>
+        <button onClick={() => addProduct(producto)}>+1</button>
+      </td>
+      <td>{precio * cantidad}</td>
+    </tr>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Banner from "../../assets/statics/proteina.jpg";
 import Card from "./components/Card/Card";
 import Filter from "./components/Filters/Filter";
@@ -6,20 +6,23 @@ import { useNavigate } from "react-router-dom";
 import { getProductService } from "../../services/getProductService";
 import useUserStore from "../../state/useUserStore";
 import "../../assets/css/Productos.css";
+import useProductos from "../../state/useProductos";
 
 const Productos = () => {
-  const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
+  const { productos, setProductos } = useProductos();
   const { usuario } = useUserStore();
+  const navigate = useNavigate();
 
   const getData = async () => {
     const getProductData = await getProductService();
-    setProducts(getProductData);
+    setProductos(getProductData);
   };
 
   useEffect(() => {
     getData();
-  }, [products]);
+  }, []);
+
+  console.log(productos);
 
   const isAdmin = usuario?.authorities.some(
     (el) => el.authority === "ROLE_ADMIN"
@@ -50,8 +53,8 @@ const Productos = () => {
         <Filter handleSearch={handleSearch} />
       </div>
       <div className="containerCard">
-        {products &&
-          products.map((elem) => (
+        {productos &&
+          productos.map((elem) => (
             <Card key={elem.id} {...elem} isAdmin={isAdmin} />
           ))}
       </div>

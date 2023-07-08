@@ -27,7 +27,7 @@ function DescActividad() {
     instructor,
     imagen,
   } = actividad;
-  const isAuthenticated = localStorage.getItem("token") !== null;
+  const isAuthenticated = sessionStorage.getItem("token") !== null;
 
   const getData = async (id) => {
     const getActividadData = await getActividadById(id);

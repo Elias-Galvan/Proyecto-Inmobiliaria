@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import iconoHeader from "../../assets/statics/icono.png";
 import iconoMenu from "../../assets/statics/icono-menu.png";
 import { Link, useLocation } from "react-router-dom";
-import "../../assets/css/Header.css";
 import LinkNavBar from "./LinkNavBar";
 import {
   linksIsNotAuthenticated,
@@ -12,6 +11,8 @@ import {
 } from "../../assets/datos/links";
 import Swal from "sweetalert2";
 import useUserStore from "../../state/useUserStore";
+import "../../assets/css/Header.css";
+import carrito from "../../assets/statics/iconocarrito.png";
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
@@ -21,7 +22,7 @@ export default function Header() {
 
   // const rol = "ROLE_USER"; // devuelve el servicio
   const rol = usuario?.authorities.some((el) => el.authority === "ROLE_ADMIN");
-  const isAuthenticated = localStorage.getItem("token") !== null;
+  const isAuthenticated = sessionStorage.getItem("token") !== null;
 
   useEffect(() => {
     let isLoginPage = location.pathname === "/login";
@@ -30,7 +31,7 @@ export default function Header() {
 
   const closeSession = () => {
     Swal.fire("OK!", "Session finalizada con exito!", "success");
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   };
 
   return (
@@ -75,7 +76,17 @@ export default function Header() {
               linksAuthenticated.map((link) => (
                 <LinkNavBar key={link.id} path={link.path} text={link.text} />
               ))}
-
+            {isAuthenticated && (
+              <li className="li">
+                <Link to={"/carrito"}>
+                  <img
+                    className="icono-carrito"
+                    src={carrito}
+                    alt="carrito logo"
+                  />
+                </Link>
+              </li>
+            )}
             {!isAuthenticated ? (
               !isLogin && (
                 <LinkNavBar
