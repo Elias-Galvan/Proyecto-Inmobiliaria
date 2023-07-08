@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { defaultUrl } from "../../store/action/types";
 import api from "../../helpers/axiosInstance";
 import SelectOptionHorario from "./SelectOptionHorario";
-import { getHorariosService } from "../../services/getHorariosServices";
+import { getHorariosService } from "../../services/horariosServices";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 

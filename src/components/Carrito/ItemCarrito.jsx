@@ -1,9 +1,11 @@
-import { defaultUrl } from "../store/action/types";
-import useCarrito from "../state/useCarrito";
+import { defaultUrl } from "../../store/action/types";
+import useCarrito from "../../state/useCarrito";
 
 function ItemCarrito({ producto }) {
   const { addProduct, removeProduct } = useCarrito();
   const { nombre, precio, imagen, id, cantidad } = producto;
+
+  let subtotal = (precio * cantidad).toFixed(2);
 
   return (
     <tr>
@@ -24,7 +26,7 @@ function ItemCarrito({ producto }) {
         <span style={{ margin: "0 10px" }}> {cantidad}</span>
         <button onClick={() => addProduct(producto)}>+1</button>
       </td>
-      <td>{precio * cantidad}</td>
+      <td>${subtotal}</td>
     </tr>
   );
 }

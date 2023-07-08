@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Card from "../components/CardAct";
 import { useNavigate } from "react-router-dom";
-import { getActividadesService } from "../services/getActividadesService";
+import { getActividadesService } from "../services/actividadesService";
 import useUserStore from "../state/useUserStore";
 import "../assets/css/Actividades.css";
 import useActividades from "../state/useActividades";

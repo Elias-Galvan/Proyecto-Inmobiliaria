@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
-const store = (set) => ({
+const store = (set, get) => ({
   carrito: [],
 
   addProduct: (producto) => {

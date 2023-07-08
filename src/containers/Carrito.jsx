@@ -1,40 +1,51 @@
 import useCarrito from "../state/useCarrito";
-import ItemCarrito from "../components/ItemCarrito";
+import DetalleCarrito from "../components/Carrito/DetalleCarrito";
+import AlertaCarrito from "../components/Carrito/AlertaCarrito";
 import "../assets/css/Carrito.css";
-import { Link } from "react-router-dom";
 
 function Carrito() {
   const { carrito } = useCarrito();
 
-  console.log("Productos del carrito: ", carrito);
+  const getTotalPrice = carrito.reduce((total, producto) => {
+    return total + producto.precio * producto.cantidad;
+  }, 0);
+
+  const getCheckoutData = carrito.map((producto) => {
+    return {
+      productoId: producto.id,
+      cantidad: producto.cantidad,
+    };
+  });
+
+  const finalizarCompra = () => {
+    // En el log de abajo es la forma que tengo que enviar en el endpoint para finalizar la compra
+    console.log({
+      cartItems: getCheckoutData,
+      nombreUsuario: sessionStorage.getItem("nombreUsuario"),
+    });
+  };
 
   return (
     <div className="carrito">
       {carrito.length === 0 ? (
-        <div className="alert alert-info w-75">
-          <h4 className="text-dark text-center">
-            Su carrito se encuentra vacio.
-          </h4>
-          <Link className="btn btn-secondary" to={"/tienda"}>
-            Ir a Tienda
-          </Link>
-        </div>
+        <AlertaCarrito />
       ) : (
-        <table className="table table-dark table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Producto</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Precio</th>
-            </tr>
-          </thead>
-          <tbody>
-            {carrito.map((producto) => (
-              <ItemCarrito key={producto.id} producto={producto} />
-            ))}
-          </tbody>
-        </table>
+        <>
+          <DetalleCarrito carrito={carrito} />
+          <div
+            className="w-100 py-4"
+            style={{ display: "grid", placeItems: "center" }}
+          >
+            <div>
+              <h4>
+                Total: <strong>${getTotalPrice.toFixed(2)}</strong>
+              </h4>
+            </div>
+            <button onClick={finalizarCompra} className="btn btn-success">
+              Finalizar compra
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

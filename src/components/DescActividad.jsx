@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import useActividades from "../state/useActividades";
-import { getActividadById } from "../services/getActividadesService";
+import { getActividadById } from "../services/actividadesService";
 import { defaultUrl } from "../store/action/types";
 import useUserStore from "../state/useUserStore";
 import api from "../helpers/axiosInstance";

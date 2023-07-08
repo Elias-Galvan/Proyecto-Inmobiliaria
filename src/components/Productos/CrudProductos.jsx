@@ -22,7 +22,7 @@ function CrudProductos() {
       precio <= 0 ||
       stock <= 0
     ) {
-      console.log("no entra");
+      Swal.fire("Warning", "Ningun campo puede estar vacio", "warning");
       return;
     }
 

@@ -17,10 +17,9 @@ import carrito from "../../assets/statics/iconocarrito.png";
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
   const [viewMenu, setViewMenu] = useState(false);
+  const { usuario, cerrarSesion } = useUserStore();
   const location = useLocation();
-  const { usuario } = useUserStore();
 
-  // const rol = "ROLE_USER"; // devuelve el servicio
   const rol = usuario?.authorities.some((el) => el.authority === "ROLE_ADMIN");
   const isAuthenticated = sessionStorage.getItem("token") !== null;
 
@@ -31,7 +30,7 @@ export default function Header() {
 
   const closeSession = () => {
     Swal.fire("OK!", "Session finalizada con exito!", "success");
-    sessionStorage.removeItem("token");
+    cerrarSesion();
   };
 
   return (

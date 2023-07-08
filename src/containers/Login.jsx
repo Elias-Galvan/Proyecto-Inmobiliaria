@@ -38,10 +38,7 @@ export default function Login() {
       } else {
         Swal.fire("Error!!", "Credenciales incorrectas.", "error");
       }
-
-      console.log(data);
     } catch (error) {
-      console.log(error);
       Swal.fire(
         "Error!!",
         "Ocurrió un error al iniciar sesión. Inténtalo de nuevo.",

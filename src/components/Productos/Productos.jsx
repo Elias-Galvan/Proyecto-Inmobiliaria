@@ -3,7 +3,7 @@ import Banner from "../../assets/statics/proteina.jpg";
 import Card from "./components/Card/Card";
 import Filter from "./components/Filters/Filter";
 import { useNavigate } from "react-router-dom";
-import { getProductService } from "../../services/getProductService";
+import { getProductService } from "../../services/productService";
 import useUserStore from "../../state/useUserStore";
 import "../../assets/css/Productos.css";
 import useProductos from "../../state/useProductos";
