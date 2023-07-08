@@ -1,10 +1,21 @@
 import Swal from "sweetalert2";
+import useCarrito from "../../../../state/useCarrito";
 import { deleteProduct } from "../../../../services/getProductService";
 import { defaultUrl } from "../../../../store/action/types";
 import "./Card.css";
 
-const Card = ({ id, precio, nombre, descripcion, imagen, isAdmin }) => {
-  const agregarCarrito = (id) => console.log(id);
+const Card = ({ id, precio, nombre, descripcion, imagen, stock, isAdmin }) => {
+  const { addProduct } = useCarrito();
+
+  const agregarCarrito = () => {
+    if (stock <= 0) {
+      Swal.fire("Lo sentimos!!", "No se pueden agregar mas productos.", "info");
+      return;
+    }
+    console.log("Agregando a carrito");
+    addProduct({ id, precio, nombre, descripcion, imagen, stock });
+    Swal.fire("Genial!!", "Producto agregado correctamente.", "success");
+  };
 
   const deleleProductById = async (id) => {
     const resp = await deleteProduct(id);
@@ -41,12 +52,7 @@ const Card = ({ id, precio, nombre, descripcion, imagen, isAdmin }) => {
       <div className={!isAdmin ? "cardFooter" : "text-center"}>
         <div className="price">${precio}</div>
         {!isAdmin && (
-          <button
-            className="button-64 btnCustom"
-            onClick={() => {
-              agregarCarrito(id);
-            }}
-          >
+          <button className="button-64 btnCustom" onClick={agregarCarrito}>
             <span className="text spanCustom"> Agregar al carrito</span>
           </button>
         )}

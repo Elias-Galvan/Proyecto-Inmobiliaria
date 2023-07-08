@@ -10,8 +10,8 @@ import useProductos from "../../state/useProductos";
 
 const Productos = () => {
   const { productos, setProductos } = useProductos();
-  const navigate = useNavigate();
   const { usuario } = useUserStore();
+  const navigate = useNavigate();
 
   const getData = async () => {
     const getProductData = await getProductService();

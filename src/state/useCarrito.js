@@ -6,15 +6,31 @@ const store = (set) => ({
   carrito: [],
 
   addProduct: (producto) => {
-    set((state) => ({
-      carrito: [...state.productos, producto],
-    }));
+    set((state) => {
+      const { carrito } = state;
+      const existingProduct = carrito.find((p) => p.id === producto.id);
+
+      if (existingProduct) {
+        existingProduct.cantidad += 1;
+      } else {
+        state.carrito.push({ ...producto, cantidad: 1 });
+      }
+    });
   },
 
-  removeProduct: (productoId) => {
-    set((state) => ({
-      carrito: state.productos.filter((producto) => producto.id !== productoId),
-    }));
+  removeProduct: (productoId, eliminarUnidad = false) => {
+    set((state) => {
+      const { carrito } = state;
+      const existingProduct = carrito.find((p) => p.id === productoId);
+
+      if (existingProduct) {
+        if (eliminarUnidad && existingProduct.cantidad > 1) {
+          existingProduct.cantidad -= 1;
+        } else {
+          state.carrito = carrito.filter((p) => p.id !== productoId);
+        }
+      }
+    });
   },
 });
 
