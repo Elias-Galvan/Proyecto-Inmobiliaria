@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/css/Actividades.css";
 import { Link } from "react-router-dom";
-import { defaultUrl } from "../store/action/types";
+import { defaultUrl } from "../constants/types";
 
 export default function Card({ id, nombre, imagen, descripcion }) {
   return (

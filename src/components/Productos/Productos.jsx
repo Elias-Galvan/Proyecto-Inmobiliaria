@@ -3,14 +3,14 @@ import Banner from "../../assets/statics/proteina.jpg";
 import Card from "./components/Card/Card";
 import Filter from "./components/Filters/Filter";
 import { useNavigate } from "react-router-dom";
-import { getProductService } from "../../services/getProductService";
-import useUserStore from "../../state/useUserStore";
+import { getProductService } from "../../services/productService";
+import useUsersStore from "../../state/useUsersStore";
 import "../../assets/css/Productos.css";
 import useProductos from "../../state/useProductos";
 
 const Productos = () => {
   const { productos, setProductos } = useProductos();
-  const { usuario } = useUserStore();
+  const { usuario } = useUsersStore();
   const navigate = useNavigate();
 
   const getData = async () => {
@@ -21,8 +21,6 @@ const Productos = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  console.log(productos);
 
   const isAdmin = usuario?.authorities.some(
     (el) => el.authority === "ROLE_ADMIN"

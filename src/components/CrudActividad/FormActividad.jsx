@@ -1,14 +1,15 @@
 import React from "react";
-import "../../assets/css/FormularioActividades.css";
 import { useState } from "react";
 import useHorarios from "../../state/useHorarios";
 import { useEffect } from "react";
-import { defaultUrl } from "../../store/action/types";
+
 import api from "../../helpers/axiosInstance";
 import SelectOptionHorario from "./SelectOptionHorario";
-import { getHorariosService } from "../../services/getHorariosServices";
-import Swal from "sweetalert2";
+import { getHorariosService } from "../../services/horariosServices";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import "../../assets/css/FormularioActividades.css";
+import { defaultUrl } from "../../constants/types";
 
 const initialValues = {
   nombre: "",

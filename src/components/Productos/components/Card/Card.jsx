@@ -1,8 +1,8 @@
 import Swal from "sweetalert2";
 import useCarrito from "../../../../state/useCarrito";
-import { deleteProduct } from "../../../../services/getProductService";
-import { defaultUrl } from "../../../../store/action/types";
+import { deleteProduct } from "../../../../services/productService";
 import "./Card.css";
+import { defaultUrl } from "../../../../constants/types";
 
 const Card = ({ id, precio, nombre, descripcion, imagen, stock, isAdmin }) => {
   const { addProduct } = useCarrito();
@@ -12,7 +12,7 @@ const Card = ({ id, precio, nombre, descripcion, imagen, stock, isAdmin }) => {
       Swal.fire("Lo sentimos!!", "No se pueden agregar mas productos.", "info");
       return;
     }
-    console.log("Agregando a carrito");
+
     addProduct({ id, precio, nombre, descripcion, imagen, stock });
     Swal.fire("Genial!!", "Producto agregado correctamente.", "success");
   };

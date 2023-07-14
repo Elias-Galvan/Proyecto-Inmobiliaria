@@ -11,6 +11,6 @@ export const linksIsNotAuthenticated = [
 export const linksAuthenticated = [{ id: 1, path: "/tienda", text: "Tienda" }];
 
 export const linksAdminIsAuthenticated = [
-  { id: 1, path: "/altas", text: "Nuevo Usuario" },
+  { id: 1, path: "/altas", text: "Usuarios" },
   { id: 2, path: "/graficos", text: "Graficos" },
 ];

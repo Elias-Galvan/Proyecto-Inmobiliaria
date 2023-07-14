@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import Card from "../components/CardAct";
 import { useNavigate } from "react-router-dom";
-import { getActividadesService } from "../services/getActividadesService";
-import useUserStore from "../state/useUserStore";
+import { getActividadesService } from "../services/actividadesService";
+import useUsersStore from "../state/useUsersStore";
 import "../assets/css/Actividades.css";
 import useActividades from "../state/useActividades";
 
 export default function Actividades() {
-  const { usuario } = useUserStore();
+  const { usuario } = useUsersStore();
   const { actividades, setActividades } = useActividades();
   const navigate = useNavigate();
 

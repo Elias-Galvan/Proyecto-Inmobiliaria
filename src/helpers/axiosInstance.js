@@ -1,5 +1,5 @@
 import axios from "axios";
-import { defaultUrl } from "../store/action/types";
+import { defaultUrl } from "../constants/types";
 
 const api = axios.create({
   baseURL: `${defaultUrl}`,

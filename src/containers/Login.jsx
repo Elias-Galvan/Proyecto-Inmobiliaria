@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useStore from "../state/useStore";
 import { loginService } from "../services/loginService";
 import Swal from "sweetalert2";
-import useUserStore from "../state/useUserStore";
+import useUsersStore from "../state/useUsersStore";
 
 const initialState = {
   nombreUsuario: "",
@@ -16,7 +16,7 @@ export default function Login() {
   const setToken = useStore((state) => state.setToken);
   const [user, setUser] = useState(initialState);
   const [loading, setLoading] = useState(false);
-  const { iniciarSesion } = useUserStore();
+  const { iniciarSesion } = useUsersStore();
 
   const navigate = useNavigate();
 
@@ -38,10 +38,7 @@ export default function Login() {
       } else {
         Swal.fire("Error!!", "Credenciales incorrectas.", "error");
       }
-
-      console.log(data);
     } catch (error) {
-      console.log(error);
       Swal.fire(
         "Error!!",
         "Ocurrió un error al iniciar sesión. Inténtalo de nuevo.",
@@ -80,6 +77,7 @@ export default function Login() {
             />
             <label htmlFor="password">Password</label>
           </div>
+
           {/* <div className="forget">
             <label htmlFor="">
               <input type="checkbox" value="Recordarme" />

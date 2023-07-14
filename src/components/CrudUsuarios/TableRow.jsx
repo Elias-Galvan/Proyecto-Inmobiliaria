@@ -1,35 +1,62 @@
 import React from "react";
+import Swal from "sweetalert2";
+import {
+  altaUsuarioService,
+  bajaUsuarioService,
+} from "../../services/usuarioServices";
 
-const TableRow = ({ id, nombreusuario, email, telefono }) => {
-  const handleDelete = () => {
-    console.log(`El usuario eliminado es: ${id} - ${nombreusuario}`);
+const TableRow = ({ user, action1, action2 }) => {
+  const { id, nombreUsuario, email, telefono } = user;
+
+  const handleDelete = async () => {
+    const resp = await bajaUsuarioService(id);
+    Swal.fire(
+      "OK!!",
+      `El usuario '${nombreUsuario.toUpperCase()}' fue dado de baja con exito!!`,
+      "success"
+    );
   };
 
-  const handleSuccess = () => {
-    const user = { id, nombreusuario, email, telefono };
-    console.log(user);
+  const handleSuccess = async () => {
+    if (action2 === "Dar de alta") {
+      const resp = await altaUsuarioService(id);
+      Swal.fire(
+        "OK!!",
+        `El usuario '${nombreUsuario.toUpperCase()}' fue dado de alta con exito!!`,
+        "success"
+      );
+    } else {
+      Swal.fire(
+        "OK!!",
+        `El usuario '${nombreUsuario}' pago con exito`,
+        "success"
+      );
+    }
   };
 
   return (
     <tr>
       <td>{id}</td>
-      <td>{nombreusuario}</td>
+      <td>{nombreUsuario}</td>
       <td>{email}</td>
       <td>{telefono}</td>
       <td className="containerButtons">
+        {action1 && (
+          <button
+            className="btnCrud btn btn-danger"
+            size="sm"
+            onClick={handleDelete}
+          >
+            {action1}
+          </button>
+        )}
         <button
-          className="btnCrud btn btn-danger"
-          size="sm"
-          onClick={handleDelete}
-        >
-          Eliminar
-        </button>
-        <button
-          className="btnCrud btn btn-success"
-          size="sm"
+          className={`btnCrud btn btn-success ${
+            action2 === "Dar de alta" && "w-50"
+          }`}
           onClick={handleSuccess}
         >
-          Alta
+          {action2}
         </button>
       </td>
     </tr>

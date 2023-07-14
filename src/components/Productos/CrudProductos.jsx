@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import api from "../../helpers/axiosInstance";
-import { defaultUrl } from "../../store/action/types";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { defaultUrl } from "../../constants/types";
 
 function CrudProductos() {
   const [nombre, setNombre] = useState("");
@@ -22,7 +22,7 @@ function CrudProductos() {
       precio <= 0 ||
       stock <= 0
     ) {
-      console.log("no entra");
+      Swal.fire("Warning", "Ningun campo puede estar vacio", "warning");
       return;
     }
 
