@@ -6,9 +6,10 @@ import Swal from "sweetalert2";
 import { useEffect } from "react";
 import useActividades from "../state/useActividades";
 import { getActividadById } from "../services/actividadesService";
-import { defaultUrl } from "../store/action/types";
-import useUserStore from "../state/useUserStore";
+
+import useUsersStore from "../state/useUsersStore";
 import api from "../helpers/axiosInstance";
+import { defaultUrl } from "../constants/types";
 
 // const images = [{ url: img1 }, { url: img2 }, { url: img3 }, { url: img4 }];
 
@@ -17,7 +18,7 @@ function DescActividad() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { actividad, setActividad } = useActividades();
-  const { usuario } = useUserStore();
+  const { usuario } = useUsersStore();
   const {
     cupoMaximo,
     nombre,

@@ -1,54 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Table } from "react-bootstrap";
-import "../../assets/css/CrudRepositorio.css";
 import TableRow from "./TableRow";
 import { useNavigate } from "react-router-dom";
-
-const users = [
-  {
-    id: 1,
-    nombreusuario: "Elias",
-    email: "elias@gmail.com",
-    telefono: "1159083447",
-  },
-  {
-    id: 2,
-    nombreusuario: "Seba",
-    email: "Seba@gmail.com",
-    telefono: "1149667584",
-  },
-  {
-    id: 3,
-    nombreusuario: "Maxi",
-    email: "maxi@gmail.com",
-    telefono: "1189690584",
-  },
-  {
-    id: 4,
-    nombreusuario: "Mariano",
-    email: "Mariano@gmail.com",
-    telefono: "1157858585",
-  },
-  {
-    id: 5,
-    nombreusuario: "Luisito",
-    email: "luisito@gmail.com",
-    telefono: "1145858584",
-  },
-  {
-    id: 6,
-    nombreusuario: "Coqui",
-    email: "coqui@gmail.com",
-    telefono: "1156856858",
-  },
-];
+import useUsersStore from "../../state/useUsersStore";
+import { getUsuarios } from "../../services/usuarioServices";
+import { useState } from "react";
+import "../../assets/css/CrudRepositorio.css";
 
 const CrudUsuarios = () => {
+  const [filter, setFilter] = useState(false);
+  const { usuarios, setAllUsuarios } = useUsersStore();
   const navigate = useNavigate();
+
+  const getData = async () => {
+    const getUsersData = await getUsuarios();
+    setAllUsuarios(getUsersData);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const filterUsersIsPrimary = usuarios.filter(
+    (user) => user.esPrimeraVez | !user.activo
+  );
+  const filterUsersIsActive = usuarios.filter((user) => user.activo);
+
+  console.log(usuarios);
+
   return (
-    <div fluid className="containerPage">
+    <div className="containerPage">
       <div className="newContact">
-        <button className="btn btn-info" onClick={() => navigate("/registro")}>
+        <button
+          className="btn btn-info mx-2"
+          onClick={() => setFilter(!filter)}
+        >
+          {filter ? "Usuarios activos" : " Tabla de Altas"}
+        </button>
+        <button
+          className="btn btn-info  mx-2"
+          onClick={() => navigate("/registro")}
+        >
           Nuevo Contacto
         </button>
       </div>
@@ -63,9 +55,18 @@ const CrudUsuarios = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <TableRow key={user.id} {...user} />
-          ))}
+          {filter
+            ? filterUsersIsPrimary.map((user) => (
+                <TableRow key={user.id} user={user} action2={"Dar de alta"} />
+              ))
+            : filterUsersIsActive.map((user) => (
+                <TableRow
+                  key={user.id}
+                  user={user}
+                  action1={"Dar de baja"}
+                  action2={"Pagar"}
+                />
+              ))}
         </tbody>
       </Table>
     </div>

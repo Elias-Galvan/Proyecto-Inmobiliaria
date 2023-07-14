@@ -4,6 +4,9 @@ import { immer } from "zustand/middleware/immer";
 
 const store = (set) => ({
   usuario: null,
+  usuarios: [],
+  setAllUsuarios: (traerUsuarios) => set({ usuarios: traerUsuarios }),
+
   iniciarSesion: (datosUsuario) => {
     sessionStorage.setItem("nombreUsuario", datosUsuario.nombreUsuario);
     set({ usuario: datosUsuario });
@@ -14,5 +17,5 @@ const store = (set) => ({
   },
 });
 
-const useUserStore = create(devtools(immer(store)));
-export default useUserStore;
+const useUsersStore = create(devtools(immer(store)));
+export default useUsersStore;

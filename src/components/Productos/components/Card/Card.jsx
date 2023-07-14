@@ -1,8 +1,8 @@
 import Swal from "sweetalert2";
 import useCarrito from "../../../../state/useCarrito";
 import { deleteProduct } from "../../../../services/productService";
-import { defaultUrl } from "../../../../store/action/types";
 import "./Card.css";
+import { defaultUrl } from "../../../../constants/types";
 
 const Card = ({ id, precio, nombre, descripcion, imagen, stock, isAdmin }) => {
   const { addProduct } = useCarrito();

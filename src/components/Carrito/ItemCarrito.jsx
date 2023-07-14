@@ -1,4 +1,4 @@
-import { defaultUrl } from "../../store/action/types";
+import { defaultUrl } from "../../constants/types";
 import useCarrito from "../../state/useCarrito";
 
 function ItemCarrito({ producto }) {

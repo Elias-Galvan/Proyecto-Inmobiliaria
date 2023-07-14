@@ -1,5 +1,5 @@
+import { defaultUrl } from "../constants/types";
 import api from "../helpers/axiosInstance";
-import { defaultUrl } from "../store/action/types";
 
 export const getHorariosService = async () => {
   try {

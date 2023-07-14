@@ -10,14 +10,14 @@ import {
   linksAuthenticated,
 } from "../../assets/datos/links";
 import Swal from "sweetalert2";
-import useUserStore from "../../state/useUserStore";
-import "../../assets/css/Header.css";
+import useUsersStore from "../../state/useUsersStore";
 import carrito from "../../assets/statics/iconocarrito.png";
+import "../../assets/css/Header.css";
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
   const [viewMenu, setViewMenu] = useState(false);
-  const { usuario, cerrarSesion } = useUserStore();
+  const { usuario, cerrarSesion } = useUsersStore();
   const location = useLocation();
 
   const rol = usuario?.authorities.some((el) => el.authority === "ROLE_ADMIN");
