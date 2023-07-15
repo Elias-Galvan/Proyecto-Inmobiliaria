@@ -30,7 +30,6 @@ function App() {
 
   const ProtectedRoutes = () => {
     const isLogin = isAuthenticated();
-    // const isLogin = true;
     return isLogin ? <Outlet /> : <Navigate to={"/"} />;
   };
 

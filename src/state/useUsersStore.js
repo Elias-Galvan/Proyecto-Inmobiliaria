@@ -8,7 +8,11 @@ const store = (set) => ({
   setAllUsuarios: (traerUsuarios) => set({ usuarios: traerUsuarios }),
 
   iniciarSesion: (datosUsuario) => {
+    const isAdmin = datosUsuario?.authorities.some(
+      (el) => el.authority === "ROLE_ADMIN"
+    );
     sessionStorage.setItem("nombreUsuario", datosUsuario.nombreUsuario);
+    sessionStorage.setItem("isAdmin", isAdmin ? "ROLE_ADMIN" : "ROLE_USER");
     set({ usuario: datosUsuario });
   },
   cerrarSesion: () => {

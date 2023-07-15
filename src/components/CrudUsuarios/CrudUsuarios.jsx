@@ -23,13 +23,6 @@ const CrudUsuarios = () => {
   }, []);
 
   const filterUsersIsPrimary = usuarios.filter((user) => {
-    console.log(
-      user.nombreUsuario +
-        ", esta al dia: " +
-        compareDate(user.fechaExpiracionCuota) +
-        ", esta activo: " +
-        user.activo
-    );
     return (
       user.esPrimeraVez |
       !user.activo |

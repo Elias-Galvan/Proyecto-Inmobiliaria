@@ -17,10 +17,10 @@ import "../../assets/css/Header.css";
 export default function Header() {
   const [isLogin, setIsLogin] = useState(null);
   const [viewMenu, setViewMenu] = useState(false);
-  const { usuario, cerrarSesion } = useUsersStore();
+  const { cerrarSesion } = useUsersStore();
   const location = useLocation();
 
-  const rol = usuario?.authorities.some((el) => el.authority === "ROLE_ADMIN");
+  const rol = sessionStorage.getItem("isAdmin");
   const isAuthenticated = sessionStorage.getItem("token") !== null;
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Header() {
                 ))}
               </>
             )}
-            {isAuthenticated && rol && (
+            {isAuthenticated && rol === "ROLE_ADMIN" && (
               <>
                 {linksAdminIsAuthenticated.map((link) => (
                   <LinkNavBar key={link.id} path={link.path} text={link.text} />
@@ -75,7 +75,7 @@ export default function Header() {
               linksAuthenticated.map((link) => (
                 <LinkNavBar key={link.id} path={link.path} text={link.text} />
               ))}
-            {isAuthenticated && (
+            {isAuthenticated && rol === "ROLE_USER" && (
               <li className="li">
                 <Link to={"/carrito"}>
                   <img
