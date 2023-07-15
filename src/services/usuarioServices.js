@@ -28,3 +28,16 @@ export const bajaUsuarioService = async (id) => {
     console.log("Rompio el servicio");
   }
 };
+
+export const renovarUsuarioService = async (id) => {
+  try {
+    const resp = await api.post(
+      `${defaultUrl}/api/v1/actualizar-fecha-expiracion/${id}`,
+      { id }
+    );
+
+    return resp.data;
+  } catch (error) {
+    console.log("Rompio el servicio");
+  }
+};

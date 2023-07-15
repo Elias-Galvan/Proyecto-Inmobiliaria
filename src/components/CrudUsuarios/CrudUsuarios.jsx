@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useUsersStore from "../../state/useUsersStore";
 import { getUsuarios } from "../../services/usuarioServices";
 import { useState } from "react";
+import { compareDate } from "../../utils/compareDate";
 import "../../assets/css/CrudRepositorio.css";
 
 const CrudUsuarios = () => {
@@ -21,12 +22,23 @@ const CrudUsuarios = () => {
     getData();
   }, []);
 
-  const filterUsersIsPrimary = usuarios.filter(
-    (user) => user.esPrimeraVez | !user.activo
+  const filterUsersIsPrimary = usuarios.filter((user) => {
+    console.log(
+      user.nombreUsuario +
+        ", esta al dia: " +
+        compareDate(user.fechaExpiracionCuota) +
+        ", esta activo: " +
+        user.activo
+    );
+    return (
+      user.esPrimeraVez |
+      !user.activo |
+      (compareDate(user.fechaExpiracionCuota) === false)
+    );
+  });
+  const filterUsersIsActive = usuarios.filter(
+    (user) => user.activo && compareDate(user.fechaExpiracionCuota) === true
   );
-  const filterUsersIsActive = usuarios.filter((user) => user.activo);
-
-  console.log(usuarios);
 
   return (
     <div className="containerPage">
@@ -44,6 +56,9 @@ const CrudUsuarios = () => {
           Nuevo Contacto
         </button>
       </div>
+      <h3 className="text-white">
+        {filter ? "Usuarios para Alta" : "Usuarios Activos"}
+      </h3>
       <Table striped bordered hover variant="dark" className="table">
         <thead>
           <tr>
