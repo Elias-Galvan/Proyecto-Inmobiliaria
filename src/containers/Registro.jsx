@@ -1,17 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import "../assets/css/Registro.css";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import "../assets/css/Registro.css";
+import { defaultUrl } from "../constants/types";
+import api from "../helpers/axiosInstance";
+// import { newUserService } from "../services/usuarioServices";
 
 export default function Registro() {
-  // const rol = "ADMIN";
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -19,16 +22,28 @@ export default function Registro() {
     setIsChecked(e.target.checked);
   };
 
-  const onSubmit = (data) => {
-    if (isChecked) {
-      Swal.fire("Felicidades!!", "Te registraste correctamente.", "success");
-      // Aquí puedes hacer la lógica adicional para enviar los datos
-    } else {
-      Swal.fire(
-        "Error!",
-        "Primero debe aceptar los términos y condiciones",
-        "warning"
+  const onSubmit = async (data) => {
+    if (data.password !== data.confirmpassword) {
+      Swal.fire("Error", "Las contraseñas deben coincidir!", "error");
+      return;
+    }
+    let dni = parseInt(data.dni);
+    let telefono = parseInt(data.telefono);
+    const newData = { ...data, dni, telefono };
+
+    delete newData.confirmpassword;
+
+    const resp = await api.post(`${defaultUrl}/auth/nuevo`, newData);
+
+    console.log("respuesta del servicio: ", resp.status);
+    if (resp.status === 201) {
+      Swal.fire("Ok!!", "Te registrate correctamente!", "success").then(
+        (result) => {
+          if (result.isConfirmed) navigate("/");
+        }
       );
+    } else {
+      Swal.fire("Upps!", "Ocurrio un error, volve a intentarlo!", "warning");
     }
   };
 
@@ -63,7 +78,7 @@ export default function Registro() {
 
             <input
               type="text"
-              {...register("nombreusuario")}
+              {...register("nombreUsuario")}
               placeholder="Nombre de usuario"
             />
 
