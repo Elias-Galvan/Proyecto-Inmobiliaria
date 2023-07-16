@@ -1,7 +1,7 @@
 import React from "react";
-import "../assets/css/Layout.css";
 import Header from "./Header/Header";
 import Footer from "../components/Footer";
+import "../assets/css/Layout.css";
 
 export default function Layout(props) {
   const { children } = props;

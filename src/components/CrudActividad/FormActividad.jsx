@@ -2,14 +2,14 @@ import React from "react";
 import { useState } from "react";
 import useHorarios from "../../state/useHorarios";
 import { useEffect } from "react";
-
 import api from "../../helpers/axiosInstance";
 import SelectOptionHorario from "./SelectOptionHorario";
 import { getHorariosService } from "../../services/horariosServices";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../../assets/css/FormularioActividades.css";
 import { defaultUrl } from "../../constants/types";
+import { getActividadById } from "../../services/actividadesService";
 
 const initialValues = {
   nombre: "",
@@ -26,15 +26,34 @@ const FormActividad = () => {
   const [imagen, setImagen] = useState(null);
   const { horarios, setHorarios } = useHorarios();
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { pathname } = useLocation();
 
   const getData = async () => {
     const getHorariosData = await getHorariosService();
     setHorarios(getHorariosData);
   };
 
+  const getActividad = async (id) => {
+    const getDataProduct = await getActividadById(id);
+    setData(getDataProduct);
+
+    const selectedHorarios = getDataProduct.horarios.map((horarioId) =>
+      horarios.find((horario) => horario.idHorario === horarioId.idHorario)
+    );
+
+    setData((prevData) => ({
+      ...prevData,
+      horarios: selectedHorarios,
+    }));
+  };
+
   useEffect(() => {
+    if (id) {
+      getActividad(id);
+    }
     getData();
-  }, []);
+  }, [id]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -81,21 +100,27 @@ const FormActividad = () => {
       formData.append("instructor", data.instructor);
       formData.append("imagen", imagen);
 
-      const response = await api.post(
-        `${defaultUrl}/api/v1/nueva-actividad`,
-        formData
-      );
-
-      if (response.status === 200) {
-        Swal.fire("Ok!!!", "Actividad creada con exito!", "success");
-        navigate("/actividades");
+      if (id) {
+        console.log(data);
       } else {
-        Swal.fire(
-          "Upps!!",
-          "Ha ocurrido un error al agregar la actividad",
-          "error"
-        );
+        console.log(data);
       }
+
+      // const response = await api.post(
+      //   `${defaultUrl}/api/v1/nueva-actividad`,
+      //   formData
+      // );
+
+      // if (response.status === 200) {
+      //   Swal.fire("Ok!!!", "Actividad creada con exito!", "success");
+      //   navigate("/actividades");
+      // } else {
+      //   Swal.fire(
+      //     "Upps!!",
+      //     "Ha ocurrido un error al agregar la actividad",
+      //     "error"
+      //   );
+      // }
     } catch (error) {
       console.error("Error al agregar la actividad: ", error);
       Swal.fire(
@@ -154,7 +179,11 @@ const FormActividad = () => {
           >
             {horarios &&
               horarios.map((horario) => (
-                <SelectOptionHorario key={horario.idHorario} {...horario} />
+                <SelectOptionHorario
+                  key={horario.idHorario}
+                  {...horario}
+                  selectedHorarios={horarios}
+                />
               ))}
           </select>
         </div>
@@ -209,18 +238,20 @@ const FormActividad = () => {
           />
         </div>
         <br />
-        <div className="mb-3">
-          <label className="form-label textLabel">
-            Imagen:
-            <input
-              style={{ marginLeft: "12px" }}
-              accept="image/*"
-              type="file"
-              name="imagen"
-              onChange={(e) => setImagen(e.target.files[0])}
-            />
-          </label>
-        </div>
+        {pathname.includes("agregar") && (
+          <div className="mb-3">
+            <label className="form-label textLabel">
+              Imagen:
+              <input
+                style={{ marginLeft: "12px" }}
+                accept="image/*"
+                type="file"
+                name="imagen"
+                onChange={(e) => setImagen(e.target.files[0])}
+              />
+            </label>
+          </div>
+        )}
         <div className="btnfinal">
           <button className="btn btn-primary">Enviar</button>
         </div>

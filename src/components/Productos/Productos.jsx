@@ -4,14 +4,13 @@ import Card from "./components/Card/Card";
 import Filter from "./components/Filters/Filter";
 import { useNavigate } from "react-router-dom";
 import { getProductService } from "../../services/productService";
-import useUsersStore from "../../state/useUsersStore";
-import "../../assets/css/Productos.css";
 import useProductos from "../../state/useProductos";
+import "../../assets/css/Productos.css";
 
 const Productos = () => {
   const { productos, setProductos } = useProductos();
-  const { usuario } = useUsersStore();
   const navigate = useNavigate();
+  const isAdmin = sessionStorage.getItem("isAdmin");
 
   const getData = async () => {
     const getProductData = await getProductService();
@@ -21,10 +20,6 @@ const Productos = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  const isAdmin = usuario?.authorities.some(
-    (el) => el.authority === "ROLE_ADMIN"
-  );
 
   const handleSearch = (value) => {
     console.log(value);
@@ -37,7 +32,7 @@ const Productos = () => {
           <img src={Banner} alt="icon banner" />
         </h1>
       </div>
-      {isAdmin && (
+      {isAdmin === "ROLE_ADMIN" && (
         <div className="btn-add-product">
           <button
             className="button-64"
@@ -51,10 +46,7 @@ const Productos = () => {
         <Filter handleSearch={handleSearch} />
       </div>
       <div className="containerCard">
-        {productos &&
-          productos.map((elem) => (
-            <Card key={elem.id} {...elem} isAdmin={isAdmin} />
-          ))}
+        {productos && productos.map((elem) => <Card key={elem.id} {...elem} />)}
       </div>
     </div>
   );

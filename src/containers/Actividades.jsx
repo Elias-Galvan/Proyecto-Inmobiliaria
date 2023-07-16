@@ -7,15 +7,12 @@ import "../assets/css/Actividades.css";
 import useActividades from "../state/useActividades";
 
 export default function Actividades() {
-  const { usuario } = useUsersStore();
   const { actividades, setActividades } = useActividades();
   const navigate = useNavigate();
 
   const isAuthenticated = sessionStorage.getItem("token") !== null;
 
-  const isAdmin = usuario?.authorities.some(
-    (el) => el.authority === "ROLE_ADMIN"
-  );
+  const isAdmin = sessionStorage.getItem("isAdmin");
 
   const getData = async () => {
     const getActividadData = await getActividadesService();
@@ -34,13 +31,13 @@ export default function Actividades() {
     <div className="actividades">
       <div className="container justify-content-center align-items-center">
         <h2>Actividades</h2>
-        {isAuthenticated && isAdmin && (
+        {isAuthenticated && isAdmin === "ROLE_ADMIN" && (
           <div className="newContact">
             <button
               className="btn btn-info"
               onClick={() => navigate("/agregar-actividad")}
             >
-              Nuevo Actividad
+              Nueva Actividad
             </button>
           </div>
         )}

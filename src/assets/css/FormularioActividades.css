@@ -1,6 +1,6 @@
 .containerPage {
     padding-top: 100px;
-    padding-bottom: 20px;
+    padding-bottom: 100px;
     padding-left: 0;
     display: grid;
     justify-items: center;
@@ -36,4 +36,33 @@
 
 .btn btn-primary {
     width: 50%;
+}
+
+.table {
+    width: 80% !important;
+    height: auto !important;
+}
+
+.containerButtons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 21px !important;
+}
+
+.btnCrud {
+    width: 40%;
+}
+
+.newContact {
+    width: 80%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
