@@ -1,6 +1,3 @@
-// var registrosxmes = [0, 56, 20, 36, 80, 40, 30, 20, 25, 30, 12, 60];
-// var activosxmes = [20, 25, 60, 65, 45, 10, 0, 25, 35, 7, 20, 25];
-
 export const activeUsers = (usuarios) => {
   const registrosxmes = new Array(12).fill(0); // Inicializar un array de longitud 12 con valores 0
   const activosxmes = new Array(12).fill(0); // Inicializar un array de longitud 12 con valores 0
