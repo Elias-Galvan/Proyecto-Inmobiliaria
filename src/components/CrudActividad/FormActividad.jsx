@@ -41,7 +41,7 @@ const FormActividad = () => {
     const selectedHorarios = getDataProduct.horarios.map((horarioId) =>
       horarios.find((horario) => horario.idHorario === horarioId.idHorario)
     );
-
+    // console.log(selectedHorarios);
     setData((prevData) => ({
       ...prevData,
       horarios: selectedHorarios,
@@ -104,7 +104,6 @@ const FormActividad = () => {
 
       if (id) {
         response = await api.put(`${defaultUrl}/api/v1/actividad/${id}`, data);
-        console.log(response);
       } else {
         response = await api.post(
           `${defaultUrl}/api/v1/nueva-actividad`,
