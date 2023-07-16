@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import LinesChart from "../components/Graficos/LinesChart";
 import BarsChart from "../components/Graficos/BarsChart";
 import PiesChart from "../components/Graficos/PiesChart";
@@ -9,6 +9,14 @@ import { activeUsers } from "../utils/activeUsers";
 import { reservasPorActividad } from "../utils/reservationByActivity";
 import { getActividadesService } from "../services/actividadesService";
 import useActividades from "../state/useActividades";
+import { obtenerReservasPorMes } from "../utils/obtenerReservasPorMes";
+
+const styles = {
+  width: "40%",
+  height: "290px",
+  borderRadius: "10px",
+  padding: "10px 0",
+};
 
 function Graficos() {
   const { usuarios, setAllUsuarios } = useUsersStore();
@@ -16,7 +24,7 @@ function Graficos() {
   const { activosxmes, registrosxmes } = activeUsers(usuarios);
 
   const result = reservasPorActividad(actividades);
-  // console.log("result", result);
+  const actividadesxMes = obtenerReservasPorMes(actividades);
 
   const getDataUsers = async () => {
     const getUsersData = await getUsuarios();
@@ -36,7 +44,6 @@ function Graficos() {
   return (
     <section className="splash">
       <div className="container">
-        {/* Aquí incluiré las gráficas (un componente por cada ejemplo). */}
         <h1 className="titulo">Gráficas DUO GYM</h1>
         <div>
           <p className="m-2 h5 text-center">
@@ -44,12 +51,7 @@ function Graficos() {
           </p>
           <div
             className="bg-light mx-auto px-2 border border-2 border-primary"
-            style={{
-              width: "50%",
-              height: "290px",
-              borderRadius: "10px",
-              padding: "10px 0",
-            }}
+            style={styles}
           >
             <LinesChart
               activosxmes={activosxmes}
@@ -64,14 +66,9 @@ function Graficos() {
           </p>
           <div
             className="bg-light mx-auto px-2 border border-2 border-primary"
-            style={{
-              width: "50%",
-              height: "290px",
-              borderRadius: "10px",
-              padding: "10px 0",
-            }}
+            style={styles}
           >
-            <BarsChart />
+            <BarsChart actividadesxMes={actividadesxMes} />
           </div>
         </div>
         <hr className="mt-3 mb-2" />
@@ -81,12 +78,7 @@ function Graficos() {
           </p>
           <div
             className="bg-light mx-auto border border-2 border-primary"
-            style={{
-              width: "50%",
-              height: "290px",
-              borderRadius: "10px",
-              padding: "10px 0",
-            }}
+            style={styles}
           >
             <PiesChart actividades={result} />
             <div

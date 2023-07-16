@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import "../assets/css/Registro.css";
 import { defaultUrl } from "../constants/types";
 import api from "../helpers/axiosInstance";
-// import { newUserService } from "../services/usuarioServices";
 
 export default function Registro() {
   const {
@@ -35,7 +34,6 @@ export default function Registro() {
 
     const resp = await api.post(`${defaultUrl}/auth/nuevo`, newData);
 
-    console.log("respuesta del servicio: ", resp.status);
     if (resp.status === 201) {
       Swal.fire("Ok!!", "Te registrate correctamente!", "success").then(
         (result) => {
