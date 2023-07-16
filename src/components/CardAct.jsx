@@ -1,9 +1,8 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { defaultUrl } from "../constants/types";
-import "../assets/css/Actividades.css";
 import { deleteActividad } from "../services/actividadesService";
 import Swal from "sweetalert2";
+import "../assets/css/Actividades.css";
 
 export default function Card({ id, nombre, imagen, descripcion }) {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ export default function Card({ id, nombre, imagen, descripcion }) {
 
   return (
     <div className="card text-center bg-dark">
-      {isAdmin && (
+      {isAdmin === "ROLE_ADMIN" && (
         <div className="divcont">
           <button
             className="btn btn-warning"

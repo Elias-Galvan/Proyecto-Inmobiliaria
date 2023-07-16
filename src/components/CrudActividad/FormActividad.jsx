@@ -100,27 +100,31 @@ const FormActividad = () => {
       formData.append("instructor", data.instructor);
       formData.append("imagen", imagen);
 
+      let response;
+
       if (id) {
-        console.log(data);
+        response = await api.put(`${defaultUrl}/api/v1/actividad/${id}`, data);
+        console.log(response);
       } else {
-        console.log(data);
+        response = await api.post(
+          `${defaultUrl}/api/v1/nueva-actividad`,
+          formData
+        );
       }
 
-      // const response = await api.post(
-      //   `${defaultUrl}/api/v1/nueva-actividad`,
-      //   formData
-      // );
-
-      // if (response.status === 200) {
-      //   Swal.fire("Ok!!!", "Actividad creada con exito!", "success");
-      //   navigate("/actividades");
-      // } else {
-      //   Swal.fire(
-      //     "Upps!!",
-      //     "Ha ocurrido un error al agregar la actividad",
-      //     "error"
-      //   );
-      // }
+      if (response.status === 200) {
+        Swal.fire("Ok!!!", "Actividad creada con exito!", "success").then(
+          (result) => {
+            if (result.isConfirmed) navigate("/actividades");
+          }
+        );
+      } else {
+        Swal.fire(
+          "Upps!!",
+          "Ha ocurrido un error al agregar la actividad",
+          "error"
+        );
+      }
     } catch (error) {
       console.error("Error al agregar la actividad: ", error);
       Swal.fire(
