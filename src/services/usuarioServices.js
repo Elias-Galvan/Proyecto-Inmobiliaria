@@ -41,3 +41,16 @@ export const renovarUsuarioService = async (id) => {
     console.log("Rompio el servicio");
   }
 };
+
+// export const newUserService = async (data) => {
+//   console.log("data services: ", data);
+//   try {
+//     const resp = await api.post(`${defaultUrl}/auth/nuevo`, {
+//       data,
+//     });
+//     console.log("respuesta del servicio: ", resp);
+//     return resp.data;
+//   } catch (error) {
+//     console.log("Rompio el servicio");
+//   }
+// };
