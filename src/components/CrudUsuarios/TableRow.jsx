@@ -22,7 +22,7 @@ const TableRow = ({ user, action1, action2 }) => {
 
   const handleDelete = async () => {
     await bajaUsuarioService(id);
-    handleRedirect(" fue dado de baja exitosamente!");
+    handleRedirect(" dado de baja exitosamente!");
   };
 
   const handleSuccess = async () => {
@@ -31,7 +31,7 @@ const TableRow = ({ user, action1, action2 }) => {
       handleRedirect();
     } else {
       await renovarUsuarioService(id);
-      handleRedirect(" fue editado correctamente!!");
+      handleRedirect("editado correctamente!!");
     }
   };
 
