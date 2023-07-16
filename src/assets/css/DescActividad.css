@@ -2,7 +2,6 @@
     padding-top: 87px;
     padding-bottom: 50px;
     background: #0f0c29;
-
 }
 
 .container {
@@ -15,27 +14,32 @@
     border-radius: 5px;
 }
 
-.form-check-label {
-    color: white;
-}
-
-.carrousel {
-    position: relative;
-    margin-top: -66px;
-    margin-left: -56px;
-}
-
-.rsis-container {
-    border-radius: 100px;
-}
-
 .text {
-    color: darkcyan
+    color: darkcyan;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .form-check-label {
     color: white;
 }
+
+.reserva-turnos {
+    border: 1px solid #09f;
+    display: grid;
+    place-content: center;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.reserva-turnos:hover {
+    box-shadow: 4px 5px 14px 7px rgba(244, 239, 239, 0.71);
+    -webkit-box-shadow: 4px 5px 14px 7px rgba(244, 239, 239, 0.71);
+    -moz-box-shadow: 4px 5px 14px 7px rgba(244, 239, 239, 0.71);
+    border: none;
+}
+
 
 .btn-primary {
     margin-top: 25px;

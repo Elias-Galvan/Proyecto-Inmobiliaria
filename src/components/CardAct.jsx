@@ -45,7 +45,7 @@ export default function Card({ id, nombre, imagen, descripcion }) {
       <div className="card-body">
         <h4 className="card-title ">{nombre}</h4>
         <p className="card-text text-secondary">{descripcion}</p>
-        <Link to={`/actividad/${id}`} className="btn btn-secondary rounded-0">
+        <Link to={`/actividad/${id}`} className="btn btn-secondary rounded-0 ">
           Ver mas...
         </Link>
       </div>

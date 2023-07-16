@@ -7,9 +7,9 @@ import { getActividadById } from "../services/actividadesService";
 import api from "../helpers/axiosInstance";
 import { defaultUrl } from "../constants/types";
 import "../assets/css/DescActividad.css";
+import { mappedToDays } from "../utils/mappedToDays";
 
 function DescActividad() {
-  const [selectedId, setSelectedId] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
   const { actividad, setActividad } = useActividades();
@@ -23,6 +23,7 @@ function DescActividad() {
     imagen,
   } = actividad;
   const isAuthenticated = sessionStorage.getItem("token") !== null;
+  let fechaParaReserva = mappedToDays(horarios);
 
   const getData = async (id) => {
     const getActividadData = await getActividadById(id);
@@ -31,19 +32,14 @@ function DescActividad() {
 
   useEffect(() => {
     getData(id);
-  }, []);
-
-  const handleOptionChange = (event) => {
-    const selectedId = event.target.value;
-    setSelectedId(selectedId);
-  };
+  }, [id]);
 
   const handleTurnOfActivity = async () => {
     if (isAuthenticated) {
       const response = await api.post(`${defaultUrl}/api/v1/nueva-reserva`, {
         nombreUsuario: sessionStorage.getItem("nombreUsuario"),
         idActividad: Number(id),
-        idHorario: Number(selectedId),
+        idHorario: Number(fechaParaReserva.idHorario),
       });
 
       if (response.status === 200) {
@@ -68,45 +64,60 @@ function DescActividad() {
         <div className="row">
           <div className="col-md-6">
             <div className="text">
-              <h1>{nombre}</h1>
+              <h1 style={{ fontSize: "60px" }}>{nombre}</h1>
               <div>
-                <p>{descripcion}</p>
+                <p style={{ fontSize: "22px" }}>{descripcion}</p>
               </div>
-
               <div>
-                <p>Instructor: {instructor}</p>
+                <p>
+                  <strong>Instructor/a</strong>: {instructor}
+                </p>
               </div>
-
               <div>
-                <p>Horarios:</p>
+                <p>
+                  <strong>Horarios:</strong>
+                </p>
                 <div>
-                  {horarios &&
-                    horarios.map((horario) => (
-                      <div className="form-check" key={horario.idHorario}>
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name={selectedId}
-                          id={`flexRadioDefault${horario.idHorario}`} // Asignar un ID único para cada input radio
-                          value={horario.idHorario}
-                          onChange={handleOptionChange}
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor={`flexRadioDefault${horario.idHorario}`}
-                        >
-                          {horario.dia} {horario.horaInicio}
-                        </label>
-                      </div>
-                    ))}
+                  <ul>
+                    {horarios &&
+                      horarios
+                        .sort((a, b) => a.idHorario - b.idHorario)
+                        .map((horario) => (
+                          <li className="form-check" key={horario.idHorario}>
+                            <p>
+                              {horario.dia} {horario.horaInicio}
+                            </p>
+                          </li>
+                        ))}
+                  </ul>
                 </div>
               </div>
               <div>
-                <p>Precio: ${precio}</p>
+                <p style={{ fontSize: "30px" }}>
+                  <strong style={{ marginRight: "10px" }}>Precio:</strong>$
+                  {precio}
+                </p>
               </div>
-              <div>
-                <p>Cupos disponibles: {cupoMaximo}</p>
-              </div>
+            </div>
+          </div>
+          <div className="col-md-6">
+            <img
+              className="card-img-top rounded"
+              src={`${defaultUrl}${imagen}`}
+              alt={`Imagen ${nombre}`}
+              width={"400px"}
+              height={"400px"}
+            />
+          </div>
+          <div className="col-md-12">
+            <div className="reserva-turnos">
+              <p>
+                <strong style={{ marginRight: "10px" }}>Próxima clase:</strong>
+                {`${fechaParaReserva?.dia} ${fechaParaReserva?.horaInicio}`}
+              </p>
+              <p>
+                <strong>Cupos disponibles:</strong> {cupoMaximo}
+              </p>
               <div>
                 <button
                   type="button"
@@ -116,17 +127,6 @@ function DescActividad() {
                   Reserva una clase
                 </button>
               </div>
-            </div>
-          </div>
-          <div className="col-md-6 bg-info">
-            <div className="container-fluid">
-              <img
-                className="card-img-top rounded"
-                src={`${defaultUrl}${imagen}`}
-                alt={`Imagen ${nombre}`}
-                width={"400px"}
-                height={"400px"}
-              />
             </div>
           </div>
         </div>
