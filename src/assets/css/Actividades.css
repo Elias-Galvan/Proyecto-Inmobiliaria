@@ -39,11 +39,11 @@ p {
   overflow: hidden;
 }
 
-.card-img-top {
+.img-act {
   transform: scale(1);
   transition: all 0.3s ease-in-out;
 }
 
-.card-img-top:hover {
+.img-act:hover {
   transform: scale(1.2);
 }

@@ -30,7 +30,6 @@ function App() {
 
   const ProtectedRoutes = () => {
     const isLogin = isAuthenticated();
-    // const isLogin = true;
     return isLogin ? <Outlet /> : <Navigate to={"/"} />;
   };
 
@@ -47,7 +46,9 @@ function App() {
           <Route exact path="/termycond" element={<TerminosyCond />}></Route>
           <Route exact path="/politicas" element={<Politicas />}></Route>
           <Route exact path="/agregar-actividad" element={<FormActividad />} />
-          <Route exact path="/agregar-producto" element={<CrudProductos />} />
+          <Route path="/editar-actividad/:id" element={<FormActividad />} />
+          <Route path="/agregar-producto" element={<CrudProductos />} />
+          <Route path="/editar-producto/:id" element={<CrudProductos />} />
           <Route path={"/actividades"} element={<Actividades />} />
           <Route
             exact

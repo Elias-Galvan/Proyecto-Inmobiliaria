@@ -1,17 +1,42 @@
 import React, { useState } from "react";
 import api from "../../helpers/axiosInstance";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { defaultUrl } from "../../constants/types";
+import { useEffect } from "react";
+import { getProductByIdService } from "../../services/productService";
+import useProductos from "../../state/useProductos";
 
 function CrudProductos() {
+  const { setProducto } = useProductos();
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [precio, setPrecio] = useState(0);
   const [stock, setStock] = useState(0);
   const [imagen, setImagen] = useState(null);
-
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { pathname } = useLocation();
+
+  const getData = async (id) => {
+    const getProduct = await getProductByIdService(id);
+    setProducto(getProduct);
+    setNombre(getProduct.nombre);
+    setDescripcion(getProduct.descripcion);
+    setPrecio(getProduct.precio);
+    setStock(getProduct.stock);
+  };
+
+  useEffect(() => {
+    if (id) {
+      getData(id);
+    } else {
+      setNombre("");
+      setDescripcion("");
+      setPrecio(0);
+      setStock(0);
+    }
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,11 +59,22 @@ function CrudProductos() {
       formData.append("stock", Number(stock));
       formData.append("imagen", imagen);
 
-      const response = await api.post(
-        `${defaultUrl}/api/v1/nuevo-producto`,
-        formData
-      );
+      let response;
 
+      if (id) {
+        response = await api.put(`${defaultUrl}/api/v1/producto/${id}`, {
+          id,
+          nombre,
+          descripcion,
+          precio,
+          stock,
+        });
+      } else {
+        response = await api.post(
+          `${defaultUrl}/api/v1/nuevo-producto`,
+          formData
+        );
+      }
       if (response.status === 200) {
         Swal.fire("Ok!!!", response.data.mensaje, "success");
         navigate("/tienda");
@@ -50,7 +86,6 @@ function CrudProductos() {
         );
       }
     } catch (error) {
-      console.error("Error al agregar el producto:", error);
       Swal.fire(
         "Upps!!",
         "Ha ocurrido un error al agregar el producto",
@@ -61,7 +96,9 @@ function CrudProductos() {
 
   return (
     <div className="containerPage">
-      <h2>Agregar Producto</h2>
+      <h2>
+        {pathname.includes("editar") ? "Editar Producto" : "Agregar producto"}
+      </h2>
       <form className="formActividad" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label
@@ -135,21 +172,25 @@ function CrudProductos() {
         </div>
         <br />
 
-        <div className="mb-3">
-          <label className="form-label textLabel">
-            Imagen:
-            <input
-              style={{ marginLeft: "12px" }}
-              accept="image/*"
-              type="file"
-              name="imagen"
-              onChange={(e) => setImagen(e.target.files[0])}
-            />
-          </label>
-        </div>
+        {pathname.includes("agregar") && (
+          <div className="mb-3">
+            <label className="form-label textLabel">
+              Imagen:
+              <input
+                style={{ marginLeft: "12px" }}
+                accept="image/*"
+                type="file"
+                name="imagen"
+                onChange={(e) => setImagen(e.target.files[0])}
+              />
+            </label>
+          </div>
+        )}
         <div className="btnfinal">
           <button className="btn btn-primary" type="submit">
-            Agregar producto
+            {pathname.includes("editar")
+              ? "Editar Producto"
+              : "Agregar producto"}
           </button>
         </div>
       </form>

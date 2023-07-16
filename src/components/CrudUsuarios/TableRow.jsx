@@ -5,34 +5,33 @@ import {
   bajaUsuarioService,
   renovarUsuarioService,
 } from "../../services/usuarioServices";
+import { useNavigate } from "react-router-dom";
 
 const TableRow = ({ user, action1, action2 }) => {
-  const { id, nombreUsuario, email, telefono } = user;
+  const { id, nombreUsuario, email, telefono, fechaExpiracionCuota } = user;
+  const navigate = useNavigate();
+
+  const handleRedirect = (mensaje = ` dado de alta con exito!!`) =>
+    Swal.fire(
+      "OK!!",
+      `El usuario '${nombreUsuario.toUpperCase()}' fue ${mensaje}`,
+      "success"
+    ).then((result) => {
+      if (result.isConfirmed) navigate("/");
+    });
 
   const handleDelete = async () => {
     await bajaUsuarioService(id);
-    Swal.fire(
-      "OK!!",
-      `El usuario '${nombreUsuario.toUpperCase()}' fue dado de baja con exito!!`,
-      "success"
-    );
+    handleRedirect(" fue dado de baja exitosamente!");
   };
 
   const handleSuccess = async () => {
     if (action2 === "Dar de alta") {
       await altaUsuarioService(id);
-      Swal.fire(
-        "OK!!",
-        `El usuario '${nombreUsuario.toUpperCase()}' fue dado de alta con exito!!`,
-        "success"
-      );
+      handleRedirect();
     } else {
       await renovarUsuarioService(id);
-      Swal.fire(
-        "OK!!",
-        `El usuario '${nombreUsuario}' pago con exito`,
-        "success"
-      );
+      handleRedirect(" fue editado correctamente!!");
     }
   };
 
@@ -42,6 +41,7 @@ const TableRow = ({ user, action1, action2 }) => {
       <td>{nombreUsuario}</td>
       <td>{email}</td>
       <td>{telefono}</td>
+      <td>{fechaExpiracionCuota}</td>
       <td className="containerButtons">
         {action1 && (
           <button

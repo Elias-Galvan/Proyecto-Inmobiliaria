@@ -1,24 +1,18 @@
 import { useState } from "react";
-// import Carrousel from "../components/Carrousel";
-import "../assets/css/DescActividad.css";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import useActividades from "../state/useActividades";
 import { getActividadById } from "../services/actividadesService";
-
-import useUsersStore from "../state/useUsersStore";
 import api from "../helpers/axiosInstance";
 import { defaultUrl } from "../constants/types";
-
-// const images = [{ url: img1 }, { url: img2 }, { url: img3 }, { url: img4 }];
+import "../assets/css/DescActividad.css";
 
 function DescActividad() {
   const [selectedId, setSelectedId] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
   const { actividad, setActividad } = useActividades();
-  const { usuario } = useUsersStore();
   const {
     cupoMaximo,
     nombre,
@@ -47,7 +41,7 @@ function DescActividad() {
   const handleTurnOfActivity = async () => {
     if (isAuthenticated) {
       const response = await api.post(`${defaultUrl}/api/v1/nueva-reserva`, {
-        nombreUsuario: usuario.nombreUsuario,
+        nombreUsuario: sessionStorage.getItem("nombreUsuario"),
         idActividad: Number(id),
         idHorario: Number(selectedId),
       });
@@ -75,49 +69,59 @@ function DescActividad() {
           <div className="col-md-6">
             <div className="text">
               <h1>{nombre}</h1>
-              <br />
-              <p>{descripcion}</p>
-              <br />
-              <p>Horarios:</p>
-              {horarios &&
-                horarios.map((horario) => (
-                  <div className="form-check" key={horario.idHorario}>
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name={selectedId}
-                      id={`flexRadioDefault${horario.idHorario}`} // Asignar un ID único para cada input radio
-                      value={horario.idHorario}
-                      onChange={handleOptionChange}
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor={`flexRadioDefault${horario.idHorario}`}
-                    >
-                      {horario.dia} {horario.horaInicio}
-                    </label>
-                  </div>
-                ))}
+              <div>
+                <p>{descripcion}</p>
+              </div>
 
-              <p>Instructor: {instructor}</p>
+              <div>
+                <p>Instructor: {instructor}</p>
+              </div>
 
-              <p>Precio: ${precio}</p>
-
-              <p>Cupos disponibles: {cupoMaximo}</p>
-
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={handleTurnOfActivity}
-              >
-                Reserva una clase
-              </button>
+              <div>
+                <p>Horarios:</p>
+                <div>
+                  {horarios &&
+                    horarios.map((horario) => (
+                      <div className="form-check" key={horario.idHorario}>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name={selectedId}
+                          id={`flexRadioDefault${horario.idHorario}`} // Asignar un ID único para cada input radio
+                          value={horario.idHorario}
+                          onChange={handleOptionChange}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`flexRadioDefault${horario.idHorario}`}
+                        >
+                          {horario.dia} {horario.horaInicio}
+                        </label>
+                      </div>
+                    ))}
+                </div>
+              </div>
+              <div>
+                <p>Precio: ${precio}</p>
+              </div>
+              <div>
+                <p>Cupos disponibles: {cupoMaximo}</p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleTurnOfActivity}
+                >
+                  Reserva una clase
+                </button>
+              </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 bg-info">
             <div className="container-fluid">
-              {/* <Carrousel img={images} /> */}
               <img
+                className="card-img-top rounded"
                 src={`${defaultUrl}${imagen}`}
                 alt={`Imagen ${nombre}`}
                 width={"400px"}

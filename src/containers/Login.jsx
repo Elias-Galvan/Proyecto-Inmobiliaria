@@ -29,7 +29,6 @@ export default function Login() {
     setLoading(true);
     try {
       const data = await loginService(user);
-
       if (data && data.token) {
         setToken(data.token);
         iniciarSesion(data);

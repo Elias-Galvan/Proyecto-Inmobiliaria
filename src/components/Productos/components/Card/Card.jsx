@@ -1,11 +1,14 @@
 import Swal from "sweetalert2";
 import useCarrito from "../../../../state/useCarrito";
 import { deleteProduct } from "../../../../services/productService";
-import "./Card.css";
 import { defaultUrl } from "../../../../constants/types";
+import { useNavigate } from "react-router-dom";
+import "./Card.css";
 
-const Card = ({ id, precio, nombre, descripcion, imagen, stock, isAdmin }) => {
+const Card = ({ id, precio, nombre, descripcion, imagen, stock }) => {
   const { addProduct } = useCarrito();
+  const navigate = useNavigate();
+  const isAdmin = sessionStorage.getItem("isAdmin");
 
   const agregarCarrito = () => {
     if (stock <= 0) {
@@ -17,20 +20,25 @@ const Card = ({ id, precio, nombre, descripcion, imagen, stock, isAdmin }) => {
     Swal.fire("Genial!!", "Producto agregado correctamente.", "success");
   };
 
-  const deleleProductById = async (id) => {
+  const deleteProductById = async (id) => {
     const resp = await deleteProduct(id);
-
     Swal.fire("Ok.", resp.mensaje, "success");
+    navigate("/");
   };
 
   return (
     <div className="pepe">
       {isAdmin && (
         <div className="divcont">
-          <button className="btn btn-warning">Editar</button>
+          <button
+            className="btn btn-warning"
+            onClick={() => navigate(`/editar-producto/${id}`)}
+          >
+            Editar
+          </button>
           <button
             className="btn btn-danger"
-            onClick={() => deleleProductById(id)}
+            onClick={() => deleteProductById(id)}
           >
             X
           </button>
