@@ -103,7 +103,17 @@ const FormActividad = () => {
       let response;
 
       if (id) {
-        response = await api.put(`${defaultUrl}/api/v1/actividad/${id}`, data);
+        const selectedHorarios = data.horarios.map((horarioId) =>
+          horarios.find((horario) => horario.idHorario === parseInt(horarioId))
+        );
+        console.log(selectedHorarios);
+        const newData = { ...data };
+        newData.horarios = selectedHorarios;
+
+        response = await api.put(
+          `${defaultUrl}/api/v1/actividad/${id}`,
+          newData
+        );
       } else {
         response = await api.post(
           `${defaultUrl}/api/v1/nueva-actividad`,

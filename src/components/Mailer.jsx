@@ -1,20 +1,40 @@
 import React from "react";
 import "../assets/css/Contacto.css";
 import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export const Mailer = () => {
+  const navigate = useNavigate();
+
   const sendEmail = (event) => {
     event.preventDefault();
 
     emailjs
       .sendForm(
-        "service_d5n5bte",
-        "template_x2cqih8",
+        "service_24ytlmh",
+        "template_heg3rjd",
         event.target,
-        "Zjo6mNYvNam9PYTZC"
+        "miNfolIkLrzbFAL8u"
       )
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+      .then((response) =>
+        Swal.fire(
+          "OK!!",
+          "Tu mensaje fue enviado correctamente.",
+          "success"
+        ).then((result) => {
+          if (result.isConfirmed) navigate("/");
+        })
+      )
+      .catch((error) =>
+        Swal.fire(
+          "Error!!",
+          "Ocurrio un problema al enviar tu mensaje, por favor intentelo más tarde",
+          "error"
+        ).then((result) => {
+          if (result.isConfirmed) navigate("/");
+        })
+      );
   };
 
   return (
