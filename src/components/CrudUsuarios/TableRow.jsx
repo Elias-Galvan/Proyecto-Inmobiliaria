@@ -7,6 +7,9 @@ import {
 } from "../../services/usuarioServices";
 import { useNavigate } from "react-router-dom";
 
+const DAR_ALTA = "Dar de alta";
+const PAGAR = "Pagar";
+
 const TableRow = ({ user, action1, action2 }) => {
   const { id, nombreUsuario, email, telefono, fechaExpiracionCuota } = user;
   const navigate = useNavigate();
@@ -26,12 +29,14 @@ const TableRow = ({ user, action1, action2 }) => {
   };
 
   const handleSuccess = async () => {
-    if (action2 === "Dar de alta") {
+    if (action2 === DAR_ALTA) {
       await altaUsuarioService(id);
       handleRedirect();
-    } else {
+    } else if (action2 === PAGAR) {
       await renovarUsuarioService(id);
       handleRedirect("editado correctamente!!");
+    } else {
+      navigate(`/registro`, { state: { user } });
     }
   };
 
@@ -54,7 +59,7 @@ const TableRow = ({ user, action1, action2 }) => {
         )}
         <button
           className={`btnCrud btn btn-success ${
-            action2 === "Dar de alta" && "w-50"
+            (action2 === "Dar de alta" || action2 === "Editar") && "w-75"
           }`}
           onClick={handleSuccess}
         >

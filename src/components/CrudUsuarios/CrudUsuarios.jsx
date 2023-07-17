@@ -10,6 +10,7 @@ import ListaVaciaUsuarios from "./ListaVaciaUsuarios";
 
 const CrudUsuarios = () => {
   const [filter, setFilter] = useState(false);
+  const [viewUsers, setViewUsers] = useState(false);
   const { usuarios, setAllUsuarios } = useUsersStore();
   const navigate = useNavigate();
 
@@ -43,9 +44,23 @@ const CrudUsuarios = () => {
         />
       ));
 
+  const viewAllUsers =
+    viewUsers &&
+    usuarios.map((user) => (
+      <TableRow key={user.id} user={user} action2={"Editar"} />
+    ));
+
+  const filterTitle = filter ? "Tabla de Altas" : "Usuarios activos";
+
   return (
     <div className="containerPage">
       <div className="newContact">
+        <button
+          className="btn btn-info mx-2"
+          onClick={() => setViewUsers(!viewUsers)}
+        >
+          Ver todos
+        </button>
         <button
           className="btn btn-info mx-2"
           onClick={() => setFilter(!filter)}
@@ -60,7 +75,7 @@ const CrudUsuarios = () => {
         </button>
       </div>
       <h3 className="text-white">
-        {filter ? "Usuarios para Alta" : "Usuarios Activos"}
+        {viewUsers ? "Lista de usuarios" : filterTitle}
       </h3>
       <div className="table-container">
         {usuariosRender.length > 0 ? (
@@ -75,7 +90,7 @@ const CrudUsuarios = () => {
                 <th>Accion</th>
               </tr>
             </thead>
-            <tbody>{usuariosRender}</tbody>
+            <tbody>{viewUsers ? viewAllUsers : usuariosRender}</tbody>
           </Table>
         ) : (
           <ListaVaciaUsuarios />
