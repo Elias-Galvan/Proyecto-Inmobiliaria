@@ -22,9 +22,9 @@ ChartJS.register(
   Filler
 );
 
-var ReservaMusc = [72, 56, 34, 36, 80, 53, 54, 87, 54, 76, 12, 60];
-var ReservaCinta = [32, 43, 20, 36, 34, 40, 23, 12, 23, 43, 54, 34];
-var ReservaBox = [43, 76, 76, 36, 80, 54, 30, 20, 25, 30, 17, 66];
+// var ReservaMusc = [72, 56, 34, 36, 80, 53, 54, 87, 54, 76, 12, 60];
+// var ReservaCinta = [32, 43, 20, 36, 34, 40, 23, 12, 23, 43, 54, 34];
+// var ReservaBox = [43, 76, 76, 36, 80, 54, 30, 20, 25, 30, 17, 66];
 var meses = [
   "Enero",
   "Febrero",
@@ -51,7 +51,7 @@ var misoptions = {
   scales: {
     y: {
       min: 0,
-      max: 100,
+      max: 10,
     },
     x: {
       ticks: {},
@@ -59,44 +59,22 @@ var misoptions = {
   },
 };
 
-export default function Bars() {
+export default function Bars({ actividadesxMes }) {
+  let newDataSets = actividadesxMes.map((actividad) => ({
+    label: actividad.nombre,
+    data: actividad.reservasPorMes,
+    tension: 0.5,
+    fill: true,
+    borderColor: actividad.borderColor,
+    backgroundColor: actividad.backgroundColor,
+    pointRadius: 5,
+    pointBorderColor: actividad.borderColor,
+    pointBackgroundColor: actividad.borderColor,
+  }));
+
   var midata = {
     labels: meses,
-    datasets: [
-      {
-        label: "Musculación",
-        data: ReservaMusc,
-        tension: 0.5,
-        fill: true,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        pointRadius: 5,
-        pointBorderColor: "rgba(255, 99, 132)",
-        pointBackgroundColor: "rgba(255, 99, 132)",
-      },
-      {
-        label: "Cinta",
-        data: ReservaCinta,
-        tension: 0.5,
-        fill: true,
-        borderColor: "rgb(345, 49, 432)",
-        backgroundColor: "rgba(345, 49, 432, 0.5)",
-        pointRadius: 5,
-        pointBorderColor: "rgba(345, 49, 432)",
-        pointBackgroundColor: "rgba(345, 49, 432)",
-      },
-      {
-        label: "Boxeo",
-        data: ReservaBox,
-        tension: 0.5,
-        fill: true,
-        borderColor: "rgb(255, 206, 86)",
-        backgroundColor: "rgba(255, 206, 86, 0.5)",
-        pointRadius: 5,
-        pointBorderColor: "rgba(255, 206, 86)",
-        pointBackgroundColor: "rgba(255, 206, 86)",
-      },
-    ],
+    datasets: newDataSets,
   };
 
   return <Bar data={midata} options={misoptions} />;

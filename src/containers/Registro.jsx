@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../assets/css/Registro.css";
 import { defaultUrl } from "../constants/types";
 import api from "../helpers/axiosInstance";
-// import { newUserService } from "../services/usuarioServices";
 
 export default function Registro() {
   const {
@@ -15,7 +14,10 @@ export default function Registro() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const location = useLocation();
+  const user = location.state?.user || {};
 
+  const isAdmin = sessionStorage.getItem("isAdmin");
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (e) => {
@@ -27,17 +29,33 @@ export default function Registro() {
       Swal.fire("Error", "Las contraseñas deben coincidir!", "error");
       return;
     }
+    if (Object.keys(user).length > 0) {
+      data = { ...data, id: user.id };
+    }
+
     let dni = parseInt(data.dni);
     let telefono = parseInt(data.telefono);
     const newData = { ...data, dni, telefono };
-
     delete newData.confirmpassword;
 
-    const resp = await api.post(`${defaultUrl}/auth/nuevo`, newData);
+    let resp;
+    if (newData.id) {
+      resp = await api.put(
+        `${defaultUrl}/api/v1/usuario/editar/${newData.id}`,
+        newData
+      );
+    } else {
+      resp = await api.post(`${defaultUrl}/auth/nuevo`, newData);
+    }
 
-    console.log("respuesta del servicio: ", resp.status);
     if (resp.status === 201) {
       Swal.fire("Ok!!", "Te registrate correctamente!", "success").then(
+        (result) => {
+          if (result.isConfirmed) navigate("/");
+        }
+      );
+    } else if (resp.status === 200) {
+      Swal.fire("Ok!!", "Editaste tus datos correctamente!", "success").then(
         (result) => {
           if (result.isConfirmed) navigate("/");
         }
@@ -64,46 +82,63 @@ export default function Registro() {
               type="text"
               {...register("dni", { required: true, maxLength: 8 })}
               placeholder="Dni"
+              defaultValue={user?.dni}
               {...(errors.dni?.type === "required" &&
                 "Por favor indique su DNI")}
               {...(errors.dni?.type === "maxLength" &&
                 "Excedido el numero del DNI")}
             />
-            <input type="text" {...register("nombre")} placeholder="Nombre" />
+            <input
+              type="text"
+              {...register("nombre")}
+              placeholder="Nombre"
+              defaultValue={user?.nombre}
+            />
             <input
               type="text"
               {...register("apellido")}
               placeholder="Apellido"
+              defaultValue={user?.apellido}
             />
 
             <input
               type="text"
               {...register("nombreUsuario")}
               placeholder="Nombre de usuario"
+              defaultValue={user?.nombreUsuario}
             />
 
-            <input type="email" {...register("email")} placeholder="Email" />
+            <input
+              type="email"
+              {...register("email")}
+              placeholder="Email"
+              defaultValue={user?.email}
+            />
             <input
               type="text"
               {...register("telefono", { required: true, maxLength: 10 })}
               placeholder="telefono"
+              defaultValue={user?.telefono}
               {...(errors.telefono?.type === "required" &&
                 "Por favor indique su numero de telefono")}
               {...(errors.telefono?.type === "maxLength" &&
                 "Telefono incorrecto")}
             />
 
-            <input
-              type="password"
-              {...register("password")}
-              placeholder="contraseña"
-            />
-            <input
-              type="password"
-              {...register("confirmpassword")}
-              placeholder="confirme contraseña"
-            />
-
+            {isAdmin === null && (
+              <>
+                <input
+                  type="password"
+                  {...register("password")}
+                  placeholder="contraseña"
+                />
+                <input
+                  type="password"
+                  {...register("confirmpassword")}
+                  placeholder="confirme contraseña"
+                />
+              </>
+            )}
             <label className="check">
               <input
                 type="checkbox"
