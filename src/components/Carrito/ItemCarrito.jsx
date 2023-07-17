@@ -22,9 +22,25 @@ function ItemCarrito({ producto }) {
         <span style={{ fontWeight: "bold" }}>{nombre}</span>
       </td>
       <td>
-        <button onClick={() => removeProduct(id, true)}>-1</button>
-        <span style={{ margin: "0 10px" }}> {cantidad}</span>
-        <button onClick={() => addProduct(producto)}>+1</button>
+        <button
+          className="btn btn-light"
+          onClick={() => removeProduct(id, true)}
+        >
+          -
+        </button>
+        <span
+          style={{
+            margin: "0 10px",
+            fontSize: "17px",
+            fontWeight: "bold",
+            padding: "5px 0",
+          }}
+        >
+          {cantidad}
+        </span>
+        <button className="btn btn-light" onClick={() => addProduct(producto)}>
+          +
+        </button>
       </td>
       <td>${subtotal}</td>
     </tr>

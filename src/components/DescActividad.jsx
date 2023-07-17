@@ -119,17 +119,18 @@ function DescActividad() {
               <p>
                 <strong>Cupos disponibles:</strong> {cupoMaximo}
               </p>
-              {isAdmin === "ROLE_USER" && (
-                <div>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={handleTurnOfActivity}
-                  >
-                    Reserva una clase
-                  </button>
-                </div>
-              )}
+              {isAdmin === null ||
+                (isAdmin === "ROLE_USER" && (
+                  <div>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={handleTurnOfActivity}
+                    >
+                      Reserva una clase
+                    </button>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

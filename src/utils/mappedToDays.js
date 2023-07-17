@@ -35,13 +35,11 @@ export const mappedToDays = (clases = []) => {
     const horaInicioB = parseInt(b.horaInicio.split(":")[0]);
     return horaInicioA - horaInicioB;
   });
-  console.log("Clase por dia: ", clasesPorDia);
   // Obtener la clase más cercana
   const claseMasCercana = clasesPorDia.length > 0 ? clasesPorDia[0] : null;
 
   // Imprimir el resultado
   if (claseMasCercana) {
-    console.log(claseMasCercana);
     return claseMasCercana;
   } else {
     console.log("No hay clases próximas");

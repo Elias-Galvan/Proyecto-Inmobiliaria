@@ -28,7 +28,7 @@ const Card = ({ id, precio, nombre, descripcion, imagen, stock }) => {
 
   return (
     <div className="pepe">
-      {isAdmin && (
+      {isAdmin === "ROLE_ADMIN" && (
         <div className="divcont">
           <button
             className="btn btn-warning"
@@ -57,9 +57,11 @@ const Card = ({ id, precio, nombre, descripcion, imagen, stock }) => {
         <p className="descriptionCard">{descripcion}</p>
       </div>
 
-      <div className={!isAdmin ? "cardFooter" : "text-center"}>
-        <div className="price">${precio}</div>
-        {!isAdmin && (
+      <div className={isAdmin === "ROLE_USER" ? "cardFooter" : "text-center"}>
+        <div className="price">
+          <strong>${precio}</strong>
+        </div>
+        {isAdmin === "ROLE_USER" && (
           <button className="button-64 btnCustom" onClick={agregarCarrito}>
             <span className="text spanCustom"> Agregar al carrito</span>
           </button>

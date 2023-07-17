@@ -15,6 +15,11 @@ export default function Card({ id, nombre, imagen, descripcion }) {
     navigate("/");
   };
 
+  let newDescription =
+    descripcion.length > 40
+      ? descripcion.substring(0, 40).concat("...")
+      : descripcion;
+
   return (
     <div className="card text-center bg-dark">
       {isAdmin === "ROLE_ADMIN" && (
@@ -44,7 +49,7 @@ export default function Card({ id, nombre, imagen, descripcion }) {
       </div>
       <div className="card-body">
         <h4 className="card-title ">{nombre}</h4>
-        <p className="card-text text-secondary">{descripcion}</p>
+        <p className="card-text text-secondary">{newDescription}</p>
         <Link to={`/actividad/${id}`} className="btn btn-secondary rounded-0 ">
           Ver mas...
         </Link>

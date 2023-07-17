@@ -51,7 +51,7 @@ image {
 
 .cardFooter {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin-top: 16px;
   flex-wrap: wrap;
@@ -61,7 +61,7 @@ image {
 
 .price {
   color: #333333;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 700;
 }
 
