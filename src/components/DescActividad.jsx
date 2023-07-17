@@ -10,6 +10,7 @@ import "../assets/css/DescActividad.css";
 import { mappedToDays } from "../utils/mappedToDays";
 
 function DescActividad() {
+  const isAdmin = sessionStorage.getItem("isAdmin");
   const navigate = useNavigate();
   const { id } = useParams();
   const { actividad, setActividad } = useActividades();
@@ -118,15 +119,17 @@ function DescActividad() {
               <p>
                 <strong>Cupos disponibles:</strong> {cupoMaximo}
               </p>
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleTurnOfActivity}
-                >
-                  Reserva una clase
-                </button>
-              </div>
+              {isAdmin === "ROLE_USER" && (
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={handleTurnOfActivity}
+                  >
+                    Reserva una clase
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
